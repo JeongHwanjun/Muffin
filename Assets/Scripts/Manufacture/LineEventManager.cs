@@ -11,14 +11,14 @@ public class LineEventManager : MonoBehaviour
 
     public GameObject ui;
     public GameObject character;
-    public event Action OnSheetCollison;
+    public event Action OnSheetCollision;
 
     private void Awake() {
 
     }
 
     public void TriggerSheetCollision(){
-        OnSheetCollison?.Invoke();
+        OnSheetCollision?.Invoke();
     }
     public void UISetActive(bool active){
         ui.SetActive(active);

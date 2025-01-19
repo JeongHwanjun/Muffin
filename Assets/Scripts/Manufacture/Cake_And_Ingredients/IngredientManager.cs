@@ -38,13 +38,14 @@ public class IngredientManager : MonoBehaviour
         }
     }
 
-    // 재료 데이터 변경 예시
-    public void UpdateIngredientData(string ingredientName, int newUsage)
+    // 재료 데이터 변경
+    public void UpdateIngredientData(string ingredientName, int additionalUsage)
     {
         var ingredient = ingredients.Find(i => i.name == ingredientName);
         if (ingredient != null)
         {
-            ingredient.SetUsage(newUsage);
+            Debug.Log($"사용량 변경 : {ingredientName}, {additionalUsage}");
+            ingredient.SetUsage(ingredient.usage + additionalUsage);
         }
     }
 }

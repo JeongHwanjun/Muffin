@@ -20,7 +20,7 @@ public class LineInputManager : MonoBehaviour
     private ManufactureAdmin manufactureAdmin;
     private Line line;
 
-    private enum stateTable {Idle, Wating, Reciving}; // 현재 상태 enum
+    private enum stateTable {Idle, Waiting, Receiving}; // 현재 상태 enum
     private stateTable state = stateTable.Idle; // 현재 상태
     private int selfLineNumber = 0, maxLineNumber = 3;
     
@@ -42,14 +42,14 @@ public class LineInputManager : MonoBehaviour
         }
 
         // 이벤트 연결
-        lineEventManager.OnSheetCollison += OnSheetCollision;
+        lineEventManager.OnSheetCollision += OnSheetCollision;
     }
-    public void InitializeDependingObjects() {
+    public void InitializeDependingObjects(ManufactureAdmin _manufactureAdmin) {
         // 다른 오브젝트가 확실히 초기화 되어야 하는 놈들. ManufactureAdmin에서 이를 보장하고 실행한다.
         line= GetComponentInParent<Line>();
         selfLineNumber = line.LineNumber;
 
-        manufactureAdmin = GameObject.Find("ManufactureAdmin").GetComponent<ManufactureAdmin>();
+        manufactureAdmin = _manufactureAdmin;
         maxLineNumber = manufactureAdmin.maxLine;
 
         // manufactureAdmin 이벤트 연결
@@ -76,18 +76,18 @@ public class LineInputManager : MonoBehaviour
         SwitchLineChangeInput(false);
 
         // 이벤트 연결 해제
-        lineEventManager.OnSheetCollison -= OnSheetCollision;
+        lineEventManager.OnSheetCollision -= OnSheetCollision;
         manufactureAdmin.SwitchLine -= OnSwitchLine;
     }
 
     private void OnSheetCollision(){
         if(state == stateTable.Idle){
-            state = stateTable.Wating;
+            state = stateTable.Waiting;
         }
     }
     private void OnCommandEnter(InputAction.CallbackContext ctx) {
-        if (state == stateTable.Wating) {
-            state = stateTable.Reciving;
+        if (state == stateTable.Waiting) {
+            state = stateTable.Receiving;
             CommandData.instance.InputCommands.Clear();
             // 커맨드 입력 활성화, 라인 변경 비활성화
             SwitchCommandInput(true);
@@ -100,13 +100,13 @@ public class LineInputManager : MonoBehaviour
         }
     }
     private void OnCommandExit(InputAction.CallbackContext ctx) {
-        if (state == stateTable.Reciving) {
+        if (state == stateTable.Receiving) {
             Debug.Log("입력된 커맨드 : "+string.Join(", ",CommandData.instance.InputCommands.ToArray()));
             if(CheckRecipe()){
                 state = stateTable.Idle; // 상태 초기화
                 Debug.Log("정답, 케이크 생산 성공");
             }else {
-                state = stateTable.Wating; // 계속 입력 가능한 상태
+                state = stateTable.Waiting; // 계속 입력 가능한 상태
                 Debug.Log("오답, 케이크 생산 실패");
             }
             CommandData.instance.InputCommands.Clear();
@@ -119,7 +119,7 @@ public class LineInputManager : MonoBehaviour
     }
 
     private void OnCommandArrowsPerformed(int index){
-        if(state == stateTable.Reciving){
+        if(state == stateTable.Receiving){
             CommandData.instance.InputCommands.Add(index);
             ValidateCommandArrows();
         }

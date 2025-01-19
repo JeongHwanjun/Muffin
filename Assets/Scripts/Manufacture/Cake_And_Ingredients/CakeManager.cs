@@ -12,15 +12,15 @@ public class CakeManager : MonoBehaviour
     }
 
     // 케이크 초기화
-    private void InitializeCakes()
+    private void InitializeCakes() // 추후 이미 작성된 Cake 객체의 정보를 그대로 저장하면 됨.
     {
         // 임시 데이터 넣기
         cakes.Add(new Cake
         {
-            name = "Chocolate Cake",
+            name = "Chocolate Cake", 
             quantity = 10,
             sales = 0,
-            recipe = new List<int> { 0, 1, 2, 3, 0 }, // 재료 ID 목록 -> 구체적인 커맨드로 번역 이 방식도 고려해보기
+            recipe = new List<int> { 0, 1, 2, 3, 0 },
             price = 15
         });
 
@@ -45,13 +45,13 @@ public class CakeManager : MonoBehaviour
     }
 
     // 케이크 데이터 변경 예시
-    public void UpdateCakeData(string cakeName, int newQuantity, int newSales)
+    public void UpdateCakeData(string cakeName, int quantityChange, int salesChange)
     {
         var cake = cakes.Find(c => c.name == cakeName);
         if (cake != null)
         {
-            cake.SetQuantity(newQuantity);
-            cake.SetSales(newSales);
+            cake.SetQuantity(cake.quantity + quantityChange);
+            cake.SetSales(cake.sales + salesChange);
         }
     }
 }

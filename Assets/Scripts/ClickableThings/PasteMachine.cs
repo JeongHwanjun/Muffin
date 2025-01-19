@@ -3,10 +3,10 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 /*
-    반죽(Paste, Phase1)을 생성하는 오브젝트의 스크립트
+    반죽을 생성하는 오브젝트의 스크립트
 
     입력 : 클릭, 특정 키(미정)
-    출력 : 재료 소모, 반죽 생성
+    출력 : 재료 소모량 증가, 반죽 생성
 */
 public class PasteMachine : ClickableThing
 {
@@ -20,23 +20,19 @@ public class PasteMachine : ClickableThing
     private int usage = 4;
     private int selfLineNumber;
 
-    protected override void Awake()
-    {
-        base.Awake();
-        manufactureAdmin = GameObject.Find("ManufactureAdmin").GetComponent<ManufactureAdmin>();
-    }
-
     protected override void Start()
     {
         base.Start();
         selfLine = GetComponentInParent<Line>();
         selfLineNumber = selfLine.LineNumber;
+        manufactureAdmin = selfLine.manufactureAdmin;
+        manufactureAdmin.ConsumeIngredient += CreateSheet;
     }
 
     protected override void OnEnable()
     {
         base.OnEnable();
-        manufactureAdmin.ConsumeIngredient += CreateSheet;
+        
     }
 
     // Update is called once per frame
