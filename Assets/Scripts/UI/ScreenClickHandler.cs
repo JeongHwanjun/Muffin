@@ -2,9 +2,11 @@ using UnityEngine;
 using UnityEngine.InputSystem; // InputAction을 사용하기 위해 추가
 
 public class ScreenClickHandler : MonoBehaviour {
-    public Camera renderCamera; // Render Texture에 연결된 카메라
-    public RenderTexture renderTexture; // Render Texture
-    public RectTransform rawImageRect; // Render Texture를 출력하는 Raw Image의 RectTransform
+    public Camera[] renderCameras; // Render Texture에 연결된 카메라
+    public RenderTexture[] renderTextures; // Render Texture
+    public RectTransform[] rawImageRects; // Render Texture를 출력하는 Raw Image의 RectTransform
+
+    private int currentScreenNumber = 1;
 
     public InputAction clickAction; // 임의의 입력을 처리할 InputAction (마우스 클릭, 키보드 등)
 
@@ -23,10 +25,10 @@ public class ScreenClickHandler : MonoBehaviour {
         Vector2 screenPosition = Mouse.current.position.ReadValue(); // 현재 마우스 포인터 위치를 가져옴
 
         // Raw Image 내에서의 로컬 좌표 계산
-        if (RectTransformUtility.RectangleContainsScreenPoint(rawImageRect, screenPosition)) {
+        if (RectTransformUtility.RectangleContainsScreenPoint(rawImageRects[currentScreenNumber], screenPosition)) {
             Vector2 localPoint;
             RectTransformUtility.ScreenPointToLocalPointInRectangle(
-                rawImageRect, // Raw Image의 RectTransform
+                rawImageRects[currentScreenNumber], // Raw Image의 RectTransform
                 screenPosition, // 스크린 좌표
                 null, // UI가 Screen Space Overlay일 경우 null
                 out localPoint
@@ -35,11 +37,12 @@ public class ScreenClickHandler : MonoBehaviour {
             Debug.Log($"클릭한 위치 (Raw Image 내부): {localPoint}");
 
             // Render Texture의 UV 좌표 계산
-            float normalizedX = (localPoint.x / rawImageRect.rect.width) + 0.5f;
-            float normalizedY = (localPoint.y / rawImageRect.rect.height) + 0.5f;
+            float normalizedX = (localPoint.x / rawImageRects[currentScreenNumber].rect.width) + 0.5f;
+            float normalizedY = (localPoint.y / rawImageRects[currentScreenNumber].rect.height) + 0.5f;
 
             // Render Texture에 연결된 카메라에서 Viewport 좌표로 변환 후 Raycast
-            Vector3 worldPosition = renderCamera.ViewportToWorldPoint(new Vector3(normalizedX, normalizedY, renderCamera.nearClipPlane));
+            Vector3 worldPosition = renderCameras[currentScreenNumber]
+            .ViewportToWorldPoint(new Vector3(normalizedX, normalizedY, renderCameras[currentScreenNumber].nearClipPlane));
 
             // 2D Raycast 실행
             RaycastHit2D hit = Physics2D.Raycast(worldPosition, Vector2.zero);
@@ -49,5 +52,9 @@ public class ScreenClickHandler : MonoBehaviour {
                 hit.collider.GetComponent<ClickableThing>()?.OnClick();
             }
         }
+    }
+
+    public void SwapScreen(int targetScreenNumber){
+        currentScreenNumber = Mathf.Clamp(targetScreenNumber,0,renderCameras.Length);
     }
 }

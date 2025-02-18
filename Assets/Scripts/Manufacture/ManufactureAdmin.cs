@@ -16,12 +16,10 @@ public class ManufactureAdmin : MonoBehaviour
 
     public event Action<int> SwitchLine;
     public event Action<int> ConsumeIngredient;
+    public static event Action<ManufactureAdmin> OnManufactureAdminReady;
+    public event Action<ScreenNumber> OnSwapScreen;
 
     private void Awake() {
-        
-    }
-    void Start()
-    {
         
     }
 
@@ -42,12 +40,9 @@ public class ManufactureAdmin : MonoBehaviour
 
         CommandData.instance.Recipes = recipes;
         TriggerSwitchLine(0);
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        // ScreenSwapper에 준비됐다고 알림
+        OnManufactureAdminReady?.Invoke(this);
     }
 
     public void TriggerSwitchLine(int _lineNumber){
@@ -61,5 +56,10 @@ public class ManufactureAdmin : MonoBehaviour
 
         // 해당하는 라인에서 sheet 생성
         ConsumeIngredient?.Invoke(lineNumber);
+    }
+
+    public void TriggerSwapScreen(ScreenNumber _screenNumber){ // 스크린 전환 키를 입력받아 전환을 시작하는 함수
+        Debug.Log("TriggerSwapScreen of ManufactureAdmin");
+        OnSwapScreen?.Invoke(_screenNumber);
     }
 }

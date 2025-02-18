@@ -224,7 +224,30 @@ MonoBehaviour:
       m_Action: Input Action
       m_Flags: 0
     m_Flags: 0
+  screenSwapper:
+    m_Name: Screen Swapper
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: cd9aff18-4abf-4818-bf0c-8f63ae67be89
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 3ace2525-b973-4f3f-9692-0de49c862633
+      m_Path: <Keyboard>/q
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Screen Swapper
+      m_Flags: 0
+    - m_Name: 
+      m_Id: fe562c1a-8d00-4931-81e5-12e98d76d0ef
+      m_Path: <Keyboard>/e
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Screen Swapper
+      m_Flags: 0
+    m_Flags: 0
   lineEventManager: {fileID: 0}
   manufactureAdmin: {fileID: 0}
-  selfLineNumber: 0
-  maxLineNumber: 3

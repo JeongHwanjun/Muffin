@@ -1,0 +1,6 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Sale/Speechbubble.uss?fileID=7433441132597879392&amp;guid=9f37fef7956457443824849a7649023f&amp;type=3#Speechbubble" />
+    <engine:VisualElement name="SpeechBubble" class="SpeechBubble" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/Sale/SpeakBubble.png?fileID=21300000&amp;guid=457bc456b943e2a4a9af2420cdb82e7a&amp;type=3#SpeakBubble&quot;); -unity-slice-left: 6; -unity-slice-top: 7; -unity-slice-right: 16; -unity-slice-bottom: 7; -unity-slice-scale: 1px; width: 100%; height: 100%; -unity-background-scale-mode: stretch-to-fill; align-items: center; justify-content: center;">
+        <engine:VisualElement name="CakeImage" class="CakeImage" style="flex-grow: 1; width: 50%; height: 50%; max-height: 50%; max-width: 50%; align-items: stretch; margin-right: 15%; margin-top: 1px; background-image: url(&quot;project://database/Assets/Popipa/Character_1/Idle/Idle_00000.png?fileID=1977475525&amp;guid=b1a12227299737d4d9b531a4871e366c&amp;type=3#Idle_00000_0&quot;);" />
+    </engine:VisualElement>
+</engine:UXML>

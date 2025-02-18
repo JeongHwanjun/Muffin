@@ -10,10 +10,12 @@ using UnityEngine.InputSystem;
 */
 public class LineInputManager : MonoBehaviour
 {
+    // 생산화면으로 전환되었을 때 입력을 활성화 해야 함
     public InputAction UserClick; // 왼클릭
     public InputAction commandEnter; // 커맨드 입력 시작
     public InputAction[] commandArrows; // 커맨드 방향들
     public InputAction[] lineChangers;
+    public InputAction screenSwapper;
 
     public LineEventManager lineEventManager;
     [SerializeField]
@@ -23,6 +25,7 @@ public class LineInputManager : MonoBehaviour
     private enum stateTable {Idle, Waiting, Receiving}; // 현재 상태 enum
     private stateTable state = stateTable.Idle; // 현재 상태
     private int selfLineNumber = 0, maxLineNumber = 3;
+    private bool turnOn = false;
     
     void Awake()
     {
@@ -31,6 +34,7 @@ public class LineInputManager : MonoBehaviour
         UserClick.canceled += OnClickOut;
         commandEnter.performed += OnCommandEnter;
         commandEnter.canceled += OnCommandExit;
+        screenSwapper.canceled += SwitchToSales;
 
         for(int i = 0; i < commandArrows.Length; i++){
             int index = i;
@@ -54,12 +58,13 @@ public class LineInputManager : MonoBehaviour
 
         // manufactureAdmin 이벤트 연결
         manufactureAdmin.SwitchLine += OnSwitchLine;
+        ScreenSwapper.OnScreenSwapComplete += OnScreenSwapComplete; // 화면이 활성화 되었을 때 입력 활성/비활성
     }
 
     private void OnDestroy() {
         // 입력 할당 해제
         UserClick.canceled -= OnClickOut;
-
+        screenSwapper.canceled -= SwitchToSales;
         commandEnter.performed -= OnCommandEnter;
         commandEnter.canceled -= OnCommandExit;
 
@@ -78,6 +83,7 @@ public class LineInputManager : MonoBehaviour
         // 이벤트 연결 해제
         lineEventManager.OnSheetCollision -= OnSheetCollision;
         manufactureAdmin.SwitchLine -= OnSwitchLine;
+        ScreenSwapper.OnScreenSwapComplete -= OnScreenSwapComplete;
     }
 
     private void OnSheetCollision(){
@@ -193,20 +199,26 @@ public class LineInputManager : MonoBehaviour
         return true;
     }
 
-    private void OnSwitchLine(int lineNumber){
-        // 주어진 lineNumber가 내 LineNumber와 같은지 비교
-        bool turnOn = lineNumber == selfLineNumber;
-        // 자신이 선택 라인이라면 커맨드 입력 활성화, 기본적으로 LineChange도 가능하도록 설정
-        if(turnOn){
+    private void SwitchInput(bool ON){
+        if(ON){
             UserClick.Enable();
             commandEnter.Enable();
+            screenSwapper.Enable();
             lineEventManager.CharacterSetActive(true);
         } else {
             UserClick.Disable();
             commandEnter.Disable();
+            screenSwapper.Disable();
             lineEventManager.CharacterSetActive(false);
         }
-        SwitchLineChangeInput(turnOn);
+        SwitchLineChangeInput(ON);
+    }
+
+    private void OnSwitchLine(int lineNumber){
+        // 주어진 lineNumber가 내 LineNumber와 같은지 비교
+        turnOn = lineNumber == selfLineNumber;
+        // 자신이 선택 라인이라면 커맨드 입력 활성화, 기본적으로 LineChange도 가능하도록 설정
+        SwitchInput(turnOn);
         SwitchCommandInput(false); // 커맨드 입력은 기본적으로 false - commandEnter를 눌러야 활성화
     }
 
@@ -244,5 +256,21 @@ public class LineInputManager : MonoBehaviour
         Debug.Log("라인체인저 작동");
         int nextLine = selfLineNumber + (index == 1 ? 1 : -1);
         manufactureAdmin.TriggerSwitchLine(nextLine);
+    }
+
+    private void SwitchToSales(InputAction.CallbackContext ctx){
+        Debug.Log("스위치 키는 눌렸습니다 내가 인증함");
+        manufactureAdmin.TriggerSwapScreen(ScreenNumber.Sales);
+        //SwitchInput(false); // 화면 넘어갈시 입력 비활성화 - 이후 다시 돌아오면 활성화 해야함.
+    }
+
+    private void OnScreenSwapComplete(ScreenNumber screenNumber){
+        if(screenNumber == ScreenNumber.Manufacture){ // 제작 화면으로 전환된 경우 선택된 라인만 활성화
+            // Enable Input, 자신이 활성화 된 상태(turnOn)일 때만
+            SwitchInput(turnOn);
+        } else {
+            // Disable Input
+            SwitchInput(false);
+        }
     }
 }

@@ -14,7 +14,7 @@ public class LineEventManager : MonoBehaviour
     public event Action OnSheetCollision;
 
     private void Awake() {
-
+        
     }
 
     public void TriggerSheetCollision(){

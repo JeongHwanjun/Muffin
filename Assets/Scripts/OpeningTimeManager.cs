@@ -22,12 +22,12 @@ public class OpeningTimeManager : MonoBehaviour
     }
 
     public void Initialize(){
-        if(manufactureAdmin == null){
+        if(manufactureAdmin == null && manufactureAdminPrefab != null){
             manufactureAdmin = Instantiate(manufactureAdminPrefab, transform);
             manufactureAdmin.transform.SetLocalPositionAndRotation(Vector3.zero, quaternion.identity);
             manufactureAdmin.GetComponent<ManufactureAdmin>().Initialize(maxLine, this);
         }
-        if(salesAdmin == null){
+        if(salesAdmin == null && salesAdminPrefab != null){
             salesAdmin = Instantiate(salesAdminPrefab, transform);
             salesAdmin.transform.SetLocalPositionAndRotation(new Vector3(salesX, salesY, 0), quaternion.identity);
         }
@@ -43,7 +43,12 @@ public class OpeningTimeManager : MonoBehaviour
         cakeManager.UpdateCakeData(cakeName, quantityChange, salesChange);
     }
 
-    public void changeScreen(int screenNumber){
-
+    public void changeScreen(ScreenNumber screenNumber){
+        // 이제 여기서 화면을 실제로 전환하는 로직을 짜면 됨
+        if(screenNumber == ScreenNumber.Sales){
+            // sales 화면으로 전환 (카메라 활성, 비활성)
+        } else if(screenNumber == ScreenNumber.Manufacture){
+            // manufacture 화면으로 전환
+        }
     }
 }
