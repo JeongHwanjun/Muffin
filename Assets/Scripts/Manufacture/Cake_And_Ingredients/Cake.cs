@@ -7,7 +7,7 @@ public class Cake{
     public int quantity;
     public int sales;
     public int price;
-    public List<int> recipe = new List<int>();
+    public List<recipeArrow> recipe = new List<recipeArrow>();
 
     public event Action<int> OnQuantityChanged;
     public event Action<int> OnSalesChanged;

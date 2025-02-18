@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class OpeningTimeManager : MonoBehaviour
 {
+    public OpeningTimeData openingTimeData;
+
     public GameObject manufactureAdminPrefab;
     private GameObject manufactureAdmin;
 
@@ -22,6 +24,7 @@ public class OpeningTimeManager : MonoBehaviour
     }
 
     public void Initialize(){
+        openingTimeData = GetComponentInChildren<OpeningTimeData>();
         if(manufactureAdmin == null && manufactureAdminPrefab != null){
             manufactureAdmin = Instantiate(manufactureAdminPrefab, transform);
             manufactureAdmin.transform.SetLocalPositionAndRotation(Vector3.zero, quaternion.identity);
@@ -30,7 +33,10 @@ public class OpeningTimeManager : MonoBehaviour
         if(salesAdmin == null && salesAdminPrefab != null){
             salesAdmin = Instantiate(salesAdminPrefab, transform);
             salesAdmin.transform.SetLocalPositionAndRotation(new Vector3(salesX, salesY, 0), quaternion.identity);
+            salesAdmin.GetComponent<SalesAdmin>().Initialize(openingTimeData, this);
         }
+
+        
     }
 
     public void UpdateIngredient(string ingredientName, int usage){
@@ -38,9 +44,9 @@ public class OpeningTimeManager : MonoBehaviour
         ingredientManager.UpdateIngredientData(ingredientName, usage);
     }
 
-    public void UpdateCake(string cakeName, int quantityChange, int salesChange){
+    public void UpdateCake(int cakeIndex, int quantityChange, int salesChange){
         // 여기선 변화량만 전달하고, cakeManager에선 기존의 수량, 판매량 + 번화량을 반영한다.
-        cakeManager.UpdateCakeData(cakeName, quantityChange, salesChange);
+        cakeManager.UpdateCakeData(cakeIndex, quantityChange, salesChange);
     }
 
     public void changeScreen(ScreenNumber screenNumber){

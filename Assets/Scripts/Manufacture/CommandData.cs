@@ -17,13 +17,13 @@ public class CommandData : INotifyPropertyChanged {
             return _instance;
         }
     }
-    private List<int> inputCommands = new List<int>();
-    private List<List<int>> recipes = new List<List<int>>();
+    private List<recipeArrow> inputCommands = new List<recipeArrow>();
+    private List<List<recipeArrow>> recipes = new List<List<recipeArrow>>();
     private List<int> recipeCorrectList = new List<int>();
 
     public event PropertyChangedEventHandler PropertyChanged;
 
-    public List<int> InputCommands {
+    public List<recipeArrow> InputCommands {
         get => inputCommands;
         set {
             inputCommands = value;
@@ -31,7 +31,7 @@ public class CommandData : INotifyPropertyChanged {
         }
     }
 
-    public List<List<int>> Recipes {
+    public List<List<recipeArrow>> Recipes {
         get => recipes;
         set {
             recipes = value;

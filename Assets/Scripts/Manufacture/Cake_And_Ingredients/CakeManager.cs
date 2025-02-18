@@ -1,6 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum recipeArrow {
+    up = 0,
+    right = 1,
+    down = 2,
+    left = 3
+}
+
 public class CakeManager : MonoBehaviour
 {
     public List<Cake> cakes = new List<Cake>(); // 케이크 목록
@@ -20,7 +27,7 @@ public class CakeManager : MonoBehaviour
             name = "Chocolate Cake", 
             quantity = 10,
             sales = 0,
-            recipe = new List<int> { 0, 1, 2, 3, 0 },
+            recipe = new List<recipeArrow> { recipeArrow.up, recipeArrow.right, recipeArrow.down, recipeArrow.left, recipeArrow.up },
             price = 15
         });
 
@@ -29,7 +36,7 @@ public class CakeManager : MonoBehaviour
             name = "Strawberry Cake",
             quantity = 5,
             sales = 0,
-            recipe = new List<int> { 3, 3, 3, 1 },
+            recipe = new List<recipeArrow> { recipeArrow.left, recipeArrow.left, recipeArrow.left, recipeArrow.right },
             price = 20
         });
     }
@@ -45,9 +52,13 @@ public class CakeManager : MonoBehaviour
     }
 
     // 케이크 데이터 변경 예시
-    public void UpdateCakeData(string cakeName, int quantityChange, int salesChange)
+    public void UpdateCakeData(int cakeIndex, int quantityChange, int salesChange)
     {
-        var cake = cakes.Find(c => c.name == cakeName);
+        if(cakeIndex < 0 || cakeIndex >= cakes.Count){
+            Debug.Log("Invalid Cake Update Request : " + cakeIndex);
+            return;
+        }
+        var cake = cakes[cakeIndex];
         if (cake != null)
         {
             cake.SetQuantity(cake.quantity + quantityChange);

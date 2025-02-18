@@ -26,6 +26,8 @@ public class LineInputManager : MonoBehaviour
     private stateTable state = stateTable.Idle; // 현재 상태
     private int selfLineNumber = 0, maxLineNumber = 3;
     private bool turnOn = false;
+
+    private Camera manufactureCamera;
     
     void Awake()
     {
@@ -38,7 +40,7 @@ public class LineInputManager : MonoBehaviour
 
         for(int i = 0; i < commandArrows.Length; i++){
             int index = i;
-            commandArrows[index].performed += ctx => OnCommandArrowsPerformed(index);
+            commandArrows[index].performed += ctx => OnCommandArrowsPerformed((recipeArrow)index);
         }
         for(int i = 0; i < lineChangers.Length; i++){
             int index=i;
@@ -47,6 +49,9 @@ public class LineInputManager : MonoBehaviour
 
         // 이벤트 연결
         lineEventManager.OnSheetCollision += OnSheetCollision;
+
+        // 카메라 할당
+        manufactureCamera = GameObject.FindGameObjectWithTag("ManufactureCamera").GetComponent<Camera>();
     }
     public void InitializeDependingObjects(ManufactureAdmin _manufactureAdmin) {
         // 다른 오브젝트가 확실히 초기화 되어야 하는 놈들. ManufactureAdmin에서 이를 보장하고 실행한다.
@@ -70,7 +75,7 @@ public class LineInputManager : MonoBehaviour
 
         for(int i = 0; i < commandArrows.Length; i++){
             int index = i;
-            commandArrows[index].performed -= ctx => OnCommandArrowsPerformed(index);
+            commandArrows[index].performed -= ctx => OnCommandArrowsPerformed((recipeArrow)index);
         }
         for(int i = 0; i < lineChangers.Length; i++){
             int index=i;
@@ -124,7 +129,7 @@ public class LineInputManager : MonoBehaviour
         }
     }
 
-    private void OnCommandArrowsPerformed(int index){
+    private void OnCommandArrowsPerformed(recipeArrow index){
         if(state == stateTable.Receiving){
             CommandData.instance.InputCommands.Add(index);
             ValidateCommandArrows();
@@ -133,7 +138,7 @@ public class LineInputManager : MonoBehaviour
 
     void OnClickOut(InputAction.CallbackContext ctx){
         // 클릭 위치 확인
-        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 mousePosition = manufactureCamera.ScreenToWorldPoint(Input.mousePosition);
         RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
 
         // 물체를 클릭했다면
@@ -151,9 +156,9 @@ public class LineInputManager : MonoBehaviour
     // 각 레시피와 현재 입력 커맨드를 비교해 정답의 개수를 반환, 화살표 UI에 활용
     private void ValidateCommandArrows() {
         List<int> RecipeCorrectList = new List<int>();
-        List<int> InputCommands = CommandData.instance.InputCommands;
+        List<recipeArrow> InputCommands = CommandData.instance.InputCommands;
 
-        foreach(List<int> recipe in CommandData.instance.Recipes){
+        foreach(List<recipeArrow> recipe in CommandData.instance.Recipes){
             int correctCount = 0;
             if(InputCommands.Count <= recipe.Count){
                 // 입력 커맨드가 정답 커맨드보다 짧거나 같은 때만 확인
@@ -173,8 +178,8 @@ public class LineInputManager : MonoBehaviour
 
     // 커맨드 입력 종료시 일치하는 레시피가 있는지 확인.
     public bool CheckRecipe(){
-        foreach(List<int> recipe in CommandData.instance.Recipes){
-            if(CompareList(recipe, CommandData.instance.InputCommands)){
+        foreach(List<recipeArrow> recipe in CommandData.instance.Recipes){
+            if(CompareRecipe(recipe, CommandData.instance.InputCommands)){
                 Debug.Log("일치하는 레시피 발견 : "+string.Join(", ",recipe.ToArray()));
                 CommandData.instance.InputCommands.Clear();
                 // UI비활성화
@@ -188,7 +193,7 @@ public class LineInputManager : MonoBehaviour
         return false;
     }
 
-    private bool CompareList(List<int> a, List<int> b){
+    private bool CompareRecipe(List<recipeArrow> a, List<recipeArrow> b){
         if(a.Count == b.Count){
             for(int i=0;i<a.Count;i++){
                 if(a[i] != b[i]) return false;

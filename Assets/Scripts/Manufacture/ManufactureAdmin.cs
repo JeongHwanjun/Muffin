@@ -9,9 +9,9 @@ public class ManufactureAdmin : MonoBehaviour
     public OpeningTimeManager openingTimeManager;
     public int maxLine = 3;
     public int totalWidth = 12; // 배치할 라인의 기준 넓이
-    public List<List<int>> recipes = new List<List<int>>{
-        new List<int> { 0, 1, 2, 3 },
-        new List<int> { 2, 3, 0, 1, 2 } // 하 좌 상 우 하
+    public List<List<recipeArrow>> recipes = new List<List<recipeArrow>>{
+        new List<recipeArrow> { recipeArrow.up, recipeArrow.right, recipeArrow.down, recipeArrow.left },
+        new List<recipeArrow> { recipeArrow.down, recipeArrow.down, recipeArrow.down, recipeArrow.right, recipeArrow.down }
     };
 
     public event Action<int> SwitchLine;

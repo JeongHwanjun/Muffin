@@ -10,8 +10,10 @@ public class CustomerManager : MonoBehaviour
     public GameObject CustomerPrefab;
     public SalesEventManager salesEventManager;
 
-    public void Initialize(){
+    private List<Cake> cakes;
 
+    public void Initialize(List<Cake> _cakes){
+        cakes = _cakes;
     }
     
     private bool validServe(){
@@ -23,13 +25,19 @@ public class CustomerManager : MonoBehaviour
 
     private void instantiateNewCustomer(){
         // 신규 고객을 생성해 customers에 추가함.
-        // 추가 후, List에 변동이 있음을 알린다.
         if(CustomerPrefab != null){
             GameObject newCustomer = Instantiate(CustomerPrefab, transform);
             customers.Add(newCustomer);
             newCustomer.transform.SetLocalPositionAndRotation(new Vector3(0, customers.Count * customerSpacing, 0), quaternion.identity);
-            newCustomer.GetComponent<Customer>().Initialize();
+            newCustomer.GetComponent<Customer>().Initialize(cakes, this);
+            // 추가 후, customer가 생성됨을 알림
+            salesEventManager.TriggerCustomerCreated(newCustomer.GetComponent<Customer>());
         }
+    }
+
+    void Start()
+    {
+        instantiateNewCustomer();
     }
 
     public void OnCustomersChanged(){

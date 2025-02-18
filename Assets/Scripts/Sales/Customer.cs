@@ -1,14 +1,18 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 
 public class Customer : MonoBehaviour
 {
-    public int cakeId, orderQuantity, selfIndex;
+    public int cakeIndex, orderQuantity, selfIndex;
+    private Cake cake;
     public string orderCakeName;
-    public int[] like;
+    public int[] like = {1,1,1};
     public float maximumWaiting = 20f;
 
     public CustomerManager customerManager;
+
+
 
     private void Update() {
         if(maximumWaiting < 0) {
@@ -19,8 +23,14 @@ public class Customer : MonoBehaviour
         }
     }
 
-    public void Initialize(){
+    public void Initialize(List<Cake> cakes, CustomerManager _customerManager){
+        customerManager = _customerManager;
         // 초기화. 이용가능한 케이크의 속성과 선호도를 활용해 케이크 및 주문수량 결정
+        // 현재는 주어진 List<Cake> 중에서 무작위로 선택함
+        System.Random random = new System.Random();
+        cakeIndex = random.Next(0,cakes.Count);
 
+        cake = cakes[cakeIndex];
+        Debug.Log(cake.name);
     }
 }

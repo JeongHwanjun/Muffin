@@ -24,11 +24,16 @@ public class CustomerUIHandler : MonoBehaviour{
         // 9-sliced 스프라이트 설정
         var styleBackground = speechBubble.style;
         //styleBackground.backgroundImage = new StyleBackground(bubbleSprite);
+
+
     }
 
     private void Update()
     {
-        if (target == null || targetCamera == null) return;
+        if (target == null) return;
+        if (targetCamera == null) {
+            targetCamera = GameObject.FindGameObjectWithTag("SalesCamera").GetComponent<Camera>();
+        }
 
         // 타겟의 월드 좌표를 화면 좌표로 변환
         Vector3 screenPosition = targetCamera.WorldToScreenPoint(target.transform.position);

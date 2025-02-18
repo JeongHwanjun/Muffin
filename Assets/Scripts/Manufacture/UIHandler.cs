@@ -6,7 +6,7 @@ public class UIHandler : MonoBehaviour
 {
     public Sprite Cake, Arrow, CompleteArrow, FailedArrow;
     private VisualElement root, container;
-    private List<List<int>> RecipeDirectionList = new List<List<int>>();
+    private List<List<recipeArrow>> RecipeDirectionList = new List<List<recipeArrow>>();
     private List<int> RecipeCorrectList = new List<int>(); // 항목당 정답 개수 리스트. 현재 커맨드 길이와 비교한다.
     private int currentRecipeLength = 0; // 현재 입력된 커맨드의 길이를 기록하는 변수
 
@@ -38,7 +38,7 @@ public class UIHandler : MonoBehaviour
 
                 for(int i=0;i<RecipeDirections.Count;i++){
                     // 화살표 이미지를 추가
-                    int direction = RecipeDirections[i];
+                    recipeArrow direction = RecipeDirections[i];
                     VisualElement ArrowElement = new VisualElement();
                     ArrowElement.AddToClassList("Arrow-style");
                     // 정답 여부에 따라 다른 화살표 이미지 추가
@@ -55,7 +55,7 @@ public class UIHandler : MonoBehaviour
                             ArrowElement.style.backgroundImage = new StyleBackground(Arrow);
                         }
                     }
-                    int angle = 90 * (direction + 1); // 0=상, 1=우, 2=하, 3=좌 - 기본 이미지는 좌측 방향임
+                    int angle = 90 * ((int)direction + 1); // 0=상, 1=우, 2=하, 3=좌 - 기본 이미지는 좌측 방향임
                     ArrowElement.style.rotate = new StyleRotate(new Rotate(angle));
                     ArrowsContainer.Add(ArrowElement);
                     
@@ -77,7 +77,7 @@ public class UIHandler : MonoBehaviour
         container.style.height = recipeCount * recipeHeight;
     }
 
-    private void setData(List<List<int>> recipe, List<int> inputCommands, List<int> count){
+    private void setData(List<List<recipeArrow>> recipe, List<recipeArrow> inputCommands, List<int> count){
         RecipeDirectionList = recipe;
         currentRecipeLength = inputCommands.Count;
         RecipeCorrectList = count;

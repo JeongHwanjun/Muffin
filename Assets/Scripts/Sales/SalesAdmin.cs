@@ -1,17 +1,20 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class SalesAdmin : MonoBehaviour
 {
-    
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    private SalesInputManager salesInputManager;
+    private SalesEventManager salesEventManager;
+    private CustomerManager customerManager;
+    private OpeningTimeManager openingTimeManager;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public void Initialize(OpeningTimeData openingTimeData, OpeningTimeManager _openingTimeManager){
+        openingTimeManager = _openingTimeManager;
+        salesInputManager = GetComponentInChildren<SalesInputManager>();
+        salesInputManager.Initialize();
+        salesEventManager = GetComponentInChildren<SalesEventManager>();
+        customerManager = GetComponentInChildren<CustomerManager>();
+        List<Cake> cakes = openingTimeData.GetCakeData();
+        customerManager.Initialize(cakes);
     }
 }

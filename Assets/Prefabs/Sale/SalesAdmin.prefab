@@ -98,12 +98,13 @@ Transform:
   m_GameObject: {fileID: 1607693054262569335}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 318.33145, y: 356.59802, z: -5.6771727}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5644109358466861125}
   - {fileID: 2413662005878178067}
+  - {fileID: 3781421478634822242}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3605189742985287327
@@ -118,6 +119,55 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ae609cbf24592a478b945e3f0e5e0f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &5011824197999426763
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3781421478634822242}
+  - component: {fileID: 2273952029595189163}
+  m_Layer: 0
+  m_Name: CustomerManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3781421478634822242
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5011824197999426763}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6405884929683373757}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2273952029595189163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5011824197999426763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d191e93524ff9440ae84ca19084b35b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  customerInterval: 0
+  customerSpacing: 0.5
+  customers: []
+  CustomerPrefab: {fileID: 5479250964737476044, guid: 048f9e2ca6f09a440932ba043d6927d5, type: 3}
+  salesEventManager: {fileID: 7778804998557764397}
 --- !u!1 &6214171782419860264
 GameObject:
   m_ObjectHideFlags: 0
