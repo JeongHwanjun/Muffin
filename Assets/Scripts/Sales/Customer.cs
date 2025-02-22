@@ -11,6 +11,7 @@ public class Customer : MonoBehaviour
     public float maximumWaiting = 20f;
 
     public CustomerManager customerManager;
+    public CustomerUIHandler orderBubble;
 
 
 
@@ -32,5 +33,7 @@ public class Customer : MonoBehaviour
 
         cake = cakes[cakeIndex];
         Debug.Log(cake.name);
+
+        orderBubble.Initialize(cake);
     }
 }

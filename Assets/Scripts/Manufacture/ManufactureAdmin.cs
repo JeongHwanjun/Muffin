@@ -9,19 +9,12 @@ public class ManufactureAdmin : MonoBehaviour
     public OpeningTimeManager openingTimeManager;
     public int maxLine = 3;
     public int totalWidth = 12; // 배치할 라인의 기준 넓이
-    public List<List<recipeArrow>> recipes = new List<List<recipeArrow>>{
-        new List<recipeArrow> { recipeArrow.up, recipeArrow.right, recipeArrow.down, recipeArrow.left },
-        new List<recipeArrow> { recipeArrow.down, recipeArrow.down, recipeArrow.down, recipeArrow.right, recipeArrow.down }
-    };
+    public List<List<recipeArrow>> recipes = new List<List<recipeArrow>>();
 
     public event Action<int> SwitchLine;
     public event Action<int> ConsumeIngredient;
     public static event Action<ManufactureAdmin> OnManufactureAdminReady;
     public event Action<ScreenNumber> OnSwapScreen;
-
-    private void Awake() {
-        
-    }
 
     public void Initialize(int _maxLine, OpeningTimeManager _openingTimeManager){
         // 상위 객체(OpeningTimeManager)에서 데이터를 받아와 이에 맞게 화면 초기화
@@ -40,6 +33,13 @@ public class ManufactureAdmin : MonoBehaviour
 
         CommandData.instance.Recipes = recipes;
         TriggerSwitchLine(0);
+
+        // 부모에게서 cake의 recipe 데이터를 받아옴
+        List<Cake> cakes = openingTimeManager.GetCakes();
+        //Debug.Log(cakes.Count);
+        foreach(Cake cake in cakes){
+            recipes.Add(cake.recipe);
+        }
 
         // ScreenSwapper에 준비됐다고 알림
         OnManufactureAdminReady?.Invoke(this);

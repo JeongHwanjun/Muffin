@@ -211,7 +211,7 @@ GameObject:
   - component: {fileID: 519420030}
   m_Layer: 0
   m_Name: ManufactureCamera
-  m_TagString: MainCamera
+  m_TagString: ManufactureCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -579,7 +579,7 @@ GameObject:
   - component: {fileID: 1495031453}
   m_Layer: 0
   m_Name: SalesCamera
-  m_TagString: Untagged
+  m_TagString: SalesCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1048,6 +1048,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4905333899952775383, guid: 2f9bc4c3571d58a469f2877cfba8c419, type: 3}
+      propertyPath: cakes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4905333899952775383, guid: 2f9bc4c3571d58a469f2877cfba8c419, type: 3}
+      propertyPath: 'cakes.Array.data[0]'
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5194764386627737558, guid: 2f9bc4c3571d58a469f2877cfba8c419, type: 3}
+      propertyPath: salesX
+      value: -30
+      objectReference: {fileID: 0}
     - target: {fileID: 5194764386627737558, guid: 2f9bc4c3571d58a469f2877cfba8c419, type: 3}
       propertyPath: salesAdminPrefab
       value: 
@@ -1101,71 +1113,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f9bc4c3571d58a469f2877cfba8c419, type: 3}
---- !u!1001 &6861558858447319449
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2844223430696014905, guid: 048f9e2ca6f09a440932ba043d6927d5, type: 3}
-      propertyPath: sourceAsset
-      value: 
-      objectReference: {fileID: 9197481963319205126, guid: 6d4d3916efb0d984e803b4894429f177, type: 3}
-    - target: {fileID: 4738550269906954177, guid: 048f9e2ca6f09a440932ba043d6927d5, type: 3}
-      propertyPath: targetCamera
-      value: 
-      objectReference: {fileID: 519420031}
-    - target: {fileID: 5363949208784539788, guid: 048f9e2ca6f09a440932ba043d6927d5, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -30
-      objectReference: {fileID: 0}
-    - target: {fileID: 5363949208784539788, guid: 048f9e2ca6f09a440932ba043d6927d5, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5363949208784539788, guid: 048f9e2ca6f09a440932ba043d6927d5, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5363949208784539788, guid: 048f9e2ca6f09a440932ba043d6927d5, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5363949208784539788, guid: 048f9e2ca6f09a440932ba043d6927d5, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5363949208784539788, guid: 048f9e2ca6f09a440932ba043d6927d5, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5363949208784539788, guid: 048f9e2ca6f09a440932ba043d6927d5, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5363949208784539788, guid: 048f9e2ca6f09a440932ba043d6927d5, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5363949208784539788, guid: 048f9e2ca6f09a440932ba043d6927d5, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5363949208784539788, guid: 048f9e2ca6f09a440932ba043d6927d5, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5479250964737476044, guid: 048f9e2ca6f09a440932ba043d6927d5, type: 3}
-      propertyPath: m_Name
-      value: Customer
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 048f9e2ca6f09a440932ba043d6927d5, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -1175,4 +1122,3 @@ SceneRoots:
   - {fileID: 3515112991556846335}
   - {fileID: 1059796875}
   - {fileID: 157297315}
-  - {fileID: 6861558858447319449}

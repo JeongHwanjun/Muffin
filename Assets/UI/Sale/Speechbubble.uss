@@ -1,15 +1,19 @@
 .SpeechBubble {
-    background-image-slice: 10 15 10 10; /* 9-sliced 적용 (상, 우, 하, 좌) */
-    background-repeat: stretch; /* 9-sliced를 늘리도록 설정 */
+    background-image-slice: 10 15 10 10;
+    background-repeat: stretch;
     background-size: cover;
-    padding: 10px; /* 내부 여백 */
+    padding: 10px;
     display: flex;
-    flex-direction: row; /* 이미지와 텍스트가 좌우로 정렬 */
+    flex-direction: row;
     align-items: center;
     justify-content: center;
     width: auto;
     height: auto;
-    border-radius: 5px; /* 둥근 말풍선 모양 */
+    border-radius: 5px;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
 }
 
 .CakeImage {
