@@ -1049,6 +1049,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4905333899952775383, guid: 2f9bc4c3571d58a469f2877cfba8c419, type: 3}
+      propertyPath: cakeCollection
+      value: 
+      objectReference: {fileID: 11400000, guid: a3b2c16f034ba1a4bb2e5f6722712f22, type: 2}
+    - target: {fileID: 4905333899952775383, guid: 2f9bc4c3571d58a469f2877cfba8c419, type: 3}
       propertyPath: cakes.Array.size
       value: 1
       objectReference: {fileID: 0}

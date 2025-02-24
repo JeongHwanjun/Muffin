@@ -138,9 +138,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 178ceb209aa850b4b8a518f509e35fb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  openingTimeData: {fileID: 0}
   manufactureAdminPrefab: {fileID: 1444127069345627946, guid: 487c4a116387e194a8a4f89feeae6221, type: 3}
   salesAdminPrefab: {fileID: 1607693054262569335, guid: d3d482adc81bbce428ad0cf135d0b351, type: 3}
-  salesX: -15
+  salesX: -30
   salesY: 0
   maxLine: 3
 --- !u!1 &8476160008965855577
@@ -187,4 +188,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d826d06709f9e24e9222e4e81e007d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cakes: []
+  cakeCollection: {fileID: 11400000, guid: a3b2c16f034ba1a4bb2e5f6722712f22, type: 2}
+  cakes:
+  - name: 
+    quantity: 0
+    sales: 0
+    price: 0
+    recipe: 
+    sprite: {fileID: 0}

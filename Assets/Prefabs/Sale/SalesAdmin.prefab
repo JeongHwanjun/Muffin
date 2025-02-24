@@ -163,8 +163,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d191e93524ff9440ae84ca19084b35b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  customerInterval: 0
-  customerSpacing: 0.5
+  popularity: 10
+  customerSpacing: 1.2
   customers: []
   CustomerPrefab: {fileID: 5479250964737476044, guid: 048f9e2ca6f09a440932ba043d6927d5, type: 3}
   salesEventManager: {fileID: 7778804998557764397}

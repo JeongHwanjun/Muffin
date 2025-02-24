@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class CustomerManager : MonoBehaviour
 {
-    public float customerInterval, customerSpacing = 0.5f;
+    public float popularity = 10.0f;
+    [SerializeField]
+    private float customerSpacing = 1.0f;
+    private float customerInterval = 5.0f, customerCooltime = 0.0f;
     public List<GameObject> customers = new List<GameObject>();
 
     public GameObject CustomerPrefab;
@@ -23,7 +26,7 @@ public class CustomerManager : MonoBehaviour
         return true;
     }
 
-    private void instantiateNewCustomer(){
+    private void InstantiateNewCustomer(){
         // 신규 고객을 생성해 customers에 추가함.
         if(CustomerPrefab != null){
             GameObject newCustomer = Instantiate(CustomerPrefab, transform);
@@ -32,15 +35,39 @@ public class CustomerManager : MonoBehaviour
             newCustomer.GetComponent<Customer>().Initialize(cakes, this);
             // 추가 후, customer가 생성됨을 알림
             salesEventManager.TriggerCustomerCreated(newCustomer.GetComponent<Customer>());
+
+            // customers를 처음부터 다시 배치함
+            lineupCustomer();
         }
     }
 
     void Start()
     {
-        instantiateNewCustomer();
+        
     }
 
-    public void OnCustomersChanged(){
+    void Update()
+    {
+        customerCooltime += Time.deltaTime;
+        if(customerCooltime > customerInterval){
+            InstantiateNewCustomer();
+            customerCooltime = 0;
+        }
+    }
 
+    public void OnCustomerDeleted(GameObject deletedCustomer){
+        customers.Remove(deletedCustomer);
+        Destroy(deletedCustomer);
+
+        lineupCustomer();
+    }
+
+    private void lineupCustomer(){
+        int index = 0;
+        foreach(GameObject customer in customers){
+            customer.transform.SetLocalPositionAndRotation(new Vector3(0, index * customerSpacing, 0), quaternion.identity);
+            customer.GetComponent<Customer>().OnLineChange(index);
+            index++;
+        }
     }
 }
