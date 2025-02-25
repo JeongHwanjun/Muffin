@@ -299,8 +299,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72b3d3f35c0d72049893e1750c8dc36d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minQuantity: 0
-  maxQuantity: 0
+  minQuantity: 1
+  maxQuantity: 3
   orderCakeName: 
   like: 
   maximumWaiting: 20
@@ -575,4 +575,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a492189fe1665341b442e5ebb1b871f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  orderImage: {fileID: 704376542192210135}
+  orderImageObject: {fileID: 704376542192210135}
+  orderQuantity: {fileID: 1198043261413972704}

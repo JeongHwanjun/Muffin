@@ -8,6 +8,7 @@
     margin-right: 6px;
     margin-bottom: 6px;
     margin-left: 6px;
+    flex-shrink: 0;
 }
 
 .Arrows-style {
@@ -15,6 +16,7 @@
     max-height: 32px;
     flex-grow: 1;
     flex-direction: row;
+    flex-shrink: 0;
 }
 
 .CakeImage {
@@ -24,6 +26,7 @@
     max-width: 32px;
     max-height: 32px;
     margin-right: 16px;
+    flex-shrink: 0;
 }
 
 .Arrow-style {
@@ -32,4 +35,5 @@
     height: 32px;
     max-width: 32px;
     max-height: 32px;
+    flex-shrink: 0;
 }

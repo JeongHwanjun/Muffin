@@ -25,3 +25,9 @@ MonoBehaviour:
     price: 10
     recipe: 0300000003000000030000000200000000000000
     sprite: {fileID: -9206449715672425100, guid: 3ecd43ab4db65994c8ed1ef00ee0327f, type: 3}
+  - name: CreamCake
+    quantity: 3
+    sales: 0
+    price: 7
+    recipe: 01000000030000000100000003000000000000000000000000000000
+    sprite: {fileID: 8279935319277494127, guid: 893883925fddc6346a78584dbb24a896, type: 3}

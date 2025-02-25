@@ -32,12 +32,12 @@ public class Customer : MonoBehaviour
         // 현재는 주어진 List<Cake> 중에서 무작위로 선택함
         System.Random random = new System.Random();
         cakeIndex = random.Next(0,cakes.Count);
-        orderQuantity = random.Next(minQuantity,maxQuantity);
+        orderQuantity = random.Next(minQuantity,maxQuantity + 1);
 
         cake = cakes[cakeIndex];
         Debug.Log(cake.name);
 
-        orderBubble.Initialize(cake);
+        orderBubble.Initialize(cake, orderQuantity);
     }
 
     public void OnLineChange(int index){
