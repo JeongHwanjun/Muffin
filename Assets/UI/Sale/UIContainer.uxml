@@ -1,4 +1,0 @@
-<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <engine:Template name="CustomerUIwithQuantity" src="project://database/Assets/UI/Sale/CustomerUIwithQuantity.uxml?fileID=9197481963319205126&amp;guid=bfb5fa77829ca3a4eb155d9624dd391b&amp;type=3#CustomerUIwithQuantity" />
-    <engine:Instance template="CustomerUIwithQuantity" name="SpeechBubble" style="height: 16%; width: 16%;" />
-</engine:UXML>

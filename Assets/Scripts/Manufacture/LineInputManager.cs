@@ -242,13 +242,11 @@ public class LineInputManager : MonoBehaviour
     }
     private void SwitchLineChangeInput(bool ON){
         if(ON){
-            Debug.Log(selfLineNumber + "번 라인 : LineChange 활성화");
             for(int i = 0; i < lineChangers.Length; i++){
                 int index=i;
                 lineChangers[index].Enable();
             }
         } else {
-            Debug.Log(selfLineNumber + "번 라인 : LineChange 비활성화");
             for(int i = 0; i < lineChangers.Length; i++){
                 int index=i;
                 lineChangers[index].Disable();
@@ -258,13 +256,11 @@ public class LineInputManager : MonoBehaviour
 
     private void ChangeLine(int index){
         // index에 따라 0이면 좌측, 1이면 우측
-        Debug.Log("라인체인저 작동");
         int nextLine = selfLineNumber + (index == 1 ? 1 : -1);
         manufactureAdmin.TriggerSwitchLine(nextLine);
     }
 
     private void SwitchToSales(InputAction.CallbackContext ctx){
-        Debug.Log("스위치 키는 눌렸습니다 내가 인증함");
         manufactureAdmin.TriggerSwapScreen(ScreenNumber.Sales);
         //SwitchInput(false); // 화면 넘어갈시 입력 비활성화 - 이후 다시 돌아오면 활성화 해야함.
     }

@@ -1,0 +1,15 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <engine:Template name="CakeCard" src="project://database/Assets/UI/Sale/CakeCard.uxml?fileID=9197481963319205126&amp;guid=105c758092bf0e844a2752f62a4736b7&amp;type=3#CakeCard" />
+    <engine:VisualElement name="Background" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.31); border-top-left-radius: 15px; border-top-right-radius: 15px; border-bottom-right-radius: 15px; border-bottom-left-radius: 15px; padding-top: 12px; padding-right: 12px; padding-bottom: 12px; padding-left: 12px; margin-top: 15px; margin-right: 15px; margin-bottom: 15px; margin-left: 15px;">
+        <engine:VisualElement name="Cards" style="flex-grow: 1; flex-direction: row; background-color: rgba(0, 0, 0, 0);">
+            <engine:Instance template="CakeCard" name="Card1" style="width: 33%; height: 100%;" />
+            <engine:Instance template="CakeCard" name="Card2" style="width: 33%; height: 100%;" />
+            <engine:Instance template="CakeCard" name="Card3" style="width: 34%; height: 100%;" />
+        </engine:VisualElement>
+        <engine:VisualElement name="CakeQunatity" style="flex-grow: 1; width: 100%; height: 15%; max-height: 20%; min-height: 20%; max-width: 100%; min-width: 100%; flex-direction: row;">
+            <engine:Label text="30" name="QuantityCard1" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 15px; padding-right: 15px; padding-bottom: 15px; padding-left: 15px; width: 33%; height: 100%; -unity-text-align: middle-center; font-size: 30px; -unity-font-definition: url(&quot;project://database/Assets/TextMesh%20Pro/Examples%20&amp;%20Extras/Fonts/Roboto-Bold.ttf?fileID=12800000&amp;guid=4beb055f07aaff244873dec698d0363e&amp;type=3#Roboto-Bold&quot;);" />
+            <engine:Label text="30" name="QuantityCard2" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 15px; padding-right: 15px; padding-bottom: 15px; padding-left: 15px; width: 33%; height: 100%; -unity-text-align: middle-center; font-size: 30px; -unity-font-definition: url(&quot;project://database/Assets/TextMesh%20Pro/Examples%20&amp;%20Extras/Fonts/Roboto-Bold.ttf?fileID=12800000&amp;guid=4beb055f07aaff244873dec698d0363e&amp;type=3#Roboto-Bold&quot;);" />
+            <engine:Label text="30" name="QuantityCard3" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 15px; padding-right: 15px; padding-bottom: 15px; padding-left: 15px; width: 33%; height: 100%; -unity-text-align: middle-center; font-size: 30px; -unity-font-definition: url(&quot;project://database/Assets/TextMesh%20Pro/Examples%20&amp;%20Extras/Fonts/Roboto-Bold.ttf?fileID=12800000&amp;guid=4beb055f07aaff244873dec698d0363e&amp;type=3#Roboto-Bold&quot;);" />
+        </engine:VisualElement>
+    </engine:VisualElement>
+</engine:UXML>
