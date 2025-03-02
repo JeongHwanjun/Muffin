@@ -19,11 +19,18 @@ public class SalesAdmin : MonoBehaviour
         customerManager = GetComponentInChildren<CustomerManager>();
         List<Cake> cakes = openingTimeData.GetCakeData();
         customerManager.Initialize(cakes);
-        // 이벤트 매니저가 준비되면 하위 이벤트 구독
+        // 이벤트 매니저가 준비되면 하위 이벤트 구독 (현재는 딱히 준비 필요 X)
+        // SalesEventManager.OnSalesEventManagerReady += SubscribeEvents;
+        salesEventManager.OnConsumeCake += ConsumeCake;
         ScreenSwapper.OnScreenSwapComplete += setUI;
 
         // 기타 설정
         setUI(startScreen);
+    }
+
+    private void ConsumeCake(int cakeIndex, int consumeQuantity){
+        Debug.Log("Consume Cake");
+        openingTimeManager.UpdateCake(cakeIndex, consumeQuantity, consumeQuantity);
     }
 
     private void setUI(ScreenNumber screenNumber){

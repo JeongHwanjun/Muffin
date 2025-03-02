@@ -69,7 +69,55 @@ MonoBehaviour:
       m_Action: Switch To Manufacture Key
       m_Flags: 0
     m_Flags: 0
-  ServeCakeKeys: []
+  ServeCakeKeys:
+  - m_Name: Element 0
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 5a4e36b4-d462-4d23-97a5-8e48ba8cbdc2
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: d00fc83e-9a89-4631-a9b3-038c593c5e63
+      m_Path: <Keyboard>/1
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Element 0
+      m_Flags: 0
+    m_Flags: 0
+  - m_Name: Input Action
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: b29c90c3-62d7-4ee9-8c0b-906ab9af4020
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: ad2786ab-5629-4a9a-9735-e612e6a80d73
+      m_Path: <Keyboard>/2
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Input Action
+      m_Flags: 0
+    m_Flags: 0
+  - m_Name: Input Action
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 7889c89c-879d-49d1-9116-b65bad01d556
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 2eb5042f-bc7d-4c2e-894f-96142831281c
+      m_Path: <Keyboard>/3
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Input Action
+      m_Flags: 0
+    m_Flags: 0
   salesAdmin: {fileID: 3605189742985287327}
   salesEventManager: {fileID: 7778804998557764397}
 --- !u!1 &1607693054262569335

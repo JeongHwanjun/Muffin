@@ -17,12 +17,24 @@ public class CustomerManager : MonoBehaviour
 
     public void Initialize(List<Cake> _cakes){
         cakes = _cakes;
+        salesEventManager.OnServeCake += TryServeCake;
+    }
+
+    private void TryServeCake(int _cakeNumber){
+        Debug.Log("Try Serve Cake, CakeNumber : " + _cakeNumber);
+        if(customers.Count <= 0) return;
+        if(validServe(_cakeNumber)) {
+            salesEventManager.TriggerConsumeCake(_cakeNumber, customers[0].GetComponent<Customer>().orderQuantity);
+        }
     }
     
-    private bool validServe(){
+    private bool validServe(int _cakeNumber){
+        // serveCake 이벶트를 구독, 해당 이벤트가 발생했을 때 실행.
         // 판매 행위가 실행되었을 때, 해당 행위가 손님의 주문에 부합하는지 판단.
         // 부합한다 -> true, 소비 이벤트 발생
         // 틀리다   -> false, 실패 함수 실행
+
+
         return true;
     }
 

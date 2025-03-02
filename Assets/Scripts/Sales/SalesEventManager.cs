@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class SalesEventManager : MonoBehaviour
 {
-    public event Action<int> OnConsumeCake;
+    public event Action<int, int> OnConsumeCake;
     public event Action<int> OnServeCake;
     public event Action<Customer> OnCustomerCreated;
     public event Action<ScreenNumber> OnSwapScreen;
@@ -21,8 +21,8 @@ public class SalesEventManager : MonoBehaviour
         OnServeCake?.Invoke(_cakeNumber);
     }
 
-    public void TriggerConsumeCake(int consumeQuantity){
-        OnConsumeCake?.Invoke(consumeQuantity);
+    public void TriggerConsumeCake(int cakeIndex, int consumeQuantity){
+        OnConsumeCake?.Invoke(cakeIndex, consumeQuantity);
     }
 
     public void TriggerSwapScreen(ScreenNumber _screenNumber){
