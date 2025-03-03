@@ -8,7 +8,7 @@ public class SalesAdmin : MonoBehaviour
     private CustomerManager customerManager;
     private OpeningTimeManager openingTimeManager;
     [SerializeField]
-    private GameObject salesUI;
+    private SalesUIHandler salesUIHandler;
     public ScreenNumber startScreen;
 
     public void Initialize(OpeningTimeData openingTimeData, OpeningTimeManager _openingTimeManager){
@@ -31,11 +31,15 @@ public class SalesAdmin : MonoBehaviour
     private void ConsumeCake(int cakeIndex, int consumeQuantity){
         Debug.Log("Consume Cake");
         openingTimeManager.UpdateCake(cakeIndex, consumeQuantity, consumeQuantity);
+        // 원래 데이터가 수정되면 그에 따른 이벤트를 발생시켜 UI를 갱신해야 함. 현재는 임시
+        salesUIHandler.OnDataChanged(openingTimeManager.GetCakes());
     }
 
     private void setUI(ScreenNumber screenNumber){
-        Debug.Log("setUI : " + (screenNumber == ScreenNumber.Sales));
-        salesUI.SetActive(screenNumber == ScreenNumber.Sales);
+        bool isSalesScreen = screenNumber == ScreenNumber.Sales;
+        Debug.Log("setUI : " + isSalesScreen);
+        salesUIHandler.SetUI(isSalesScreen);
+        if(isSalesScreen) salesUIHandler.OnDataChanged(openingTimeManager.GetCakes());
     }
 
     void OnDestroy()

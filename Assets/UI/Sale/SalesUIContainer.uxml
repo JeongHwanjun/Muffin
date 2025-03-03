@@ -1,6 +1,7 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <engine:Template name="CakeCardContainer" src="project://database/Assets/UI/Sale/CakeCardContainer.uxml?fileID=9197481963319205126&amp;guid=7cab0d13ff1c3214984de78725e44989&amp;type=3#CakeCardContainer" />
+    <Style src="project://database/Assets/UI/Sale/Styles.uss?fileID=7433441132597879392&amp;guid=254411e526063b04c8cd66391cf7ca7d&amp;type=3#Styles" />
     <engine:VisualElement style="flex-grow: 1;">
-        <engine:Instance template="CakeCardContainer" name="CakeCards" style="bottom: 0; left: 0; top: auto; position: absolute; right: auto;" />
+        <engine:Instance template="CakeCardContainer" name="CakeCardsContainer" style="bottom: 0; left: 0; top: auto; position: absolute; right: auto; width: 40%; height: 35%;" />
     </engine:VisualElement>
 </engine:UXML>
