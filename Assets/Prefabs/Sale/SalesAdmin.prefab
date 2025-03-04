@@ -219,6 +219,7 @@ MonoBehaviour:
   customerSpacing: 1.2
   customers: []
   CustomerPrefab: {fileID: 5479250964737476044, guid: 048f9e2ca6f09a440932ba043d6927d5, type: 3}
+  salesAdmin: {fileID: 3605189742985287327}
   salesEventManager: {fileID: 7778804998557764397}
 --- !u!1 &6214171782419860264
 GameObject:

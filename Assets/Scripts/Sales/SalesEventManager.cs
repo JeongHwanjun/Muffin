@@ -1,9 +1,12 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class SalesEventManager : MonoBehaviour
 {
     public event Action<int, int> OnConsumeCake;
+    public event Action OnServeCakeFailed;
+    public event Action OnServeCakeSuccess;
     public event Action<int> OnServeCake;
     public event Action<Customer> OnCustomerCreated;
     public event Action<ScreenNumber> OnSwapScreen;
@@ -27,5 +30,12 @@ public class SalesEventManager : MonoBehaviour
 
     public void TriggerSwapScreen(ScreenNumber _screenNumber){
         OnSwapScreen?.Invoke(_screenNumber);
+    }
+
+    public void TriggerServeCakeFailed(){
+        OnServeCakeFailed?.Invoke();
+    }
+    public void TriggerServeCakeSuccess(){
+        OnServeCakeSuccess?.Invoke();
     }
 }

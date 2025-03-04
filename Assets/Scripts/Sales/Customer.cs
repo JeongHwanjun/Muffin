@@ -5,8 +5,9 @@ using UnityEngine.PlayerLoop;
 public class Customer : MonoBehaviour
 {
     public int minQuantity = 1, maxQuantity = 3;
-    private int cakeIndex, selfIndex;
+    private int selfIndex;
     public int orderQuantity{get; private set;}
+    public int cakeIndex{get; private set;}
     public Cake cake{get; private set;}
     public string orderCakeName;
     public int[] like = {1,1,1};

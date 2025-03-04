@@ -11,9 +11,10 @@ public class CustomerManager : MonoBehaviour
     public List<GameObject> customers = new List<GameObject>();
 
     public GameObject CustomerPrefab;
+    public SalesAdmin salesAdmin;
     public SalesEventManager salesEventManager;
 
-    private List<Cake> cakes;
+    private List<Cake> cakes; // 이 cakes는 고정된 데이터, 스프라이트와 명칭을 받기 위한 변수임.
 
     public void Initialize(List<Cake> _cakes){
         cakes = _cakes;
@@ -24,18 +25,24 @@ public class CustomerManager : MonoBehaviour
         Debug.Log("Try Serve Cake, CakeNumber : " + _cakeNumber);
         if(customers.Count <= 0) return;
         if(validServe(_cakeNumber)) {
-            salesEventManager.TriggerConsumeCake(_cakeNumber, customers[0].GetComponent<Customer>().orderQuantity);
+            Customer firstCustomer = customers[0].GetComponent<Customer>();
+            salesEventManager.TriggerConsumeCake(_cakeNumber, firstCustomer.orderQuantity);
+            salesEventManager.TriggerServeCakeSuccess();
+            // 성공 처리 필요
+        } else {
+            salesEventManager.TriggerServeCakeFailed();
         }
     }
     
     private bool validServe(int _cakeNumber){
-        // serveCake 이벶트를 구독, 해당 이벤트가 발생했을 때 실행.
         // 판매 행위가 실행되었을 때, 해당 행위가 손님의 주문에 부합하는지 판단.
-        // 부합한다 -> true, 소비 이벤트 발생
-        // 틀리다   -> false, 실패 함수 실행
+        Customer firstCustomer = customers[0].GetComponent<Customer>();
 
+        bool isSameCakeIndex = _cakeNumber == firstCustomer.cakeIndex;
+        Cake cake = salesAdmin.GetCakes()[_cakeNumber];
+        bool isCakeQuantityOK = firstCustomer.orderQuantity <= cake.quantity;
 
-        return true;
+        return isSameCakeIndex && isCakeQuantityOK;
     }
 
     private void InstantiateNewCustomer(){
@@ -52,12 +59,6 @@ public class CustomerManager : MonoBehaviour
             lineupCustomer();
         }
     }
-
-    void Start()
-    {
-        
-    }
-
     void Update()
     {
         customerCooltime += Time.deltaTime;

@@ -45,5 +45,14 @@ public class SalesAdmin : MonoBehaviour
     void OnDestroy()
     {
         ScreenSwapper.OnScreenSwapComplete -= setUI;
+        salesEventManager.OnConsumeCake -= ConsumeCake;
+    }
+
+    public List<Cake> GetCakes(){
+        return openingTimeManager.GetCakes();
+    }
+
+    public void UpdateCake(int cakeIndex, int quantityChange = 0, int salesChange = 0){
+        openingTimeManager.UpdateCake(cakeIndex, quantityChange, salesChange);
     }
 }

@@ -17,7 +17,7 @@ public class OpeningTimeData : MonoBehaviour
         ingredientManager.UpdateIngredientData(ingredientName, additionalUsage);
     }
 
-    public void UpdateCakeData(int cakeIndex, int quantityChange, int salesChange){
+    public void UpdateCakeData(int cakeIndex, int quantityChange = 0, int salesChange = 0){
         cakeManager.UpdateCakeData(cakeIndex, quantityChange, salesChange);
     }
 

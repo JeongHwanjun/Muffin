@@ -16,6 +16,11 @@ public class SalesUIHandler : MonoBehaviour
         Debug.Log("cards : " + cards);
     }
 
+    void OnEnable()
+    {
+        Initialize();
+    }
+
     public void OnDataChanged(List<Cake> _cakes){
         // 케이크 정보 변경(수량, 스프라이트, 가격 등 뭐든)시 호출되도록
         if(root == null || cardContainer == null || cards == null) Initialize();
@@ -25,8 +30,7 @@ public class SalesUIHandler : MonoBehaviour
             VisualElement cakeImage = card.Q<VisualElement>("Image");
             Label cakeName = card.Q<Label>("Name");
             Label cakeQuantity = card.Q<Label>("Quantity");
-
-            Debug.Log("cakeName : " + _cakes[index].name);
+            
             cakeImage.style.backgroundImage = new StyleBackground(_cakes[index].sprite);
             cakeName.text = _cakes[index].name;
             cakeQuantity.text = _cakes[index].quantity.ToString();
@@ -35,6 +39,11 @@ public class SalesUIHandler : MonoBehaviour
     }
 
     public void SetUI(bool ON){
+        if (!ON) {
+            root = null;
+            cardContainer = null;
+            cards = null; // UI가 닫힐 때 캐시 초기화
+        }
         gameObject.SetActive(ON);
     }
 }
