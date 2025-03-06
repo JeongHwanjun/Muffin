@@ -17,7 +17,7 @@ public class SalesAdmin : MonoBehaviour
         salesInputManager.Initialize();
         salesEventManager = GetComponentInChildren<SalesEventManager>();
         customerManager = GetComponentInChildren<CustomerManager>();
-        List<Cake> cakes = openingTimeData.GetCakeData();
+        List<Cake> cakes = openingTimeManager.GetCakes();
         customerManager.Initialize(cakes);
         // 이벤트 매니저가 준비되면 하위 이벤트 구독 (현재는 딱히 준비 필요 X)
         // SalesEventManager.OnSalesEventManagerReady += SubscribeEvents;

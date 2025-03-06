@@ -22,16 +22,17 @@ public class CustomerManager : MonoBehaviour
     }
 
     private void TryServeCake(int _cakeNumber){
-        Debug.Log("Try Serve Cake, CakeNumber : " + _cakeNumber);
         if(customers.Count <= 0) return;
         if(validServe(_cakeNumber)) {
             Customer firstCustomer = customers[0].GetComponent<Customer>();
             salesEventManager.TriggerConsumeCake(_cakeNumber, firstCustomer.orderQuantity);
-            salesEventManager.TriggerServeCakeSuccess();
-            // 성공 처리 필요
+            Debug.Log("Serve Success!");
+            OnServeSuccess();
         } else {
-            salesEventManager.TriggerServeCakeFailed();
+            Debug.Log("Serve Failed!");
+            OnServeFailed();
         }
+        //DeleteCustomer(customers[0]);
     }
     
     private bool validServe(int _cakeNumber){
@@ -68,7 +69,17 @@ public class CustomerManager : MonoBehaviour
         }
     }
 
-    public void OnCustomerDeleted(GameObject deletedCustomer){
+    private void OnServeSuccess(){
+        // 성공시 시각적-청각적 처리들...
+        DeleteCustomer(customers[0]);
+    }
+
+    private void OnServeFailed(){
+        // 실패시 시각적-청각적 처리들...
+        DeleteCustomer(customers[0]);
+    }
+
+    public void DeleteCustomer(GameObject deletedCustomer){
         customers.Remove(deletedCustomer);
         Destroy(deletedCustomer);
 

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public enum recipeArrow {
@@ -21,13 +22,26 @@ public class CakeManager : MonoBehaviour
     }
 
     // 케이크 초기화
-    private void InitializeCakes() // Cake의 정보는 미리 주어짐, 복사해서 전달 - 조작하면 됨.
+    private void InitializeCakes() // Cake의 정보는 json파일로 주어짐
     {
         CakeCollection cakes_origin = Instantiate(cakeCollection);
-        cakes.Clear();
-        foreach(Cake C in cakes_origin.cakes){
-            cakes.Add(C);
+        string path = Application.persistentDataPath + "/cakeData.json";
+        if(File.Exists(path)) { // 파일이 있다면 불러옵니다
+            string json = File.ReadAllText(path);
+            CakeList cakeList = JsonUtility.FromJson<CakeList>(json);
+            cakes = cakeList.cakes;
+            Debug.Log("파일 읽기 완료 : " + path);
+        } else { // 파일이 없다면 cakes_origin에서 그냥 불러오고, 파일을 생성합니다.
+            cakes.Clear();
+            foreach(Cake C in cakes_origin.cakes){
+                cakes.Add(C);
+            }
+            CakeList cakeList = new CakeList{cakes = cakes};
+            string json = JsonUtility.ToJson(cakeList, true);
+            File.WriteAllText(path, json);
+            Debug.Log("파일 저장 완료 : " + path);
         }
+        
     }
 
     // 케이크 데이터 변경 이벤트 연결

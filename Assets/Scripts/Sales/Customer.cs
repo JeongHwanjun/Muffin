@@ -21,7 +21,7 @@ public class Customer : MonoBehaviour
     private void Update() {
         if(maximumWaiting < 0) {
             // CustomerManager의 List<Customer>에서 자신을 제외하기, 그외 기타 자잘한 처리
-            customerManager.OnCustomerDeleted(gameObject);
+            customerManager.DeleteCustomer(gameObject);
         } else {
             // 대기시간 카운팅
             maximumWaiting -= Time.deltaTime;
@@ -37,7 +37,6 @@ public class Customer : MonoBehaviour
         orderQuantity = random.Next(minQuantity,maxQuantity + 1);
 
         cake = cakes[cakeIndex];
-        Debug.Log(cake.name);
 
         orderBubble.Initialize(cake, orderQuantity);
     }

@@ -31,7 +31,7 @@ public class SalesUIHandler : MonoBehaviour
             Label cakeName = card.Q<Label>("Name");
             Label cakeQuantity = card.Q<Label>("Quantity");
             
-            cakeImage.style.backgroundImage = new StyleBackground(_cakes[index].sprite);
+            cakeImage.style.backgroundImage = new StyleBackground(Resources.Load<Sprite>(_cakes[index].spritePath));
             cakeName.text = _cakes[index].name;
             cakeQuantity.text = _cakes[index].quantity.ToString();
             index++;
