@@ -62,7 +62,6 @@ public class LineInputManager : MonoBehaviour
         maxLineNumber = manufactureAdmin.maxLine;
 
         // manufactureAdmin 이벤트 연결
-        manufactureAdmin.SwitchLine += OnSwitchLine;
         ScreenSwapper.OnScreenSwapComplete += OnScreenSwapComplete; // 화면이 활성화 되었을 때 입력 활성/비활성
     }
 
@@ -87,7 +86,6 @@ public class LineInputManager : MonoBehaviour
 
         // 이벤트 연결 해제
         lineEventManager.OnSheetCollision -= OnSheetCollision;
-        manufactureAdmin.SwitchLine -= OnSwitchLine;
         ScreenSwapper.OnScreenSwapComplete -= OnScreenSwapComplete;
     }
 
@@ -257,7 +255,6 @@ public class LineInputManager : MonoBehaviour
     private void ChangeLine(int index){
         // index에 따라 0이면 좌측, 1이면 우측
         int nextLine = selfLineNumber + (index == 1 ? 1 : -1);
-        manufactureAdmin.TriggerSwitchLine(nextLine);
     }
 
     private void SwitchToSales(InputAction.CallbackContext ctx){

@@ -9,25 +9,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e2233e7322f73745b194e3a81fce8a9, type: 3}
+  m_Script: {fileID: 11500000, guid: ed0ca0df8064ad84eb5eb4f941c00dd2, type: 3}
   m_Name: CakeCollection
   m_EditorClassIdentifier: 
   cakes:
-  - name: ChocolateCake
+  - name: A_Cake
     quantity: 3
     sales: 0
-    price: 5
-    recipe: 0000000001000000010000000200000000000000
-    spritePath: Sprites/Manufacture/Phase2
-  - name: CheeseCake
+    price: 15
+    recipe: 0000000001000000010000000000000002000000
+    spritePath: Sprites/Manufacture/Phase1.png
+  - name: B_Cake
     quantity: 3
     sales: 0
-    price: 10
-    recipe: 0300000003000000030000000200000000000000
-    spritePath: Sprites/Manufacture/Phase2
-  - name: CreamCake
-    quantity: 3
-    sales: 0
-    price: 7
-    recipe: 01000000030000000100000003000000000000000000000000000000
-    spritePath: Sprites/Manufacture/Phase1
+    price: 20
+    recipe: 01000000030000000100000003000000020000000200000000000000
+    spritePath: Sprites/Manufacture/Phase2.png

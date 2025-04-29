@@ -11,8 +11,6 @@ public class ManufactureAdmin : MonoBehaviour
     public int totalWidth = 12; // 배치할 라인의 기준 넓이
     public List<List<recipeArrow>> recipes = new List<List<recipeArrow>>();
 
-    public event Action<int> SwitchLine;
-    public event Action<int> ConsumeIngredient;
     public static event Action<ManufactureAdmin> OnManufactureAdminReady;
     public event Action<ScreenNumber> OnSwapScreen;
 
@@ -21,18 +19,17 @@ public class ManufactureAdmin : MonoBehaviour
         maxLine = _maxLine;
         openingTimeManager = _openingTimeManager;
 
+        // 라인생성
         float spacing = maxLine > 1 ? (float)totalWidth/(maxLine - 1) : 0f;
         float startX = -(maxLine-1)/2f * spacing;
         for(int i=0;i<maxLine;i++){
             GameObject newLine = Instantiate(LinePrefab, transform);
             newLine.transform.localPosition = new Vector2(startX + spacing * i, 1);
             newLine.GetComponent<Line>().Init(i, this); // 몇번 라인인지, manufactureAdmin을 전달해 의존성 주입
-            newLine.GetComponentInChildren<LineInputManager>().InitializeDependingObjects(this);
             Line.Add(newLine);
         }
 
         CommandData.instance.Recipes = recipes;
-        TriggerSwitchLine(0);
 
         // 부모에게서 cake의 recipe 데이터를 받아옴
         List<Cake> cakes = openingTimeManager.GetCakes();
@@ -45,21 +42,14 @@ public class ManufactureAdmin : MonoBehaviour
         OnManufactureAdminReady?.Invoke(this);
     }
 
-    public void TriggerSwitchLine(int _lineNumber){
-        int lineNumber = Mathf.Clamp(_lineNumber, 0, maxLine);
-        SwitchLine?.Invoke(lineNumber);
-    }
-
-    public void TriggerConsumeIngredient(int usage, int lineNumber){
-        openingTimeManager.UpdateIngredient("Flour", usage);
-        // 추후 재료명, 소비량을 변수로 만들기
-
-        // 해당하는 라인에서 sheet 생성
-        ConsumeIngredient?.Invoke(lineNumber);
-    }
-
     public void TriggerSwapScreen(ScreenNumber _screenNumber){ // 스크린 전환 키를 입력받아 전환을 시작하는 함수
         Debug.Log("TriggerSwapScreen of ManufactureAdmin");
         OnSwapScreen?.Invoke(_screenNumber);
+    }
+
+    // Line이 준비됐는지 확인하는 함수. EventManager에서 사용
+    public bool isLineReady(int lineNumber){
+        // 근데 GetComponent가 느린데 이거 맞나? 추후에 성능개선 요함.
+        return Line[lineNumber].GetComponent<Line>().isLineReady;
     }
 }

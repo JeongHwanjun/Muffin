@@ -14,13 +14,11 @@ public class OpeningTimeManager : MonoBehaviour
     public int salesX = -15, salesY = 0;
 
     private CakeManager cakeManager;
-    private IngredientManager ingredientManager;
 
     public int maxLine = 3;
     void Start()
     {
         cakeManager = GetComponentInChildren<CakeManager>();
-        ingredientManager = GetComponentInChildren<IngredientManager>();
         Initialize();
     }
 
@@ -38,11 +36,6 @@ public class OpeningTimeManager : MonoBehaviour
         }
 
         
-    }
-
-    public void UpdateIngredient(string ingredientName, int usage){
-        // 여기선 변화량만 전달하고, ingredientManager에서 기존의 사용량 + 변화량을 반영한다.
-        openingTimeData.UpdateIngredient(ingredientName, usage);
     }
 
     public void UpdateCake(int cakeIndex, int quantityChange = 0, int salesChange = 0){

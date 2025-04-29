@@ -1,0 +1,222 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4601236818601542445
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3869103893049733798}
+  - component: {fileID: 2810233262058743782}
+  m_Layer: 0
+  m_Name: ManufactureInputManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3869103893049733798
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4601236818601542445}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.794837, y: 0.5107353, z: 0.04916618}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2810233262058743782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4601236818601542445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74dbfde9c9c813141923f4e5d5b35dae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manufactureAdmin: {fileID: 0}
+  eventManager: {fileID: 0}
+  commandKeys:
+  - m_Name: Element 0
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: bb7f66e1-3a0a-4ae4-9d31-ce44b411219c
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: dc6a3605-acd1-4891-95ad-f10876952a0e
+      m_Path: <Keyboard>/w
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Element 0
+      m_Flags: 0
+    - m_Name: 
+      m_Id: f85158d6-00cd-401f-8a68-58904d300a0d
+      m_Path: <Keyboard>/upArrow
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Element 0
+      m_Flags: 0
+    m_Flags: 0
+  - m_Name: Element 1
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: f2610ef3-01cf-432e-9f89-0fb29782d788
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 6026c730-253a-4c4e-9deb-bc6f597befe3
+      m_Path: <Keyboard>/d
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Element 1
+      m_Flags: 0
+    - m_Name: 
+      m_Id: 99fb4262-434b-402f-a2c1-c934a467d0dc
+      m_Path: <Keyboard>/rightArrow
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Element 1
+      m_Flags: 0
+    m_Flags: 0
+  - m_Name: Element 2
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 8a1f12bc-6af5-492a-a3b7-45cb9fdd29bb
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: ffdfa99b-c4d6-4502-9bee-d2e29f17ff4b
+      m_Path: <Keyboard>/s
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Element 2
+      m_Flags: 0
+    - m_Name: 
+      m_Id: 4fcc3d26-6f8e-4a64-92db-5a9631c9d0df
+      m_Path: <Keyboard>/downArrow
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Element 2
+      m_Flags: 0
+    m_Flags: 0
+  - m_Name: Element 3
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: b4291906-baa5-4d54-bbf9-a3a7ee044692
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: df362fdd-d419-43a7-bea9-ca99cf7e7ef7
+      m_Path: <Keyboard>/a
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Element 3
+      m_Flags: 0
+    - m_Name: 
+      m_Id: 800b1181-5191-4ed8-a224-d2fd5e9ad7ce
+      m_Path: <Keyboard>/leftArrow
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Element 3
+      m_Flags: 0
+    m_Flags: 0
+  commandEnterKey:
+    m_Name: Command Enter Key
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: cc2b7ed2-1ff0-4ab1-8656-b9aa01236775
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 73a44a4a-12e2-4668-aacf-15d29953be56
+      m_Path: <Keyboard>/space
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Command Enter Key
+      m_Flags: 0
+    m_Flags: 0
+  moveLineKey:
+    m_Name: Move Line Key
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 2ca982a9-768c-4caf-9009-05a6c95f4e23
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 1D Axis
+      m_Id: 366ebac0-c8c1-446f-ab07-d1a4a3274b73
+      m_Path: 1DAxis
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Move Line Key
+      m_Flags: 4
+    - m_Name: negative
+      m_Id: 04b81da5-6eee-4b50-9920-62402a7092b7
+      m_Path: <Keyboard>/a
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Move Line Key
+      m_Flags: 8
+    - m_Name: positive
+      m_Id: f85c44e4-0aa5-4351-b069-dd797bee1427
+      m_Path: <Keyboard>/d
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Move Line Key
+      m_Flags: 8
+    m_Flags: 0
+  userClick:
+    m_Name: User Click
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 995084cb-4450-4435-8bb5-f29c5b6d952a
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 457b819b-2cdb-4c62-9c51-5079e3371710
+      m_Path: <Mouse>/leftButton
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: User Click
+      m_Flags: 0
+    m_Flags: 0
+  moveScreenKey:
+    m_Name: Move Screen Key
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 5213ae10-49b3-4c90-8d12-ca9d61ada3c7
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  manufactureCamera: {fileID: 0}
