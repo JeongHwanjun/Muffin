@@ -5,6 +5,7 @@ using System.ComponentModel;
 /*
     제작 화면에서, 입력받은 커맨드와 UI가 공동으로 사용하는 데이터를 관리하는 클래스
     사전에 작성된 레시피, 입력 커맨드, 정답 개수 등을 보관하여 변경될 때마다 이벤트를 발생시켜 UI를 갱신한다.
+    CommandData에서는 데이터만 관리하고 실질적인 처리는 ManufactureCommandHandler에서 한다.
 */
 
 public class CommandData : INotifyPropertyChanged {
