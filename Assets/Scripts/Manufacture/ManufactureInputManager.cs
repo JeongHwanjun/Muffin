@@ -19,9 +19,7 @@ public class ManufactureInputManager : MonoBehaviour {
   [SerializeField]
   private InputAction userClick;
   [SerializeField]
-  private InputAction moveScreenKey;
-  private int selfLineNumber = 0;
-  
+  private InputAction moveScreenKey;  
 
   /* Camera */
   [SerializeField]
@@ -96,9 +94,7 @@ public class ManufactureInputManager : MonoBehaviour {
   //라인 전환키 클릭시 라인 전환 이벤트 발생
   private void OnMoveLine(InputAction.CallbackContext ctx){
     int lineInput = ctx.ReadValue<float>() > 0f ? 1 : -1; // 방향 구하기
-    int nextLineNumber = Math.Clamp(lineInput, 0, manufactureAdmin.maxLine); // 다음 라인의 번호 산출
-    selfLineNumber = nextLineNumber;
-    eventManager?.TriggerLineChange(nextLineNumber);
+    eventManager?.TriggerLineChange(lineInput);
   }
 
   // 스크린 전환키 클릭시 스크린 전환 이벤트 발생, 대상 스크린 : 판매
