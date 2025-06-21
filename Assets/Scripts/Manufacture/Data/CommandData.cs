@@ -9,6 +9,8 @@ using System.ComponentModel;
 */
 
 public class CommandData : INotifyPropertyChanged {
+
+    // 싱글톤 패턴으로 관리
     private static CommandData _instance;
     public static CommandData instance {
         get {
@@ -18,10 +20,14 @@ public class CommandData : INotifyPropertyChanged {
             return _instance;
         }
     }
+    // 입력된 커맨드
     private List<recipeArrow> inputCommands = new List<recipeArrow>();
+    // 정답 레시피
     private List<List<recipeArrow>> recipes = new List<List<recipeArrow>>();
+    // 입력된 커맨드 - 정답 레시피 비교 후 정답의 개수를 저장하는 리스트
     private List<int> recipeCorrectList = new List<int>();
 
+    // 값 변경시 발생하는 이벤트. UIHandler에서 이 이벤트를 구독해 UI변경에 활용함
     public event PropertyChangedEventHandler PropertyChanged;
 
     public List<recipeArrow> InputCommands {

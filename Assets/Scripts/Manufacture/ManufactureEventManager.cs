@@ -17,11 +17,9 @@ public class ManufactureEventManager : MonoBehaviour {
   public event Action OnCommandFailed; // 커맨드 판정 후 오답일 시 발생
 
   /* Triggers */
-  public void TriggerCommandStart(int lineNumber){
+  public void TriggerCommandStart(){
     Debug.Log("ManufactureEventManager : TriggerCommandStart");
-    if(manufactureAdmin.isLineReady(lineNumber)){
-      OnCommandStart?.Invoke();
-    }
+    
   }
 
   public void TriggerCommandInput(recipeArrow recipeArrow){

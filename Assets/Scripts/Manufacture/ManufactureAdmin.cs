@@ -19,16 +19,6 @@ public class ManufactureAdmin : MonoBehaviour
         maxLine = _maxLine;
         openingTimeManager = _openingTimeManager;
 
-        // 라인생성
-        float spacing = maxLine > 1 ? (float)totalWidth/(maxLine - 1) : 0f;
-        float startX = -(maxLine-1)/2f * spacing;
-        for(int i=0;i<maxLine;i++){
-            GameObject newLine = Instantiate(LinePrefab, transform);
-            newLine.transform.localPosition = new Vector2(startX + spacing * i, 1);
-            newLine.GetComponent<Line>().Init(i, this); // 몇번 라인인지, manufactureAdmin을 전달해 의존성 주입
-            Line.Add(newLine);
-        }
-
         CommandData.instance.Recipes = recipes;
 
         // 부모에게서 cake의 recipe 데이터를 받아옴
@@ -45,11 +35,5 @@ public class ManufactureAdmin : MonoBehaviour
     public void TriggerSwapScreen(ScreenNumber _screenNumber){ // 스크린 전환 키를 입력받아 전환을 시작하는 함수
         Debug.Log("TriggerSwapScreen of ManufactureAdmin");
         OnSwapScreen?.Invoke(_screenNumber);
-    }
-
-    // Line이 준비됐는지 확인하는 함수. EventManager에서 사용
-    public bool isLineReady(int lineNumber){
-        // 근데 GetComponent가 느린데 이거 맞나? 추후에 성능개선 요함.
-        return Line[lineNumber].GetComponent<Line>().isLineReady;
     }
 }

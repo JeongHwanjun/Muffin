@@ -5,6 +5,7 @@ public class ManufactureCommandHandler : MonoBehaviour
 {
     public ManufactureAdmin manufactureAdmin;
     public ManufactureEventManager manufactureEventManager;
+    public UIHandler uiHandler;
 
     void Awake()
     {
@@ -16,6 +17,11 @@ public class ManufactureCommandHandler : MonoBehaviour
     private void OnCommandStart(){
         // 커맨드 입력 활성화 - 라인의 유효성 여부는 EventManager에서 확인함.
         CommandData.instance.InputCommands.Clear();
+        // UI 활성화
+        uiHandler.gameObject.SetActive(true);
+        // CommandData 갱신 -> UI갱신됨
+        ValidateCommandArrows();
+        // UI갱신을 명시적으로 할 필요도 있을까요?
     }
 
     private void OnCommandInput(recipeArrow direction){
@@ -37,11 +43,14 @@ public class ManufactureCommandHandler : MonoBehaviour
                 // 실패 이벤트 발생
                 manufactureEventManager.TriggerCommandFailed();
             }
+            // UI 비활성화
+            uiHandler.gameObject.SetActive(false);
+            // 커맨드 데이터 초기화
             CommandData.instance.InputCommands.Clear();
     }
 
     // 화살표 UI에 사용하기 위해 현재 입력과 정답 레시피를 비교함
-    // 정답의 개수를 CommandData에 저장 -> CommandData에서 UI변경
+    // 정답의 개수를 CommandData에 저장 -> CommandData에서 값 변경 -> UIHandler에서 감지 -> UI갱신
     // 실시간으로 비교할 뿐이고 최종적인 정답처리는 따로 있음
     private void ValidateCommandArrows() {
         List<int> RecipeCorrectList = new List<int>();

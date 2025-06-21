@@ -11,25 +11,17 @@ using UnityEngine.InputSystem;
 public class PasteMachine : ClickableThing
 {
     public GameObject sheet_raw;
-    private Line selfLine;
-    [SerializeField]
-    private ManufactureAdmin manufactureAdmin;
     public float operatingTime = 4.0f, coolTime = -1.0f;
     private bool coolDown = false;
-    private int selfLineNumber;
 
     protected override void Start()
     {
         base.Start();
-        selfLine = GetComponentInParent<Line>();
-        selfLineNumber = selfLine.LineNumber;
-        manufactureAdmin = selfLine.manufactureAdmin;
     }
 
     protected override void OnEnable()
     {
         base.OnEnable();
-        
     }
 
     // Update is called once per frame
@@ -46,7 +38,8 @@ public class PasteMachine : ClickableThing
 
     public override void OnClick()
     {
-        if(!coolDown) CreateSheet();
+        Debug.Log("PasteMachine : OnClick");
+        if (!coolDown) CreateSheet();
     }
 
     private void CreateSheet(){

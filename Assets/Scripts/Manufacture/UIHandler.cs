@@ -1,16 +1,23 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 public class UIHandler : MonoBehaviour
 {
+    // UI에서 사용할 스프라이트
     public Sprite Cake, Arrow, CompleteArrow, FailedArrow;
+    // UI요소
     private VisualElement root, container;
+    // 정답 레시피
     private List<List<recipeArrow>> RecipeDirectionList = new List<List<recipeArrow>>();
-    private List<int> RecipeCorrectList = new List<int>(); // 항목당 정답 개수 리스트. 현재 커맨드 길이와 비교한다.
-    private int currentRecipeLength = 0; // 현재 입력된 커맨드의 길이를 기록하는 변수
+    // 항목당 정답 개수 리스트. 현재 커맨드 길이와 비교한다.
+    private List<int> RecipeCorrectList = new List<int>(); 
+    // 현재 입력된 커맨드의 길이를 기록하는 변수
+    private int currentRecipeLength = 0; 
 
-    private void Start() {
+    private void Awake() {
+        // CommandData의 값 변경을 구독함
         CommandData.instance.PropertyChanged += setData;
         gameObject.SetActive(false);
     }
@@ -65,8 +72,8 @@ public class UIHandler : MonoBehaviour
                 recipeNumber++;
             }
             AdjustRecipesHeight();
-        } catch {
-            Debug.Log("UI가 아직 활성화되지 않았습니다.");
+        } catch(Exception e) {
+            Debug.Log("UI가 아직 활성화되지 않았습니다." + e);
         }
     }
 
@@ -77,10 +84,10 @@ public class UIHandler : MonoBehaviour
         container.style.height = recipeCount * recipeHeight;
     }
 
-    private void setData(List<List<recipeArrow>> recipe, List<recipeArrow> inputCommands, List<int> count){
-        RecipeDirectionList = recipe;
-        currentRecipeLength = inputCommands.Count;
-        RecipeCorrectList = count;
+    private void setData(){
+        RecipeDirectionList = CommandData.instance.Recipes;
+        currentRecipeLength = CommandData.instance.InputCommands.Count;
+        RecipeCorrectList = CommandData.instance.RecipeCorrectList;
 
         showRecipes();
     }

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7146451524095378967
+--- !u!1 &267717809022817764
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,41 +8,44 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7769361689126201848}
-  - component: {fileID: 5953523841003487129}
+  - component: {fileID: 866505923646739351}
+  - component: {fileID: 6183285998038673522}
   m_Layer: 0
-  m_Name: CakeManager
+  m_Name: LineManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7769361689126201848
+--- !u!4 &866505923646739351
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7146451524095378967}
+  m_GameObject: {fileID: 267717809022817764}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.9964718, y: 1.2099776, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5953523841003487129
+--- !u!114 &6183285998038673522
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7146451524095378967}
+  m_GameObject: {fileID: 267717809022817764}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 480cf04561f3e964fad372d79516509a, type: 3}
+  m_Script: {fileID: 11500000, guid: abba32d5b1f59f4429f7ba2df5a8dcc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cakeCollection: {fileID: 11400000, guid: a3b2c16f034ba1a4bb2e5f6722712f22, type: 2}
-  cakes: []
+  totalWidth: 12
+  lines: []
+  linePrefab: {fileID: 9084959891053745061, guid: b6f17573fb7edf44abc3804204a0d887, type: 3}
+  manufactureEventManager: {fileID: 0}
+  manufactureAdmin: {fileID: 0}

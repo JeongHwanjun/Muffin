@@ -4,8 +4,14 @@ using System.Collections.Generic;
 
 public class DecorationTable : MonoBehaviour {
     public Line line;
-    private void OnTriggerEnter2D(Collider2D other) {
-        line.lineReady();
+
+    void Start()
+    {
+        
+    }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        line.switchLineReady();
         Destroy(other.gameObject);
     }
 }

@@ -82,7 +82,7 @@ public class ManufactureInputManager : MonoBehaviour {
     for(int i=0;i<commandKeys.Length;i++) commandKeys[i].Enable();
     moveLineKey.Disable();
     moveScreenKey.Disable();
-    eventManager?.TriggerCommandStart(selfLineNumber);
+    eventManager?.TriggerCommandStart();
   }
   private void OnCommandExit(InputAction.CallbackContext ctx){
     for(int i=0;i<commandKeys.Length;i++) commandKeys[i].Disable();
