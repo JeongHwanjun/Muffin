@@ -160,6 +160,31 @@ MonoBehaviour:
       m_Action: Command Enter Key
       m_Flags: 0
     m_Flags: 0
+  pasteKey:
+    m_Name: Paste Key
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: e96bd356-4317-4e73-8fb5-d9f4a09c4856
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: cbef0ed0-a6c2-4eac-a19b-69947d3c08f6
+      m_Path: <Keyboard>/w
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Paste Key
+      m_Flags: 0
+    - m_Name: 
+      m_Id: 11ceff40-2547-4905-9ae4-fc252bd9d480
+      m_Path: <Keyboard>/s
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Paste Key
+      m_Flags: 0
+    m_Flags: 0
   moveLineKey:
     m_Name: Move Line Key
     m_Type: 0

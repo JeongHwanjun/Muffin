@@ -4,7 +4,8 @@ public class Line : MonoBehaviour
 {
     public int LineNumber = 0; // 본 라인의 번호
     public bool isLineReady = false; // 라인의 준비 여부
-    public GameObject character;
+    public GameObject character; // 캐릭터, 라인의 선택 여부를 사용자에게 표시함
+    public PasteMachine pasteMachine; // 반죽기, 반죽 생성 담당
     public ManufactureAdmin manufactureAdmin;
     ManufactureEventManager manufactureEventManager;
 
@@ -14,7 +15,6 @@ public class Line : MonoBehaviour
         LineNumber = number;
         manufactureAdmin = _manufactureAdmin;
         manufactureEventManager = _manufactureEventManager;
-
         Debug.Log("Line" + LineNumber + " : Init");
     }
 
@@ -51,5 +51,13 @@ public class Line : MonoBehaviour
         {
             // 준비되지 않은 상태로 애니메이션 재생 및 스프라이트 변경
         }
+    }
+
+    // W,S 버튼을 눌렀을 때 반죽 생성
+    public void PrintPaste()
+    {
+        Debug.Log("Line : PrintPaste");
+        // 클릭한 것과 같은 효과를 가짐.
+        pasteMachine.OnClick();
     }
 }

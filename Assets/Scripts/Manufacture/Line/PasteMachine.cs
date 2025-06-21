@@ -39,10 +39,11 @@ public class PasteMachine : ClickableThing
     public override void OnClick()
     {
         Debug.Log("PasteMachine : OnClick");
-        if (!coolDown) CreateSheet();
+        CreateSheet();
     }
 
     private void CreateSheet(){
+        if (coolDown) return;
         Instantiate(sheet_raw, transform.position, Quaternion.identity);
         coolTime = operatingTime;
         coolDown = true;

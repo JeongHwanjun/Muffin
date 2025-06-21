@@ -50,9 +50,17 @@ public class ManufactureLineManager : MonoBehaviour
         // 시작시 가장 왼쪽 라인이 선택된 상태임. 이에 따라 설정해줌
         lines[0].LineChange(true);
         currentLine = 0;
+
+        // 이벤트 구독
+        manufactureEventManager.OnPaste += PrintPaste;
     }
 
-    // 라인 변경
+    void OnDestroy()
+    {
+        manufactureEventManager.OnPaste -= PrintPaste;
+    }
+
+  // 라인 변경
     void ChangeLine(int dir)
     {
         Debug.Log("ManufactureLineManager : ChangeLine");
@@ -72,5 +80,10 @@ public class ManufactureLineManager : MonoBehaviour
         if (currentLine < 0 || currentLine >= lines.Count) return false;
 
         return lines[currentLine].isLineReady;
+    }
+
+    private void PrintPaste()
+    {
+        lines[currentLine].PrintPaste();
     }
 }

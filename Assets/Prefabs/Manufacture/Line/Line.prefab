@@ -51,6 +51,7 @@ MonoBehaviour:
   LineNumber: 0
   isLineReady: 0
   character: {fileID: 2174262410032283481}
+  pasteMachine: {fileID: 8395928279223950563}
   manufactureAdmin: {fileID: 0}
 --- !u!1001 &513445796114080534
 PrefabInstance:
@@ -113,6 +114,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2185f52e908980142886bafb7488099e, type: 3}
+--- !u!114 &8395928279223950563 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8332913245161586677, guid: 2185f52e908980142886bafb7488099e, type: 3}
+  m_PrefabInstance: {fileID: 513445796114080534}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1c2ee4b0df11e744a2d0537a5792bba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &8981310590686892427 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8900280951437046429, guid: 2185f52e908980142886bafb7488099e, type: 3}

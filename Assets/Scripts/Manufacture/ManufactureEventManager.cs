@@ -11,6 +11,7 @@ public class ManufactureEventManager : MonoBehaviour {
   public event Action OnCommandStart; // 커맨드 입력 시작
   public event Action<recipeArrow> OnCommandInput; // 커맨드 입력
   public event Action OnCommandEnd; // 커맨드 입력 종료
+  public event Action OnPaste; // Paste 요청
   public event Action<int> OnLineChange; // 라인 전환
   public event Action<ScreenNumber> OnMoveScreen; // 화면 전환
   public event Action OnCommandValid; // 커맨드 판정 후 정답일 시 발생
@@ -33,7 +34,12 @@ public class ManufactureEventManager : MonoBehaviour {
     OnCommandEnd?.Invoke();
   }
 
-  public void TriggerLineChange(int nextLine){
+  public void TriggerPaste(){
+    OnPaste?.Invoke();
+  }
+
+  public void TriggerLineChange(int nextLine)
+  {
     Debug.Log("ManufactureEventManager : TriggerLineChange " + nextLine.ToString());
     // 다음 라인이 몇번인지 알림
     OnLineChange?.Invoke(nextLine);
