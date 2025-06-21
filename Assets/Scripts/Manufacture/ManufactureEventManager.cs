@@ -19,7 +19,8 @@ public class ManufactureEventManager : MonoBehaviour {
   /* Triggers */
   public void TriggerCommandStart(){
     Debug.Log("ManufactureEventManager : TriggerCommandStart");
-    
+    // 유효성 검사는 CommandHandler에서 실시
+    OnCommandStart?.Invoke();
   }
 
   public void TriggerCommandInput(recipeArrow recipeArrow){

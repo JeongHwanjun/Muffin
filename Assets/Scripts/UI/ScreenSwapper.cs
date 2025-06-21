@@ -76,12 +76,12 @@ public class ScreenSwapper : MonoBehaviour
 
     private void SubscribeManufactureAdmin(ManufactureAdmin _manufactureAdmin){
         manufactureAdmin = _manufactureAdmin;
-        manufactureAdmin.OnSwapScreen += setCurrentScreen;
+        //manufactureAdmin.OnSwapScreen += setCurrentScreen;
     }
 
     private void OnDestroy() {
         // 이벤트 할당 해제
         if(salesEventManager != null) salesEventManager.OnSwapScreen -= setCurrentScreen;
-        if(manufactureAdmin != null) manufactureAdmin.OnSwapScreen -= setCurrentScreen;
+        //if(manufactureAdmin != null) manufactureAdmin.OnSwapScreen -= setCurrentScreen;
     }
 }

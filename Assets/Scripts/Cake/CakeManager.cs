@@ -23,23 +23,35 @@ public class CakeManager : MonoBehaviour
   // 케이크 초기화
   private void InitializeCakes() // Cake의 정보는 json파일로 주어짐
   {
+    // Cake 정보 불러오기
     CakeCollection cakes_origin = Instantiate(cakeCollection);
     string path = Application.persistentDataPath + "/cakeData.json";
-    if(File.Exists(path)) { // 파일이 있다면 불러옵니다
+    if (File.Exists(path))
+    { // 파일이 있다면 불러옵니다
       string json = File.ReadAllText(path);
       CakeList cakeList = JsonUtility.FromJson<CakeList>(json);
       cakes = cakeList.cakes;
       Debug.Log("파일 읽기 완료 : " + path);
-    } else { // 파일이 없다면 cakes_origin에서 그냥 불러오고, 파일을 생성합니다.
+    }
+    else
+    { // 파일이 없다면 cakes_origin에서 그냥 불러오고, 파일을 생성합니다.
       cakes.Clear();
-      foreach(Cake C in cakes_origin.cakes){
-        cakes.Add(C);
-      }
-      CakeList cakeList = new CakeList{cakes = cakes};
+      cakes = new List<Cake>(cakes_origin.cakes);
+      CakeList cakeList = new CakeList { cakes = cakes };
       string json = JsonUtility.ToJson(cakeList, true);
       File.WriteAllText(path, json);
       Debug.Log("파일 저장 완료 : " + path);
     }
+
+    // CommandData 초기화
+    List<List<recipeArrow>> recipes = new List<List<recipeArrow>>();
+    foreach (Cake C in cakes)
+    {
+      recipes.Add(C.recipe);
+    }
+    Debug.Log("CommandData 초기화 : " + recipes);
+    CommandData.instance.Recipes = recipes;
+    CommandData.instance.RecipeCorrectList = new List<int>(new int[recipes.Count]);
   }
   // 케이크 데이터 변경
   public void UpdateCakeData(int cakeIndex, int quantityChange, int salesChange)

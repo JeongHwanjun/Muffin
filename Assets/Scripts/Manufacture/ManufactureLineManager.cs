@@ -42,7 +42,7 @@ public class ManufactureLineManager : MonoBehaviour
             GameObject newLine = Instantiate(linePrefab, transform);
             newLine.transform.localPosition = new Vector2(startX + spacing * i, 1);
             Line newLineScript = newLine.GetComponent<Line>();
-            newLineScript.Init(i, manufactureAdmin, manufactureEventManager); // 몇번 라인인지, Admin과 EventManager를 전달해 의존성 주입
+            newLineScript.Initialize(i, manufactureAdmin, manufactureEventManager); // 몇번 라인인지, Admin과 EventManager를 전달해 의존성 주입
             newLineScript.LineChange(false); // 일단 생성 후 선택 해제 - 하나의 라인만 선택되도록
             lines.Add(newLineScript); // 리스트에 추가
         }
@@ -66,11 +66,11 @@ public class ManufactureLineManager : MonoBehaviour
         currentLine = nextLine; // 다음 라인을 현재 라인으로 변경
     }
 
-    public bool isLineReady(int lineNumber)
+    public bool isLineReady()
     {
         Debug.Log("ManufactureLineManager : isLineReady");
-        if (lineNumber < 0 || lineNumber >= lines.Count) return false;
+        if (currentLine < 0 || currentLine >= lines.Count) return false;
 
-        return lines[lineNumber].isLineReady;
+        return lines[currentLine].isLineReady;
     }
 }

@@ -5,7 +5,10 @@ public class ManufactureCommandHandler : MonoBehaviour
 {
     public ManufactureAdmin manufactureAdmin;
     public ManufactureEventManager manufactureEventManager;
+    public ManufactureLineManager manufactureLineManager;
     public UIHandler uiHandler;
+
+    private bool isCommandStart = false;
 
     void Awake()
     {
@@ -15,38 +18,56 @@ public class ManufactureCommandHandler : MonoBehaviour
     }
 
     private void OnCommandStart(){
-        // 커맨드 입력 활성화 - 라인의 유효성 여부는 EventManager에서 확인함.
+        Debug.Log("ManufactureCommandHandler : OnCommandStart");
+        // 유효성 검사 - 라인이 커맨드 가능 상태가 아니라면 아무것도 안함
+        if (!manufactureLineManager.isLineReady())
+        {
+            Debug.Log("ManufactureCommandHandler : Ignore CommandStart");
+            // 커맨드 입력상태 비활성화 - UI가 보이지 않아도 입력되어 케이크가 생성되는 것 방지
+            isCommandStart = false;
+            return;
+        }
+        // 커맨드 입력 활성화
+        isCommandStart = true;
         CommandData.instance.InputCommands.Clear();
         // UI 활성화
-        uiHandler.gameObject.SetActive(true);
+        uiHandler.showRecipes();
         // CommandData 갱신 -> UI갱신됨
         ValidateCommandArrows();
         // UI갱신을 명시적으로 할 필요도 있을까요?
     }
 
     private void OnCommandInput(recipeArrow direction){
+        if (!isCommandStart) return;
         // CommandData에 커맨드 추가
         Debug.Log("CommandHandler 입력 인식 : " + direction);
         CommandData.instance.InputCommands.Add(direction);
         ValidateCommandArrows();
     }
 
-    private void OnCommandEnd(){
+    private void OnCommandEnd()
+    {
+        if (!isCommandStart) return;
         // 레시피를 확인 후 성공/실패 이벤트 발생
-        Debug.Log("입력된 커맨드 : "+string.Join(", ",CommandData.instance.InputCommands.ToArray()));
-            if(CheckRecipe()){
-                Debug.Log("정답, 케이크 생산 성공");
-                // 성공 이벤트 발생
-                manufactureEventManager.TriggerCommandValid();
-            }else {
-                Debug.Log("오답, 케이크 생산 실패");
-                // 실패 이벤트 발생
-                manufactureEventManager.TriggerCommandFailed();
-            }
-            // UI 비활성화
-            uiHandler.gameObject.SetActive(false);
-            // 커맨드 데이터 초기화
-            CommandData.instance.InputCommands.Clear();
+        Debug.Log("입력된 커맨드 : " + string.Join(", ", CommandData.instance.InputCommands.ToArray()));
+        if (CheckRecipe())
+        {
+            Debug.Log("정답, 케이크 생산 성공");
+            // 성공 이벤트 발생
+            manufactureEventManager.TriggerCommandValid();
+        }
+        else
+        {
+            Debug.Log("오답, 케이크 생산 실패");
+            // 실패 이벤트 발생
+            manufactureEventManager.TriggerCommandFailed();
+        }
+        // UI 비활성화
+        uiHandler.hideRecipes();
+        // 커맨드 데이터 초기화
+        CommandData.instance.InputCommands.Clear();
+        // 커맨드 입력 상태 비활성화
+        isCommandStart = false;
     }
 
     // 화살표 UI에 사용하기 위해 현재 입력과 정답 레시피를 비교함

@@ -74,20 +74,31 @@ public class ManufactureInputManager : MonoBehaviour {
 
   // 커맨드 입력시 방향에 따른 커맨드 입력 이벤트 발생
   private void OnCommandPerformed(recipeArrow direction){
+    Debug.Log("ManufactureInputManager : 커맨드 입력 - " + direction);
     eventManager?.TriggerCommandInput(direction);
   }
 
   // 커맨드 입력 시작시 입력 시작 이벤트 발생
   private void OnCommandEnter(InputAction.CallbackContext ctx){
-    for(int i=0;i<commandKeys.Length;i++) commandKeys[i].Enable();
+    // 커맨드 키 활성화
+    for (int i = 0; i < commandKeys.Length; i++) commandKeys[i].Enable();
+    // 라인 변경 키 비활성화
     moveLineKey.Disable();
+    // 화면 전환 키 비활성화
     moveScreenKey.Disable();
+    // commandStart 이벤트 발생
     eventManager?.TriggerCommandStart();
   }
-  private void OnCommandExit(InputAction.CallbackContext ctx){
-    for(int i=0;i<commandKeys.Length;i++) commandKeys[i].Disable();
+  // 커맨드 입력 종료시 종료 이벤트 발생
+  private void OnCommandExit(InputAction.CallbackContext ctx)
+  {
+    // 커맨드 키 비활성화
+    for (int i = 0; i < commandKeys.Length; i++) commandKeys[i].Disable();
+    // 라인 변경 키 활성화
     moveLineKey.Enable();
+    // 화면 전환 키 활성화
     moveScreenKey.Enable();
+    // commandEnd 이벤트 발생
     eventManager?.TriggerCommandEnd();
   }
 

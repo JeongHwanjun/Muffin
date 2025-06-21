@@ -5,37 +5,19 @@ using UnityEngine;
 public class OpeningTimeManager : MonoBehaviour
 {
     public OpeningTimeData openingTimeData;
-
-    public GameObject manufactureAdminPrefab;
-    private GameObject manufactureAdmin;
-
-    public GameObject salesAdminPrefab;
-    private GameObject salesAdmin;
+    [SerializeField] private GameObject manufactureAdmin;
+    [SerializeField] private GameObject salesAdmin;
     public int salesX = -15, salesY = 0;
 
     private CakeManager cakeManager;
-
-    public int maxLine = 3;
     void Start()
     {
-        cakeManager = GetComponentInChildren<CakeManager>();
         Initialize();
     }
 
     public void Initialize(){
+        cakeManager = GetComponentInChildren<CakeManager>();
         openingTimeData = GetComponentInChildren<OpeningTimeData>();
-        if(manufactureAdmin == null && manufactureAdminPrefab != null){
-            manufactureAdmin = Instantiate(manufactureAdminPrefab, transform);
-            manufactureAdmin.transform.SetLocalPositionAndRotation(Vector3.zero, quaternion.identity);
-            manufactureAdmin.GetComponent<ManufactureAdmin>().Initialize(maxLine, this);
-        }
-        if(salesAdmin == null && salesAdminPrefab != null){
-            salesAdmin = Instantiate(salesAdminPrefab, transform);
-            salesAdmin.transform.SetLocalPositionAndRotation(new Vector3(salesX, salesY, 0), quaternion.identity);
-            salesAdmin.GetComponent<SalesAdmin>().Initialize(openingTimeData, this);
-        }
-
-        
     }
 
     public void UpdateCake(int cakeIndex, int quantityChange = 0, int salesChange = 0){

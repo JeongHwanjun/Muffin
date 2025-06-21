@@ -9,7 +9,7 @@ public class Line : MonoBehaviour
     ManufactureEventManager manufactureEventManager;
 
     // 초기화
-    public void Init(int number, ManufactureAdmin _manufactureAdmin, ManufactureEventManager _manufactureEventManager)
+    public void Initialize(int number, ManufactureAdmin _manufactureAdmin, ManufactureEventManager _manufactureEventManager)
     {
         LineNumber = number;
         manufactureAdmin = _manufactureAdmin;
@@ -37,7 +37,7 @@ public class Line : MonoBehaviour
         }
     }
 
-    public void switchLineReady()
+    public void SwitchLineReady()
     {
         Debug.Log("Line" + LineNumber + " : switchLineReady");
         // 애니메이션 재생, 준비 상태 전환 등 담당
