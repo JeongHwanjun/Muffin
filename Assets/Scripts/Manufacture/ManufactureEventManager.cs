@@ -14,7 +14,7 @@ public class ManufactureEventManager : MonoBehaviour {
   public event Action OnPaste; // Paste 요청
   public event Action<int> OnLineChange; // 라인 전환
   public event Action<ScreenNumber> OnMoveScreen; // 화면 전환
-  public event Action OnCommandValid; // 커맨드 판정 후 정답일 시 발생
+  public event Action<int> OnCommandValid; // 커맨드 판정 후 정답일 시 발생
   public event Action OnCommandFailed; // 커맨드 판정 후 오답일 시 발생
 
   /* Triggers */
@@ -50,9 +50,9 @@ public class ManufactureEventManager : MonoBehaviour {
     OnMoveScreen?.Invoke(screenNumber);
   }
 
-  public void TriggerCommandValid(){
+  public void TriggerCommandValid(int cakeIndex){
     Debug.Log("ManufactureEventManager : TriggerCommandValid");
-    OnCommandValid?.Invoke();
+    OnCommandValid?.Invoke(cakeIndex);
   }
 
   public void TriggerCommandFailed(){

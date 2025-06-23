@@ -50,13 +50,14 @@ public class ManufactureCommandHandler : MonoBehaviour
         if (!isCommandStart) return;
         // 레시피를 확인 후 성공/실패 이벤트 발생
         Debug.Log("입력된 커맨드 : " + string.Join(", ", CommandData.instance.InputCommands.ToArray()));
-        if (CheckRecipe())
+        int checkRecipeResult = CheckRecipe();
+        if (checkRecipeResult >= 0) // 0보다 크다면 정답을 발견함, 해당 정답의 index를 반환
         {
-            Debug.Log("정답, 케이크 생산 성공");
+            Debug.LogFormat("정답, {0}번 케이크 생산 성공", checkRecipeResult);
             // 성공 이벤트 발생
-            manufactureEventManager.TriggerCommandValid();
+            manufactureEventManager.TriggerCommandValid(checkRecipeResult);
         }
-        else
+        else // 0보다 작다면(-1) 정답을 발견하지 못함.
         {
             Debug.Log("오답, 케이크 생산 실패");
             // 실패 이벤트 발생
@@ -95,18 +96,22 @@ public class ManufactureCommandHandler : MonoBehaviour
         CommandData.instance.RecipeCorrectList = RecipeCorrectList;
     }
 
-    // 입력 커맨드와 일치하는 레시피가 있는지 확인. OnCommandEnd에서 최종적으로 확인함.
-    public bool CheckRecipe(){
-        foreach(List<recipeArrow> recipe in CommandData.instance.Recipes){
-            if(CompareRecipe(recipe, CommandData.instance.InputCommands)){
-                Debug.Log("일치하는 레시피 발견 : "+string.Join(", ",recipe.ToArray()));
+    // 입력 커맨드와 일치하는 레시피가 있는지 확인. 최종적인 정답 처리.
+    public int CheckRecipe(){
+        int i = 0;
+        foreach (List<recipeArrow> recipe in CommandData.instance.Recipes)
+        {
+            if (CompareRecipe(recipe, CommandData.instance.InputCommands))
+            {
+                Debug.Log("일치하는 레시피 발견 : " + string.Join(", ", recipe.ToArray()));
                 CommandData.instance.InputCommands.Clear();
-                return true;
+                return i; // 정답 레시피의 인덱스 반환
             }
+            i++;
         }
         CommandData.instance.InputCommands.Clear();
 
-        return false;
+        return -1;
     }
 
     // 두 개의 recipeArrow List를 비교하는 함수.
