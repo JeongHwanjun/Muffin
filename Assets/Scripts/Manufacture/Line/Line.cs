@@ -40,17 +40,24 @@ public class Line : MonoBehaviour
     public void SwitchLineReady()
     {
         Debug.Log("Line" + LineNumber + " : switchLineReady");
-        // 애니메이션 재생, 준비 상태 전환 등 담당
-        isLineReady = !isLineReady;
+        if (isLineReady) SetLineNotReady();
+        else SetLineReady();
+    }
 
-        if (isLineReady)
-        {
-            // 준비된 상태로 애니메이션 재생 및 스프라이트 변경
-        }
-        else
-        {
-            // 준비되지 않은 상태로 애니메이션 재생 및 스프라이트 변경
-        }
+    private void SetLineNotReady()
+    {
+        // 라인 준비 상태를 false로 변경
+        isLineReady = false;
+        // 기타 처리
+        Debug.LogFormat("Line{0} : Not Ready", LineNumber);
+    }
+
+    private void SetLineReady()
+    {
+        // 라인 준비 상태를 true로 변경
+        isLineReady = true;
+        // 기타 처리
+        Debug.LogFormat("Line{0} : Ready", LineNumber);
     }
 
     // W,S 버튼을 눌렀을 때 반죽 생성

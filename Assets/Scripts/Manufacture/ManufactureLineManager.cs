@@ -53,6 +53,7 @@ public class ManufactureLineManager : MonoBehaviour
 
         // 이벤트 구독
         manufactureEventManager.OnPaste += PrintPaste;
+        manufactureEventManager.OnCommandEnd += OnCommandEnd;
     }
 
     void OnDestroy()
@@ -77,9 +78,23 @@ public class ManufactureLineManager : MonoBehaviour
     public bool isLineReady()
     {
         Debug.Log("ManufactureLineManager : isLineReady");
-        if (currentLine < 0 || currentLine >= lines.Count) return false;
+        if (currentLine < 0 || currentLine >= lines.Count)
+        {
+            Debug.LogWarningFormat("ManufactureLineManager : Invalid currentLine({0})", currentLine);
+            return false;
+        }
 
         return lines[currentLine].isLineReady;
+    }
+
+    private void OnCommandEnd()
+    {
+        // 커맨드 입력 종료시 라인의 준비 상태 조작
+        if (isLineReady())
+        {
+            // 라인의 준비 상태를 전환(false로)
+            lines[currentLine].SwitchLineReady();
+        }
     }
 
     private void PrintPaste()
