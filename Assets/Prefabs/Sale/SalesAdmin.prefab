@@ -169,8 +169,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ae609cbf24592a478b945e3f0e5e0f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  salesInputManager: {fileID: 4995157610282171347}
+  salesEventManager: {fileID: 7778804998557764397}
+  customerManager: {fileID: 2273952029595189163}
+  openingTimeManager: {fileID: 0}
   salesUIHandler: {fileID: 8870429168446441489}
-  startScreen: 0
+  startScreen: 1
 --- !u!1 &5011824197999426763
 GameObject:
   m_ObjectHideFlags: 0

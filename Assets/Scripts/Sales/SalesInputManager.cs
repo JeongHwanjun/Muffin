@@ -12,12 +12,11 @@ public class SalesInputManager : MonoBehaviour
     public SalesEventManager salesEventManager;
 
     private List<Cake> CakeList;
-
-    public void Initialize(){
-
-    }
-    private void Awake() {
-        for(int i=0;i<ServeCakeKeys.Length;i++){
+    
+    private void Awake()
+    {
+        for (int i = 0; i < ServeCakeKeys.Length; i++)
+        {
             int index = i;
             ServeCakeKeys[index].performed += ctx => ServeCake(index);
         }

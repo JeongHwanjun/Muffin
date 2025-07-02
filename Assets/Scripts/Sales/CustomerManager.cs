@@ -7,7 +7,7 @@ public class CustomerManager : MonoBehaviour
     public float popularity = 10.0f;
     [SerializeField]
     private float customerSpacing = 1.0f;
-    private float customerInterval = 5.0f, customerCooltime = 0.0f;
+    private float customerInterval = 5.0f, customerCooltime = 5.0f;
     public List<GameObject> customers = new List<GameObject>();
 
     public GameObject CustomerPrefab;
@@ -62,10 +62,10 @@ public class CustomerManager : MonoBehaviour
     }
     void Update()
     {
-        customerCooltime += Time.deltaTime;
-        if(customerCooltime > customerInterval){
+        customerCooltime -= Time.deltaTime;
+        if(customerCooltime < 0){
             InstantiateNewCustomer();
-            customerCooltime = 0;
+            customerCooltime = customerInterval;
         }
     }
 

@@ -29,6 +29,11 @@ public class Customer : MonoBehaviour
     }
 
     public void Initialize(List<Cake> cakes, CustomerManager _customerManager){
+        if (cakes.Count <= 0)
+        {
+            Debug.LogWarning("cakes.Count <= 0");
+            return;
+        }
         customerManager = _customerManager;
         // 초기화. 이용가능한 케이크의 속성과 선호도를 활용해 케이크 및 주문수량 결정
         // 현재는 주어진 List<Cake> 중에서 무작위로 선택함

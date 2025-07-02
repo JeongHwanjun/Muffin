@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -12,11 +13,15 @@ public enum recipeArrow {
 public class CakeManager : MonoBehaviour
 {
   public CakeCollection cakeCollection;
-  public List<Cake> cakes = new List<Cake>();
-  // cakes는 직접접근 X - OpeningTimeData를 통해 접근할 것
+  public List<Cake> cakes = new List<Cake>();// cakes는 직접접근 X - OpeningTimeData를 통해 접근할 것
+
+  // 데이터 변경시 이벤트 발생
+  public event Action<int> OnCakeDataChanged;
+
 
   private void Awake()
   {
+    // Edit - ProjectSettings - Script Execution Order에서 순서를 앞으로 당겨서 먼저 실행될 수 있도록 해야 함.
     InitializeCakes();
   }
 
@@ -52,19 +57,24 @@ public class CakeManager : MonoBehaviour
     Debug.Log("CommandData 초기화 : " + recipes);
     CommandData.instance.Recipes = recipes;
     CommandData.instance.RecipeCorrectList = new List<int>(new int[recipes.Count]);
+
+    OnCakeDataChanged?.Invoke(0);
   }
   // 케이크 데이터 변경
   public void UpdateCakeData(int cakeIndex, int quantityChange, int salesChange)
   {
-      if(cakeIndex < 0 || cakeIndex >= cakes.Count){
-          Debug.Log("Invalid Cake Update Request : " + cakeIndex);
-          return;
-      }
-      var cake = cakes[cakeIndex];
-      if (cake != null)
-      {
-          cake.quantity = cake.quantity + quantityChange;
-          cake.sales = cake.sales + salesChange;
-      }
+    if (cakeIndex < 0 || cakeIndex >= cakes.Count)
+    {
+      Debug.Log("Invalid Cake Update Request : " + cakeIndex);
+      return;
+    }
+    var cake = cakes[cakeIndex];
+    if (cake != null)
+    {
+      cake.quantity = cake.quantity + quantityChange;
+      cake.sales = cake.sales + salesChange;
+    }
+
+    OnCakeDataChanged?.Invoke(cakeIndex);
   }
 }

@@ -23,7 +23,10 @@ public class OpeningTimeManager : MonoBehaviour
         manufactureEventManager = GetComponentInChildren<ManufactureEventManager>();
 
         // 이벤트 구독
-        manufactureEventManager.OnCommandValid += ProduceCake;
+        if (manufactureEventManager)
+        {
+            manufactureEventManager.OnCommandValid += ProduceCake;
+        }
     }
 
     public void UpdateCake(int cakeIndex, int quantityChange = 0, int salesChange = 0){

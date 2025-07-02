@@ -3,24 +3,19 @@ using UnityEngine;
 
 public class SalesAdmin : MonoBehaviour
 {
-    private SalesInputManager salesInputManager;
-    private SalesEventManager salesEventManager;
-    private CustomerManager customerManager;
-    private OpeningTimeManager openingTimeManager;
-    [SerializeField]
-    private SalesUIHandler salesUIHandler;
+    [SerializeField] private SalesInputManager salesInputManager;
+    [SerializeField] private SalesEventManager salesEventManager;
+    [SerializeField] private CustomerManager customerManager;
+    [SerializeField] private OpeningTimeManager openingTimeManager;
+    [SerializeField] private SalesUIHandler salesUIHandler;
     public ScreenNumber startScreen;
 
-    public void Initialize(OpeningTimeData openingTimeData, OpeningTimeManager _openingTimeManager){
-        openingTimeManager = _openingTimeManager;
-        salesInputManager = GetComponentInChildren<SalesInputManager>();
-        salesInputManager.Initialize();
-        salesEventManager = GetComponentInChildren<SalesEventManager>();
-        customerManager = GetComponentInChildren<CustomerManager>();
+    public void Initialize(){
+        // 정적 케이크 정보(스프라이트, 이름 등)를 customerManager에 넘겨 customer 생성 준비
         List<Cake> cakes = openingTimeManager.GetCakes();
         customerManager.Initialize(cakes);
-        // 이벤트 매니저가 준비되면 하위 이벤트 구독 (현재는 딱히 준비 필요 X)
-        // SalesEventManager.OnSalesEventManagerReady += SubscribeEvents;
+
+        // 이벤트 구독
         salesEventManager.OnConsumeCake += ConsumeCake;
         ScreenSwapper.OnScreenSwapComplete += setUI;
 
@@ -28,18 +23,22 @@ public class SalesAdmin : MonoBehaviour
         setUI(startScreen);
     }
 
-    private void ConsumeCake(int cakeIndex, int consumeQuantity){
+    void Awake()
+    {
+        Initialize();
+    }
+
+    private void ConsumeCake(int cakeIndex, int consumeQuantity)
+    {
         Debug.Log("Consume Cake");
         openingTimeManager.UpdateCake(cakeIndex, consumeQuantity, consumeQuantity);
-        // 원래 데이터가 수정되면 그에 따른 이벤트를 발생시켜 UI를 갱신해야 함. 현재는 임시
-        salesUIHandler.OnDataChanged(openingTimeManager.GetCakes());
+        // cake 데이터가 업데이트되면서 UI 갱신이 이루어짐
     }
 
     private void setUI(ScreenNumber screenNumber){
         bool isSalesScreen = screenNumber == ScreenNumber.Sales;
         Debug.Log("setUI : " + isSalesScreen);
         salesUIHandler.SetUI(isSalesScreen);
-        if(isSalesScreen) salesUIHandler.OnDataChanged(openingTimeManager.GetCakes());
     }
 
     void OnDestroy()
