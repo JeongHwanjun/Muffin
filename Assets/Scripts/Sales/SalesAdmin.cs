@@ -17,7 +17,7 @@ public class SalesAdmin : MonoBehaviour
 
         // 이벤트 구독
         salesEventManager.OnConsumeCake += ConsumeCake;
-        ScreenSwapper.OnScreenSwapComplete += setUI;
+        ScreenSwapper.OnMoveScreenComplete += setUI;
 
         // 기타 설정
         setUI(startScreen);
@@ -43,7 +43,7 @@ public class SalesAdmin : MonoBehaviour
 
     void OnDestroy()
     {
-        ScreenSwapper.OnScreenSwapComplete -= setUI;
+        ScreenSwapper.OnMoveScreenComplete -= setUI;
         salesEventManager.OnConsumeCake -= ConsumeCake;
     }
 

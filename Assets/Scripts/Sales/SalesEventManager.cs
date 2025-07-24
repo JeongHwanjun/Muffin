@@ -7,7 +7,7 @@ public class SalesEventManager : MonoBehaviour
     public event Action<int, int> OnConsumeCake;
     public event Action<int> OnServeCake;
     public event Action<Customer> OnCustomerCreated;
-    public event Action<ScreenNumber> OnSwapScreen;
+    public event Action<ScreenNumber> OnMoveScreen;
     public static event Action<SalesEventManager> OnSalesEventManagerReady;
 
     private void Start() {
@@ -27,6 +27,6 @@ public class SalesEventManager : MonoBehaviour
     }
 
     public void TriggerSwapScreen(ScreenNumber _screenNumber){
-        OnSwapScreen?.Invoke(_screenNumber);
+        OnMoveScreen?.Invoke(_screenNumber);
     }
 }

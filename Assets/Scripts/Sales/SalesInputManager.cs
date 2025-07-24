@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 public class SalesInputManager : MonoBehaviour
 {
     // 이 화면으로 전환되었을 때 입력을 활성화 해야 함
-    public InputAction SwitchToManufactureKey;
+    public InputAction MoveToManufactureKey;
     public InputAction[] ServeCakeKeys;
 
     public SalesAdmin salesAdmin;
@@ -20,9 +20,9 @@ public class SalesInputManager : MonoBehaviour
             int index = i;
             ServeCakeKeys[index].performed += ctx => ServeCake(index);
         }
-        SwitchToManufactureKey.canceled += SwitchToManufacture;
+        MoveToManufactureKey.performed += SwitchToManufacture;
 
-        ScreenSwapper.OnScreenSwapComplete += OnScreenSwapComplete;
+        ScreenSwapper.OnMoveScreenComplete += OnMoveScreenComplete;
     }
 
     private void OnDestroy() {
@@ -32,35 +32,35 @@ public class SalesInputManager : MonoBehaviour
             ServeCakeKeys[index].Disable();
         }
 
-        SwitchToManufactureKey.canceled -= SwitchToManufacture;
+        MoveToManufactureKey.performed -= SwitchToManufacture;
 
-        ScreenSwapper.OnScreenSwapComplete -= OnScreenSwapComplete;
+        ScreenSwapper.OnMoveScreenComplete -= OnMoveScreenComplete;
     }
 
-    private void OnScreenSwapComplete(ScreenNumber _screenNumber){
+    private void OnMoveScreenComplete(ScreenNumber _screenNumber){
         if(_screenNumber == ScreenNumber.Sales) {
-            SwitchInput(true);
+            EnableInput();
             Debug.Log("판매 입력 활성화");
         } else {
-            SwitchInput(false);
+            DisableInput();
         }
     }
 
-    private void SwitchInput(bool ON) {
-        if(ON){
-            foreach(InputAction ServeCakeKey in ServeCakeKeys) {
-                ServeCakeKey.Enable();
-            }
-            SwitchToManufactureKey.Enable();
-        } else {
-            foreach(InputAction ServeCakeKey in ServeCakeKeys) {
-                ServeCakeKey.Disable();
-            }
-            SwitchToManufactureKey.Disable();
+    private void EnableInput() {
+        foreach(InputAction ServeCakeKey in ServeCakeKeys) {
+            ServeCakeKey.Enable();
         }
+        MoveToManufactureKey.Enable();
+    }
+    private void DisableInput() {
+        foreach(InputAction ServeCakeKey in ServeCakeKeys) {
+            ServeCakeKey.Disable();
+        }
+        MoveToManufactureKey.Disable();
     }
 
-    private void ServeCake(int cakeIndex){
+    private void ServeCake(int cakeIndex)
+    {
         salesEventManager.TriggerServeCake(cakeIndex);
     }
 

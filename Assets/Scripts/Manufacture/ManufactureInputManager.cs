@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using Unity.Collections;
 using UnityEngine;
@@ -27,6 +28,8 @@ public class ManufactureInputManager : MonoBehaviour
 
     //일단 임시로 메인카메라로 지정함
     manufactureCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
+
+    ScreenSwapper.OnMoveScreenComplete += OnMoveScreenComplete;
   }
 
   // 종료시 키 바인딩 해제
@@ -50,11 +53,7 @@ public class ManufactureInputManager : MonoBehaviour
     moveScreenKey.performed += OnMoveScreen;
     userClick.canceled += OnUserClick;
 
-    commandEnterKey.Enable();
-    pasteKey.Enable();
-    moveLineKey.Enable();
-    moveScreenKey.Enable();
-    userClick.Enable();
+    EnableKeys();
   }
 
   private void UnSubscribeInput()
@@ -65,12 +64,39 @@ public class ManufactureInputManager : MonoBehaviour
     moveLineKey.performed -= OnMoveLine;
     userClick.canceled -= OnUserClick;
 
-    for (int i = 0; i < commandKeys.Length; i++) commandKeys[i].Disable();
+    DisableCommandKeys();
+    DisableKeys();
+  }
+
+  private void EnableKeys()
+  {
+    commandEnterKey.Enable();
+    pasteKey.Enable();
+    moveLineKey.Enable();
+    moveScreenKey.Enable();
+    userClick.Enable();
+  }
+  private void EnableCommandKeys()
+  {
+    foreach (InputAction commandKey in commandKeys)
+    {
+      commandKey.Enable();
+    }
+  }
+  private void DisableKeys()
+  {
     commandEnterKey.Disable();
     pasteKey.Disable();
     moveLineKey.Disable();
     moveScreenKey.Disable();
     userClick.Disable();
+  }
+  private void DisableCommandKeys()
+  {
+    foreach (InputAction commandKey in commandKeys)
+    {
+      commandKey.Disable();
+    }
   }
 
   // 커맨드 입력시 방향에 따른 커맨드 입력 이벤트 발생
@@ -84,13 +110,13 @@ public class ManufactureInputManager : MonoBehaviour
   private void OnCommandEnter(InputAction.CallbackContext ctx)
   {
     // 커맨드 키 활성화
-    for (int i = 0; i < commandKeys.Length; i++) commandKeys[i].Enable();
-    // 라인 변경 키 비활성화
-    moveLineKey.Disable();
-    // 화면 전환 키 비활성화
-    moveScreenKey.Disable();
-    // 반죽 생성 키 비활성화
+    EnableCommandKeys();
+    // 그 외 다른 조작은 비활성화, commandEnterKey는 제외(커맨드 입력 상황에서 벗어나려면 필요함)
     pasteKey.Disable();
+    moveLineKey.Disable();
+    moveScreenKey.Disable();
+    userClick.Disable();
+
     // commandStart 이벤트 발생
     eventManager?.TriggerCommandStart();
   }
@@ -98,17 +124,14 @@ public class ManufactureInputManager : MonoBehaviour
   private void OnCommandExit(InputAction.CallbackContext ctx)
   {
     // 커맨드 키 비활성화
-    for (int i = 0; i < commandKeys.Length; i++) commandKeys[i].Disable();
-    // 라인 변경 키 활성화
-    moveLineKey.Enable();
-    // 화면 전환 키 활성화
-    moveScreenKey.Enable();
-    // 반죽 생성 키 활성화
+    DisableCommandKeys();
     pasteKey.Enable();
+    moveLineKey.Enable();
+    moveScreenKey.Enable();
+    userClick.Enable();
     // commandEnd 이벤트 발생
     eventManager?.TriggerCommandEnd();
   }
-
   //라인 전환키 클릭시 라인 전환 이벤트 발생
   private void OnMoveLine(InputAction.CallbackContext ctx)
   {
@@ -144,4 +167,18 @@ public class ManufactureInputManager : MonoBehaviour
   {
     eventManager?.TriggerPaste();
   }
+
+  private void OnMoveScreenComplete(ScreenNumber _screenNumber)
+  {
+    if (_screenNumber == ScreenNumber.Manufacture)
+    {
+      EnableKeys();
+    }
+    else
+    {
+      DisableKeys();
+      DisableCommandKeys();
+    }
+  }
+
 }
