@@ -328,6 +328,10 @@ PrefabInstance:
       value: SalesAdmin
       objectReference: {fileID: 0}
     - target: {fileID: 3605189742985287327, guid: d3d482adc81bbce428ad0cf135d0b351, type: 3}
+      propertyPath: startScreen
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3605189742985287327, guid: d3d482adc81bbce428ad0cf135d0b351, type: 3}
       propertyPath: openingTimeManager
       value: 
       objectReference: {fileID: 4401270524089368624}

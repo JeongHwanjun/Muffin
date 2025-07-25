@@ -17,10 +17,10 @@ public class SalesAdmin : MonoBehaviour
 
         // 이벤트 구독
         salesEventManager.OnConsumeCake += ConsumeCake;
-        ScreenSwapper.OnMoveScreenComplete += setUI;
+        ScreenSwapper.OnMoveScreenComplete += SetUI;
 
-        // 기타 설정
-        setUI(startScreen);
+        // UI 설정
+        SetUI(startScreen);
     }
 
     void Awake()
@@ -30,12 +30,15 @@ public class SalesAdmin : MonoBehaviour
 
     private void ConsumeCake(int cakeIndex, int consumeQuantity)
     {
-        Debug.Log("Consume Cake");
-        openingTimeManager.UpdateCake(cakeIndex, consumeQuantity, consumeQuantity);
+        
+        Debug.LogFormat("SalseAdmin : Consume Cake{0}", consumeQuantity);
+        int quantityDiff = consumeQuantity > 0 ? -consumeQuantity : consumeQuantity;
+        openingTimeManager.UpdateCake(cakeIndex, quantityDiff, consumeQuantity);
         // cake 데이터가 업데이트되면서 UI 갱신이 이루어짐
     }
 
-    private void setUI(ScreenNumber screenNumber){
+    private void SetUI(ScreenNumber screenNumber)
+    {
         bool isSalesScreen = screenNumber == ScreenNumber.Sales;
         Debug.Log("setUI : " + isSalesScreen);
         salesUIHandler.SetUI(isSalesScreen);
@@ -43,7 +46,7 @@ public class SalesAdmin : MonoBehaviour
 
     void OnDestroy()
     {
-        ScreenSwapper.OnMoveScreenComplete -= setUI;
+        ScreenSwapper.OnMoveScreenComplete -= SetUI;
         salesEventManager.OnConsumeCake -= ConsumeCake;
     }
 

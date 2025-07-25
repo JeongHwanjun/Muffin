@@ -10,8 +10,9 @@ public class SalesUIHandler : MonoBehaviour
     private VisualElement root, cardContainer;
     private List<TemplateContainer> cards;
 
-    void Initialize()
+    public void Initialize()
     {
+        Debug.Log("SalesUIHandler : Initialize");
         root = GetComponent<UIDocument>().rootVisualElement;
         cardContainer = root.Q<VisualElement>("Cards");
         Debug.Log("SalesUIHandler : cardContainer : " + cardContainer);
@@ -48,13 +49,7 @@ public class SalesUIHandler : MonoBehaviour
 
     public void SetUI(bool ON)
     {
-        if (!ON)
-        {
-            root = null;
-            cardContainer = null;
-            cards = null; // UI가 닫힐 때 캐시 초기화
-        }
-        gameObject.SetActive(ON);
+        root.visible = ON;
     }
 
     void OnDisable()
