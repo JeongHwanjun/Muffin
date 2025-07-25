@@ -15,6 +15,7 @@ public class ScreenSwapper : MonoBehaviour
     private ScreenClickHandler screenClickHandler;
     public SalesEventManager salesEventManager;
     public ManufactureEventManager manufactureEventManager;
+    public ScreenNumber startScreen; // 시작 화면
 
     public static event Action<ScreenNumber> OnMoveScreenComplete;
 
@@ -23,14 +24,7 @@ public class ScreenSwapper : MonoBehaviour
     void Awake()
     {
         // 초기화면으로 초기화
-        if (screens.Length > 0)
-        {
-            foreach (GameObject screen in screens)
-            {
-                screen.SetActive(false);
-            }
-            screens[0].SetActive(true);
-        }
+        setCurrentScreen(startScreen);
         if (clickHandler != null)
         {
             screenClickHandler = clickHandler.GetComponent<ScreenClickHandler>();

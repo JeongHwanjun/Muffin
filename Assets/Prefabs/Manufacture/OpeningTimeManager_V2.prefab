@@ -95,6 +95,7 @@ MonoBehaviour:
   clickHandler: {fileID: 0}
   salesEventManager: {fileID: 4521792646769011077}
   manufactureEventManager: {fileID: 2941881389740600599}
+  startScreen: 0
   currentScreenNumber: 0
 --- !u!1 &7001015585789424759
 GameObject:
@@ -167,6 +168,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ManufactureAdmin
       objectReference: {fileID: 0}
+    - target: {fileID: 4091300879370549773, guid: b30ecbd2c16bbc647863f9a21555d935, type: 3}
+      propertyPath: manufactureEventManager
+      value: 
+      objectReference: {fileID: 2941881389740600599}
     - target: {fileID: 6998915422205650524, guid: b30ecbd2c16bbc647863f9a21555d935, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

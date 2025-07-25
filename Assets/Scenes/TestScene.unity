@@ -268,6 +268,66 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1180263040042883451, guid: c9f35a59e97c18d4dba2c74f53ea44b8, type: 3}
+      propertyPath: MoveToManufactureKey.m_Name
+      value: Move To Manufacture Key
+      objectReference: {fileID: 0}
+    - target: {fileID: 1180263040042883451, guid: c9f35a59e97c18d4dba2c74f53ea44b8, type: 3}
+      propertyPath: MoveToManufactureKey.m_SingletonActionBindings.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1180263040042883451, guid: c9f35a59e97c18d4dba2c74f53ea44b8, type: 3}
+      propertyPath: MoveToManufactureKey.m_SingletonActionBindings.Array.data[0].m_Id
+      value: 3a557b6b-4f48-45ca-8acc-a1cdb864c493
+      objectReference: {fileID: 0}
+    - target: {fileID: 1180263040042883451, guid: c9f35a59e97c18d4dba2c74f53ea44b8, type: 3}
+      propertyPath: MoveToManufactureKey.m_SingletonActionBindings.Array.data[1].m_Id
+      value: 14f8cf01-d5ac-4836-b203-32c2a397fe24
+      objectReference: {fileID: 0}
+    - target: {fileID: 1180263040042883451, guid: c9f35a59e97c18d4dba2c74f53ea44b8, type: 3}
+      propertyPath: MoveToManufactureKey.m_SingletonActionBindings.Array.data[0].m_Path
+      value: <Keyboard>/q
+      objectReference: {fileID: 0}
+    - target: {fileID: 1180263040042883451, guid: c9f35a59e97c18d4dba2c74f53ea44b8, type: 3}
+      propertyPath: MoveToManufactureKey.m_SingletonActionBindings.Array.data[1].m_Path
+      value: <Keyboard>/e
+      objectReference: {fileID: 0}
+    - target: {fileID: 1180263040042883451, guid: c9f35a59e97c18d4dba2c74f53ea44b8, type: 3}
+      propertyPath: MoveToManufactureKey.m_SingletonActionBindings.Array.data[0].m_Action
+      value: Move To Manufacture Key
+      objectReference: {fileID: 0}
+    - target: {fileID: 1180263040042883451, guid: c9f35a59e97c18d4dba2c74f53ea44b8, type: 3}
+      propertyPath: MoveToManufactureKey.m_SingletonActionBindings.Array.data[1].m_Action
+      value: Move To Manufacture Key
+      objectReference: {fileID: 0}
+    - target: {fileID: 2674817540990638834, guid: c9f35a59e97c18d4dba2c74f53ea44b8, type: 3}
+      propertyPath: moveScreenKey.m_SingletonActionBindings.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2674817540990638834, guid: c9f35a59e97c18d4dba2c74f53ea44b8, type: 3}
+      propertyPath: moveScreenKey.m_SingletonActionBindings.Array.data[0].m_Id
+      value: 09b1e327-9241-4005-be82-a8cf5cbd770e
+      objectReference: {fileID: 0}
+    - target: {fileID: 2674817540990638834, guid: c9f35a59e97c18d4dba2c74f53ea44b8, type: 3}
+      propertyPath: moveScreenKey.m_SingletonActionBindings.Array.data[1].m_Id
+      value: 271020df-c4aa-4cef-b344-a2be34cc6b0a
+      objectReference: {fileID: 0}
+    - target: {fileID: 2674817540990638834, guid: c9f35a59e97c18d4dba2c74f53ea44b8, type: 3}
+      propertyPath: moveScreenKey.m_SingletonActionBindings.Array.data[0].m_Path
+      value: <Keyboard>/q
+      objectReference: {fileID: 0}
+    - target: {fileID: 2674817540990638834, guid: c9f35a59e97c18d4dba2c74f53ea44b8, type: 3}
+      propertyPath: moveScreenKey.m_SingletonActionBindings.Array.data[1].m_Path
+      value: <Keyboard>/e
+      objectReference: {fileID: 0}
+    - target: {fileID: 2674817540990638834, guid: c9f35a59e97c18d4dba2c74f53ea44b8, type: 3}
+      propertyPath: moveScreenKey.m_SingletonActionBindings.Array.data[0].m_Action
+      value: Move Screen Key
+      objectReference: {fileID: 0}
+    - target: {fileID: 2674817540990638834, guid: c9f35a59e97c18d4dba2c74f53ea44b8, type: 3}
+      propertyPath: moveScreenKey.m_SingletonActionBindings.Array.data[1].m_Action
+      value: Move Screen Key
+      objectReference: {fileID: 0}
     - target: {fileID: 6940025024502710705, guid: c9f35a59e97c18d4dba2c74f53ea44b8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

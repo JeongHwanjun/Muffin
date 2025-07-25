@@ -20,7 +20,7 @@ public class SalesInputManager : MonoBehaviour
             int index = i;
             ServeCakeKeys[index].performed += ctx => ServeCake(index);
         }
-        MoveToManufactureKey.performed += SwitchToManufacture;
+        MoveToManufactureKey.canceled += SwitchToManufacture;
 
         ScreenSwapper.OnMoveScreenComplete += OnMoveScreenComplete;
     }
@@ -32,7 +32,8 @@ public class SalesInputManager : MonoBehaviour
             ServeCakeKeys[index].Disable();
         }
 
-        MoveToManufactureKey.performed -= SwitchToManufacture;
+        MoveToManufactureKey.canceled -= SwitchToManufacture;
+        MoveToManufactureKey.Disable();
 
         ScreenSwapper.OnMoveScreenComplete -= OnMoveScreenComplete;
     }

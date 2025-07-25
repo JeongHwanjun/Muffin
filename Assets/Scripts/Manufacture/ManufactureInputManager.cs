@@ -9,6 +9,7 @@ using UnityEngine.InputSystem;
 public class ManufactureInputManager : MonoBehaviour
 {
   public ManufactureAdmin manufactureAdmin;
+  public ManufactureEventManager manufactureEventManager;
   [SerializeField] private ManufactureEventManager eventManager;
   /* Input Keys */
   [SerializeField] private InputAction[] commandKeys; // 커맨드 입력 키
@@ -25,9 +26,6 @@ public class ManufactureInputManager : MonoBehaviour
   void Awake()
   {
     SubscribeInput();
-
-    //일단 임시로 메인카메라로 지정함
-    manufactureCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
 
     ScreenSwapper.OnMoveScreenComplete += OnMoveScreenComplete;
   }
@@ -50,8 +48,12 @@ public class ManufactureInputManager : MonoBehaviour
     commandEnterKey.canceled += OnCommandExit;
     pasteKey.performed += OnPaste;
     moveLineKey.performed += OnMoveLine;
-    moveScreenKey.performed += OnMoveScreen;
+    moveScreenKey.canceled += OnMoveScreen;
     userClick.canceled += OnUserClick;
+
+    // 이벤트 구독
+    manufactureEventManager.OnCommandStart += OnCommandEnterEvent;
+    manufactureEventManager.OnCommandEnd += OnCommandExitEvent;
 
     EnableKeys();
   }
@@ -62,6 +64,7 @@ public class ManufactureInputManager : MonoBehaviour
     commandEnterKey.canceled -= OnCommandExit;
     pasteKey.performed -= OnPaste;
     moveLineKey.performed -= OnMoveLine;
+    moveScreenKey.canceled -= OnMoveScreen;
     userClick.canceled -= OnUserClick;
 
     DisableCommandKeys();
@@ -105,33 +108,37 @@ public class ManufactureInputManager : MonoBehaviour
     Debug.Log("ManufactureInputManager : 커맨드 입력 - " + direction);
     eventManager?.TriggerCommandInput(direction);
   }
-
   // 커맨드 입력 시작시 입력 시작 이벤트 발생
   private void OnCommandEnter(InputAction.CallbackContext ctx)
   {
-    // 커맨드 키 활성화
+    eventManager?.TriggerCommandStart();
+  }
+  // 입력 시작 이벤트 발생시 입력 활성/비활성 조정
+  private void OnCommandEnterEvent()
+  {// 커맨드 키 활성화
     EnableCommandKeys();
     // 그 외 다른 조작은 비활성화, commandEnterKey는 제외(커맨드 입력 상황에서 벗어나려면 필요함)
     pasteKey.Disable();
     moveLineKey.Disable();
     moveScreenKey.Disable();
     userClick.Disable();
-
-    // commandStart 이벤트 발생
-    eventManager?.TriggerCommandStart();
   }
   // 커맨드 입력 종료시 종료 이벤트 발생
   private void OnCommandExit(InputAction.CallbackContext ctx)
   {
-    // 커맨드 키 비활성화
+    // commandEnd 이벤트 발생
+    eventManager?.TriggerCommandEnd();
+  }
+  // 입력 종료 이벤트 발생시 입력 활성/비활성
+  private void OnCommandExitEvent()
+  {
     DisableCommandKeys();
     pasteKey.Enable();
     moveLineKey.Enable();
     moveScreenKey.Enable();
     userClick.Enable();
-    // commandEnd 이벤트 발생
-    eventManager?.TriggerCommandEnd();
   }
+
   //라인 전환키 클릭시 라인 전환 이벤트 발생
   private void OnMoveLine(InputAction.CallbackContext ctx)
   {
