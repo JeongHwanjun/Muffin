@@ -23,14 +23,19 @@ public class CustomerManager : MonoBehaviour
 
     private void TryServeCake(int _cakeNumber){
         if(customers.Count <= 0) return;
-        if(validServe(_cakeNumber)) {
+        if (validServe(_cakeNumber))
+        {
             Customer firstCustomer = customers[0].GetComponent<Customer>();
             salesEventManager.TriggerConsumeCake(_cakeNumber, firstCustomer.orderQuantity);
             Debug.Log("Serve Success!");
-            OnServeSuccess();
-        } else {
+            //OnServeSuccess();
+            salesEventManager.TriggerServeSuccess();
+        }
+        else
+        {
             Debug.Log("Serve Failed!");
-            OnServeFailed();
+            //OnServeFailed();
+            salesEventManager.TriggerServeFailed();
         }
         //DeleteCustomer(customers[0]);
     }

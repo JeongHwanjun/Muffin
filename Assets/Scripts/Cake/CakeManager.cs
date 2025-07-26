@@ -14,6 +14,7 @@ public class CakeManager : MonoBehaviour
 {
   public CakeCollection cakeCollection;
   public List<Cake> cakes = new List<Cake>();// cakes는 직접접근 X - OpeningTimeData를 통해 접근할 것
+  public int baseCost = 100; // 기본 가격. 커맨드 입력 실패시 소비되는 금액임. 설정상 반죽 가격이나 그런거겠지?
 
   // 데이터 변경시 이벤트 발생
   public event Action<int> OnCakeDataChanged;

@@ -6,6 +6,7 @@ public class SalesEventManager : MonoBehaviour
 {
     public event Action<int, int> OnConsumeCake;
     public event Action<int> OnServeCake;
+    public event Action OnServeFailed, OnServeSuccess;
     public event Action<Customer> OnCustomerCreated;
     public event Action<ScreenNumber> OnMoveScreen;
     public static event Action<SalesEventManager> OnSalesEventManagerReady;
@@ -22,7 +23,16 @@ public class SalesEventManager : MonoBehaviour
         OnServeCake?.Invoke(_cakeNumber);
     }
 
-    public void TriggerConsumeCake(int cakeIndex, int consumeQuantity){
+    public void TriggerServeFailed() {
+        OnServeFailed?.Invoke();
+    }
+
+    public void TriggerServeSuccess(){
+        OnServeSuccess?.Invoke();
+    }
+
+    public void TriggerConsumeCake(int cakeIndex, int consumeQuantity)
+    {
         OnConsumeCake?.Invoke(cakeIndex, consumeQuantity);
     }
 

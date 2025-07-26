@@ -29,7 +29,8 @@ public class OpeningTimeManager : MonoBehaviour
         }
     }
 
-    public void UpdateCake(int cakeIndex, int quantityChange = 0, int salesChange = 0){
+    public void UpdateCake(int cakeIndex, int quantityChange = 0, int salesChange = 0)
+    {
         // 여기선 변화량만 전달하고, cakeManager에선 기존의 수량, 판매량 + 번화량을 반영한다.
         Debug.Log("OpeningTimeManager : UpdateCake");
         openingTimeData.UpdateCakeData(cakeIndex, quantityChange, salesChange);
@@ -45,5 +46,10 @@ public class OpeningTimeManager : MonoBehaviour
     public List<Cake> GetCakes()
     {
         return openingTimeData.GetCakeData();
+    }
+
+    public int GetBaseCost()
+    {
+        return openingTimeData.GetBaseCost();
     }
 }

@@ -11,11 +11,18 @@ public class OpeningTimeData : MonoBehaviour
         cakeManager.UpdateCakeData(0, 8, 1);
     }
 
-    public void UpdateCakeData(int cakeIndex, int quantityChange = 0, int salesChange = 0){
+    public void UpdateCakeData(int cakeIndex, int quantityChange = 0, int salesChange = 0)
+    {
         cakeManager.UpdateCakeData(cakeIndex, quantityChange, salesChange);
     }
 
-    public List<Cake> GetCakeData(){
+    public List<Cake> GetCakeData()
+    {
         return cakeManager.cakes;
+    }
+
+    public int GetBaseCost()
+    {
+        return cakeManager.baseCost;
     }
 }

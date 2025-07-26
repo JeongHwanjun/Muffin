@@ -8,6 +8,7 @@ public class Cake {
   public int quantity;
   public int sales;
   public int price;
+  public int cost;
   public List<recipeArrow> recipe = new List<recipeArrow>();
   public string spritePath;
 }
