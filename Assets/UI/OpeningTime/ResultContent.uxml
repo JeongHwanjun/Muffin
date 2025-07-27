@@ -1,0 +1,7 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <engine:VisualElement name="VisualElement" style="flex-grow: 1; flex-direction: row; align-items: auto; justify-content: space-evenly; align-self: auto; align-content: flex-start; flex-shrink: 1;">
+        <engine:Label text="Name" name="Name" style="align-items: flex-start; align-self: flex-start; padding-left: 2px; margin-left: 4px;" />
+        <engine:Label text=":" name="colon" style="align-self: flex-start; align-items: stretch; padding-left: 2px; margin-left: 4px;" />
+        <engine:Label text="Content" name="Content" style="align-self: flex-start; margin-left: auto; padding-left: 2px; align-items: stretch; flex-direction: column; -unity-text-align: upper-right; flex-wrap: nowrap; right: 0; justify-content: center;" />
+    </engine:VisualElement>
+</engine:UXML>

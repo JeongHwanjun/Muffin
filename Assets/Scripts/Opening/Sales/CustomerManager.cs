@@ -16,9 +16,12 @@ public class CustomerManager : MonoBehaviour
 
     private List<Cake> cakes; // 이 cakes는 고정된 데이터, 스프라이트와 명칭을 받기 위한 변수임.
 
-    public void Initialize(List<Cake> _cakes){
+    public void Initialize(List<Cake> _cakes)
+    {
         cakes = _cakes;
         salesEventManager.OnServeCake += TryServeCake;
+        salesEventManager.OnServeSuccess += OnServeSuccess;
+        salesEventManager.OnServeFailed += OnServeFailed;
     }
 
     private void TryServeCake(int _cakeNumber){
@@ -28,16 +31,13 @@ public class CustomerManager : MonoBehaviour
             Customer firstCustomer = customers[0].GetComponent<Customer>();
             salesEventManager.TriggerConsumeCake(_cakeNumber, firstCustomer.orderQuantity);
             Debug.Log("Serve Success!");
-            //OnServeSuccess();
             salesEventManager.TriggerServeSuccess();
         }
         else
         {
             Debug.Log("Serve Failed!");
-            //OnServeFailed();
             salesEventManager.TriggerServeFailed();
         }
-        //DeleteCustomer(customers[0]);
     }
     
     private bool validServe(int _cakeNumber){

@@ -384,6 +384,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6962109234374179111, guid: c9f35a59e97c18d4dba2c74f53ea44b8, type: 3}
+      propertyPath: openingMin
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6962109234374179111, guid: c9f35a59e97c18d4dba2c74f53ea44b8, type: 3}
+      propertyPath: openingSec
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 7001015585789424759, guid: c9f35a59e97c18d4dba2c74f53ea44b8, type: 3}
       propertyPath: m_Name
       value: OpeningTimeManager_V2

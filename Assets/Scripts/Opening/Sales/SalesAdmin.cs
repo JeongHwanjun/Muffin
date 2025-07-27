@@ -17,7 +17,7 @@ public class SalesAdmin : MonoBehaviour
 
         // 이벤트 구독
         salesEventManager.OnConsumeCake += ConsumeCake;
-        ScreenSwapper.OnMoveScreenComplete += SetUI;
+        //ScreenSwapper.OnMoveScreenComplete += SetUI;
 
         // UI 설정
         SetUI(startScreen);
@@ -39,9 +39,10 @@ public class SalesAdmin : MonoBehaviour
 
     private void SetUI(ScreenNumber screenNumber)
     {
+        // 현재 케이크 개수를 표현하는 UI - 항상 표시하도록 바꿈
         bool isSalesScreen = screenNumber == ScreenNumber.Sales;
-        Debug.Log("setUI : " + isSalesScreen);
-        salesUIHandler.SetUI(isSalesScreen);
+        Debug.Log("setUI : " + true);
+        salesUIHandler.SetUI(true);
     }
 
     void OnDestroy()
