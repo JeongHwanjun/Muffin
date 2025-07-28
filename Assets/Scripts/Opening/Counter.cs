@@ -51,13 +51,13 @@ public class Counter : MonoBehaviour
 
     public IEnumerable<(string label, string value)> GetStatics()
     {
-        yield return ("총 판매 수량", totalSales.ToString());
-        yield return ("총 생산 비용", totalCost.ToString());
-        yield return ("총 매출", totalGold.ToString());
-        yield return ("총 수익", profit.ToString());
+        yield return ("판매 수량", totalSales.ToString());
+        yield return ("생산 비용", totalCost.ToString());
         yield return ("생산 성공 횟수", totalSuccessManufacture.ToString());
         yield return ("생산 실패 횟수", totalFailureManufacture.ToString());
         yield return ("판매 성공 횟수", totalSuccessSales.ToString());
         yield return ("판매 실패 횟수", totalFailureSales.ToString());
+        yield return ("매출", totalGold.ToString());
+        yield return ("순수익", profit.ToString());
     }
 }

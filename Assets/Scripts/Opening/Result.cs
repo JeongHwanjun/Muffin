@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class Result : MonoBehaviour
@@ -11,6 +13,7 @@ public class Result : MonoBehaviour
     // 내용을 담을 템플릿
     public VisualTreeAsset contentTemplate;
 
+    private Button confirmButton;
     private VisualElement root;
     void Start()
     {
@@ -19,6 +22,9 @@ public class Result : MonoBehaviour
         root = resultUI.rootVisualElement;
         root.visible = false;
         resultContent = root.Q<VisualElement>("Contents");
+        confirmButton = root.Q<Button>("Confirm");
+        Debug.Log("Result : " + confirmButton.clickable);
+        confirmButton.clicked += OnConfirm;
     }
 
     void OnTimeout()
@@ -31,6 +37,18 @@ public class Result : MonoBehaviour
 
             resultContent.Add(newContent);
         }
+        root.BringToFront();
         root.visible = true;
+    }
+
+    void OnConfirm()
+    {
+        try
+        {
+            SceneManager.LoadScene("--NEXT SCENE NAME HERE--");
+        }
+        catch (Exception e) {
+            Debug.LogWarningFormat("Result : error occurred - {0}", e);
+        }
     }
 }

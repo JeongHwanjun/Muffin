@@ -390,7 +390,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6962109234374179111, guid: c9f35a59e97c18d4dba2c74f53ea44b8, type: 3}
       propertyPath: openingSec
-      value: 15
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7001015585789424759, guid: c9f35a59e97c18d4dba2c74f53ea44b8, type: 3}
       propertyPath: m_Name
