@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Counter : MonoBehaviour
@@ -10,7 +12,7 @@ public class Counter : MonoBehaviour
     public int totalSales = 0; // 총 판매 수량
     public int totalCost = 0; // 총 생산 비용
     public int totalGold = 0; // 매출
-    public int profit{ get { return totalGold - totalCost; } }
+    public int profit { get { return totalGold - totalCost; } }
     public int totalFailureManufacture = 0; // 생산 실패 횟수
     public int totalSuccessManufacture = 0; // 생산 성공 횟수
     public int totalFailureSales = 0; // 판매 실패 횟수
@@ -28,7 +30,7 @@ public class Counter : MonoBehaviour
 
     }
 
-    void CountBaseCost(){ totalCost += openingTimeManager.GetBaseCost(); }
+    void CountBaseCost() { totalCost += openingTimeManager.GetBaseCost(); }
 
     void CountSuccessManufacture(int cakeIndex)
     {
@@ -45,5 +47,17 @@ public class Counter : MonoBehaviour
     {
         totalSales += consumeQuantity;
         totalGold += openingTimeManager.GetCakes()[cakeIndex].price * consumeQuantity;
+    }
+
+    public IEnumerable<(string label, string value)> GetStatics()
+    {
+        yield return ("총 판매 수량", totalSales.ToString());
+        yield return ("총 생산 비용", totalCost.ToString());
+        yield return ("총 매출", totalGold.ToString());
+        yield return ("총 수익", profit.ToString());
+        yield return ("생산 성공 횟수", totalSuccessManufacture.ToString());
+        yield return ("생산 실패 횟수", totalFailureManufacture.ToString());
+        yield return ("판매 성공 횟수", totalSuccessSales.ToString());
+        yield return ("판매 실패 횟수", totalFailureSales.ToString());
     }
 }
