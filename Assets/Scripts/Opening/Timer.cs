@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Timer : MonoBehaviour
 {
@@ -11,9 +12,17 @@ public class Timer : MonoBehaviour
     public event Action OnTimeLow;
     private bool sentLowAlarm = false;
 
+    private UIDocument timerUI;
+    private VisualElement root;
+    private Label minute, second;
+
     void Start()
     {
         openingTime = openingMin * 60f + openingSec;
+        timerUI = GetComponent<UIDocument>();
+        root = timerUI.rootVisualElement;
+        minute = root.Q<Label>("minute");
+        second = root.Q<Label>("second");
     }
 
     void Update()
@@ -33,5 +42,8 @@ public class Timer : MonoBehaviour
             OnTimeLow?.Invoke();
             sentLowAlarm = true;
         }
+
+        minute.text = ((int)(openingTime / 60)).ToString();
+        second.text = ((int)(openingTime % 60)).ToString();
     }
 }

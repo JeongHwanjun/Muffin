@@ -1,0 +1,7 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <engine:VisualElement name="Timer" style="flex-grow: 1; top: 2%; left: 2%; max-width: 10%; max-height: 10%; background-image: url(&quot;project://database/Assets/Violet%20Theme%20Ui/Buttons/Button%20Cyan.png?fileID=2800000&amp;guid=39e677f5e32c8cb45bf562e8820a70bc&amp;type=3#Button Cyan&quot;); flex-direction: row; justify-content: space-evenly;">
+        <engine:Label text="3" name="minute" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; align-self: center; font-size: 25%;" />
+        <engine:Label text=":" name="colon" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; align-self: center; font-size: 20%;" />
+        <engine:Label text="0" name="second" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; align-self: center; font-size: 25%;" />
+    </engine:VisualElement>
+</engine:UXML>

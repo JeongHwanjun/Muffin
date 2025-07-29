@@ -107,6 +107,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4480675432578651485}
   - component: {fileID: 6962109234374179111}
+  - component: {fileID: 5482225393709187557}
   m_Layer: 0
   m_Name: Timer
   m_TagString: Untagged
@@ -143,6 +144,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openingMin: 3
   openingSec: 0
+--- !u!114 &5482225393709187557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5731883910732163023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PanelSettings: {fileID: 11400000, guid: 4ab3f3b3f394f3944801e2fdbcb66297, type: 2}
+  m_ParentUI: {fileID: 0}
+  sourceAsset: {fileID: 9197481963319205126, guid: ddb33e4a32184094eb6d51c7cefbcc3c, type: 3}
+  m_SortingOrder: 0
+  m_WorldSpaceSizeMode: 1
+  m_WorldSpaceWidth: 1920
+  m_WorldSpaceHeight: 1080
 --- !u!1 &7001015585789424759
 GameObject:
   m_ObjectHideFlags: 0
