@@ -5,6 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class IngredientBase : ScriptableObject
 {
+    public string id;
     public string ingredientName;
     public int cost;
     public int flavor;
