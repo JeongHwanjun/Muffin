@@ -1,12 +1,15 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CakeBuilder : MonoBehaviour
 {
     public List<Ingredient> ingredients;
     public RecipeEventManager recipeEventManager;
+    public TMP_InputField cakeName;
 
     void Start()
     {
@@ -30,8 +33,8 @@ public class CakeBuilder : MonoBehaviour
 
     public string GetCakeName()
     {
-        // TODO : 이름 입력칸을 만들어 이름 받아오기
-        return "임시이름";
+        if (cakeName.text == null) return "임시이름";
+        return cakeName.text;
     }
 
     public List<recipeArrow> GetFinalRecipe()
