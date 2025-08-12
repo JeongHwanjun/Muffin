@@ -6,8 +6,6 @@ public class CakeData
 {
   public string cakeName;
   public string cakeID;
-  public int totalFlavor;
-  public int totalAppearance;
-  public int totalCost;
+  public int finalTaste, finalFlavor,finalTexture, finalAppearance, finalCost;
   public List<recipeArrow> recipe;
 }

@@ -9,6 +9,8 @@ public class IngredientBase : ScriptableObject
     public string ingredientName;
     public int cost;
     public int flavor;
+    public int taste;
+    public int texture;
     public int appearance;
     public List<recipeArrow> recipeArrows;
 }
