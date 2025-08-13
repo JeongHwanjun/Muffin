@@ -4,15 +4,17 @@ using UnityEngine;
 /* 케이크의 속성값을 볼 수 있도록 수정 및 관리 */
 public class StatDisplayer : MonoBehaviour
 {
+    public StatCounter statCounter;
+    public RecipeEventManager recipeEventManager;
     public TextMeshPro tasteText, flavorText, textureText, appearanceText, costText;
-    private int tasteValue, flavorValue, textureValue, appearanceValue, costValue;
+    private CakeStat values;
+    private StatMultipliers multipliers;
 
     void Start()
     {
-        tasteValue = 0;
-        flavorValue = 0;
-        textureValue = 0;
-        appearanceValue = 0;
+        RefreshText();
+
+        recipeEventManager.OnRefreshUI += RefreshText;
     }
 
     public void RefreshText()
@@ -23,15 +25,20 @@ public class StatDisplayer : MonoBehaviour
 
     public void GetCakeValue()
     {
-        // 아무튼 가져옴
+        values = statCounter.GetMultipliedStat();
+    }
+
+    public void GetMultipliers()
+    {
+        // 배율 가져오기
     }
 
     public void SetText()
     {
-        tasteText.text = tasteValue.ToString();
-        flavorText.text = flavorValue.ToString();
-        textureText.text = textureValue.ToString();
-        appearanceText.text = appearanceValue.ToString();
-        costText.text = costValue.ToString();
+        tasteText.text = values.taste.ToString();
+        flavorText.text = values.flavor.ToString();
+        textureText.text = values.texture.ToString();
+        appearanceText.text = values.appearance.ToString();
+        costText.text = values.cost.ToString();
     }
 }
