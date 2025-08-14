@@ -2,11 +2,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+public enum RecipeStage
+{
+    Flour = 0,
+    Base = 1,
+    Toping = 2
+}
 public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     public Ingredient ingredientData;
     public Canvas canvas;
     public RecipeEventManager recipeEventManager;
+    public RecipeStage stage;
     private RectTransform rectTransform;
     private CanvasGroup canvasGroup;
 
@@ -39,7 +46,25 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             Debug.Log("DraggableItem : Dropped on Valid item");
             canvasGroup.interactable = false;   // 조작 무효화
             canvasGroup.ignoreParentGroups = true; // 부모 영향 무시
-            recipeEventManager.TriggerIngredientAdd(ingredientData); // 이벤트 발생
+
+            // 이벤트 발생
+            if (stage == RecipeStage.Flour)
+            {
+                StatMultipliers newFlour = new StatMultipliers(ingredientData.ingredientData);
+                recipeEventManager.TriggerFlourAdd(newFlour);
+            }
+            else if (stage == RecipeStage.Base)
+            {
+                // base
+            }
+            else if (stage == RecipeStage.Toping)
+            {
+                recipeEventManager.TriggerIngredientAdd(ingredientData);
+            }
+            else
+            {
+                Debug.LogWarningFormat("DraggableItem : Invalid Stage - {0}", stage);
+            }
         }
         else
         {

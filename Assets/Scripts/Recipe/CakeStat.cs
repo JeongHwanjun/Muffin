@@ -69,6 +69,16 @@ public class StatMultipliers
     public float appearance = 1;
     public float cost = 1;
 
+    public StatMultipliers() { }
+    public StatMultipliers(IngredientBase newFlour) // 재료의 수치로 multiplier를 생성해도 배율로 해석함
+    {
+        taste = (float)newFlour.taste;
+        flavor = (float)newFlour.flavor;
+        texture = (float)newFlour.texture;
+        appearance = (float)newFlour.appearance;
+        cost = (float)newFlour.cost;
+    }
+
     public static StatMultipliers operator +(StatMultipliers a, StatMultipliers b)
     {
         return new StatMultipliers

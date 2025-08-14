@@ -105,6 +105,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingredientData: {fileID: 0}
   canvas: {fileID: 0}
+  recipeEventManager: {fileID: 0}
+  stage: 2
 --- !u!225 &5810489968934732880
 CanvasGroup:
   m_ObjectHideFlags: 0

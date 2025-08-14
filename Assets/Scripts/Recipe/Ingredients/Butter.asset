@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b1944d6c3ad573948b5d8f93820947c4, type: 3}
-  m_Name: Apple
+  m_Name: Butter
   m_EditorClassIdentifier: 
-  id: 11
-  ingredientName: Apple
-  cost: 5
-  flavor: 6
-  taste: 0
-  texture: 0
-  appearance: 5
-  recipeArrows: 00000000010000000200000003000000
+  id: 01
+  ingredientName: Butter
+  cost: 1
+  flavor: 2
+  taste: 1
+  texture: 1
+  appearance: 0
+  recipeArrows: 

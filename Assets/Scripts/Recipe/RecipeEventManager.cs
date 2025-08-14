@@ -15,7 +15,7 @@ public class RecipeEventManager : MonoBehaviour
         Debug.Log("Event : OnFlourAdd");
         OnFlourAdd?.Invoke(newFlour);
     }
-
+    
     public void TriggerOnBaseAdd()
     {
         Debug.Log("Event : OnFlourAdd");

@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1944d6c3ad573948b5d8f93820947c4, type: 3}
   m_Name: Grape
   m_EditorClassIdentifier: 
-  id: 0
+  id: 10
   ingredientName: Grape
   cost: 2
   flavor: 2
+  taste: 0
+  texture: 0
   appearance: 5
   recipeArrows: 000000000100000000000000
