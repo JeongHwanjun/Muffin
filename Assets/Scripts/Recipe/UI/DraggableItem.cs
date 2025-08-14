@@ -6,15 +6,18 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 {
     public Ingredient ingredientData;
     public Canvas canvas;
+    public RecipeEventManager recipeEventManager;
     private RectTransform rectTransform;
     private CanvasGroup canvasGroup;
 
-    public void Awake()
+    public void Init(RecipeEventManager r)
     {
         rectTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
         canvas = GetComponentInParent<Canvas>();
         ingredientData = GetComponent<Ingredient>();
+
+        recipeEventManager = r;
     }
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -36,6 +39,7 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             Debug.Log("DraggableItem : Dropped on Valid item");
             canvasGroup.interactable = false;   // 조작 무효화
             canvasGroup.ignoreParentGroups = true; // 부모 영향 무시
+            recipeEventManager.TriggerIngredientAdd(ingredientData); // 이벤트 발생
         }
         else
         {

@@ -15,6 +15,7 @@ public class StatCounter : MonoBehaviour
         multiplier = new StatMultipliers();
         finalStat = new CakeStat();
 
+        recipeEventManager.OnFlourAdd += AddMultiplier;
         recipeEventManager.OnIngredientAdd += OnIngredientAdd;
     }
 
@@ -35,6 +36,13 @@ public class StatCounter : MonoBehaviour
     {
         // 배율 변화
         multiplier = multiplier + diff;
+
+        recipeEventManager.TriggerRefreshUI();
+    }
+
+    public StatMultipliers GetMultipliers()
+    {
+        return multiplier;
     }
 
     public CakeStat GetMultipliedStat()

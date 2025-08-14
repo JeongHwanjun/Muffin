@@ -47,5 +47,7 @@ public class DragIcon : MonoBehaviour
         cloneRect.localRotation = myRect.localRotation;
         cloneRect.localScale = myRect.localScale;
         cloneIngredient.transform.SetParent(canvas.transform);
+        // 이벤트 매니저 연결
+        cloneIngredient.GetComponent<DraggableItem>().Init(recipeEventManager);
     }
 }
