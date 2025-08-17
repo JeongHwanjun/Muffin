@@ -29,6 +29,7 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public void OnBeginDrag(PointerEventData eventData)
     {
         Debug.Log("DraggableItem : BeginDrag");
+        transform.SetParent(canvas.transform); // 부모를 최상위 canvas로 변경
         canvasGroup.blocksRaycasts = false; // 한번 드래그를 끝내면 다시 드래그하지 못함
     }
 

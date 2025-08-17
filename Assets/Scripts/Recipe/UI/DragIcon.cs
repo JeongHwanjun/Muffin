@@ -1,3 +1,5 @@
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -7,36 +9,40 @@ public class DragIcon : MonoBehaviour
     public Canvas canvas;
     public RecipeEventManager recipeEventManager;
 
+    [SerializeField] private GameObject draggableItem;
+
     void Start()
     {
-        RecipeEventManager.OnIngredientDropped += InstantiateNewIngredient;
-        InstantiateNewIngredient(draggablePrefab.GetComponent<Ingredient>());
+        RecipeEventManager.OnIngredientDropped += UnlinkDraggableItem;
+        //InstantiateNewIngredient(draggablePrefab.GetComponent<Ingredient>());
     }
 
-    /*
-    public void OnPointerDown(PointerEventData eventData)
+    // 패널이 펼쳐지면 실제 아이템 생성
+    void OnEnable()
     {
-        // 드래그 가능한 아이콘 생성
-        GameObject newIcon = Instantiate(draggablePrefab, canvas.transform);
-        newIcon.transform.SetAsLastSibling();
-
-        // 초기 위치 마우스 근처로
-        RectTransform rt = newIcon.GetComponent<RectTransform>();
-        Vector2 pos;
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas.transform as RectTransform, eventData.position, eventData.pressEventCamera, out pos);
-        rt.anchoredPosition = pos;
-
-        // 드래그 상태로 진입시키기 (선택 사항: 직접 호출 또는 내부 처리)
-        ExecuteEvents.Execute<IBeginDragHandler>(newIcon, eventData, ExecuteEvents.beginDragHandler);
-        ExecuteEvents.Execute<IDragHandler>(newIcon, eventData, ExecuteEvents.dragHandler);
+        draggableItem = InstantiateNewIngredient(draggablePrefab.GetComponent<Ingredient>());
     }
-    */
+    
+    // 패널이 닫힐 때 아이템 파괴
+    void OnDisable()
+    {
+        if (draggableItem)
+        {
+            Destroy(draggableItem);
+        }
+    }
 
-    public void InstantiateNewIngredient(Ingredient droppedIngredient)
+    // 아이템이 클릭되면 아이템 할당 해제(파괴하면 안되므로)
+    void UnlinkDraggableItem(Ingredient droppedIngredient)
+    {
+        draggableItem = null;
+    }
+
+    public GameObject InstantiateNewIngredient(Ingredient droppedIngredient)
     {
         if (droppedIngredient.ingredientData.id != draggablePrefab.GetComponent<Ingredient>().ingredientData.id)
         {
-            return;
+            return null;
         }
         GameObject cloneIngredient = Instantiate(draggablePrefab, transform.parent.transform);
         RectTransform myRect = GetComponent<RectTransform>();
@@ -46,8 +52,12 @@ public class DragIcon : MonoBehaviour
         //cloneRect.anchorMin = myRect.anchorMin;
         cloneRect.localRotation = myRect.localRotation;
         cloneRect.localScale = myRect.localScale;
-        cloneIngredient.transform.SetParent(canvas.transform);
+        //cloneIngredient.transform.SetParent(canvas.transform);
         // 이벤트 매니저 연결
         cloneIngredient.GetComponent<DraggableItem>().Init(recipeEventManager);
+
+        return cloneIngredient;
     }
+
+    
 }
