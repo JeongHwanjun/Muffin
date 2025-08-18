@@ -16,6 +16,7 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public RecipeStage stage;
     private RectTransform rectTransform;
     private CanvasGroup canvasGroup;
+    private GameObject panel;
 
     public void Init(RecipeEventManager r)
     {
@@ -25,11 +26,16 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         ingredientData = GetComponent<Ingredient>();
 
         recipeEventManager = r;
+
+        Debug.LogFormat("DraggableItem : Initialized! {0}", recipeEventManager);
     }
     public void OnBeginDrag(PointerEventData eventData)
     {
         Debug.Log("DraggableItem : BeginDrag");
+        panel = transform.parent.gameObject; // 현재 부모(panel)를 다른 곳에 기록해둠 - 나중에 비활성화
         transform.SetParent(canvas.transform); // 부모를 최상위 canvas로 변경
+        rectTransform.anchorMin = new Vector2(0.5f, 0.5f);
+        rectTransform.anchorMax = new Vector2(0.5f, 0.5f);
         canvasGroup.blocksRaycasts = false; // 한번 드래그를 끝내면 다시 드래그하지 못함
     }
 
@@ -72,6 +78,8 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             Debug.Log("DraggableItem : Dropped on Invalid item");
             Destroy(gameObject);
         }
+
+        panel.SetActive(false); // 패널 비활성화
     }
 
     private bool TryFindValidDropTarget(PointerEventData eventData, out GameObject target)

@@ -35,7 +35,11 @@ public class DragIcon : MonoBehaviour
     // 아이템이 클릭되면 아이템 할당 해제(파괴하면 안되므로)
     void UnlinkDraggableItem(Ingredient droppedIngredient)
     {
-        draggableItem = null;
+        if (draggableItem && draggableItem.GetComponent<DraggableItem>().ingredientData == droppedIngredient)
+        {
+            draggableItem = null;
+        }
+        else Debug.Log("그건 제 아이템이 아닌데용?");
     }
 
     public GameObject InstantiateNewIngredient(Ingredient droppedIngredient)
