@@ -15,6 +15,7 @@ public class ListIcon : MonoBehaviour
         {
             bool isActive = dropdownPanel.activeSelf;
             SetPanelActive(!isActive);
+            transform.parent.transform.SetAsLastSibling(); // 아이콘 전체를 flour의 마지막 자식으로 만듬 - UI가 다른 UI 밑에 묻히는걸 방지함
         });
     }
 
