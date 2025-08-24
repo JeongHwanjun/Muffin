@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,5 +13,13 @@ public class IngredientBase : ScriptableObject
     public int taste;
     public int texture;
     public int appearance;
+    [Serializable] public struct StatModifier
+    {
+        public Stat stat;
+        public int delta;
+    }
+    [SerializeField] public string displayName;
+    [SerializeField] public List<StatModifier> modifiers = new();
+
     public List<recipeArrow> recipeArrows;
 }

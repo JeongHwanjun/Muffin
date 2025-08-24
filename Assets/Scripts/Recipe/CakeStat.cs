@@ -1,5 +1,6 @@
 // 스탯 저장용 클래스
 using System;
+using System.Collections.Generic;
 
 public class CakeStat
 {
@@ -8,16 +9,30 @@ public class CakeStat
     public int texture = 0; // 식감
     public int appearance = 0; // 외관
     public int cost = 0; // 비용
+    public int[] stats;
 
     // init
     public CakeStat() { }
     public CakeStat(IngredientBase stat)
     {
+        // 각 스탯을 합산해서 보여주는 과정을 편하게 하기 위함
+        SetStats(stat);
         taste = stat.taste;
         flavor = stat.flavor;
         texture = stat.texture;
         appearance = stat.appearance;
         cost = stat.cost;
+    }
+
+    void SetStats(IngredientBase ingredientBase)
+    {
+        stats = new int[ingredientBase.modifiers.Count];
+
+        foreach (var stat in ingredientBase.modifiers)
+        {
+            int index = stat.stat.Index;
+            if (index < stats.Length) stats[index] += stat.delta;
+        }
     }
     
     // +
