@@ -19,4 +19,8 @@ MonoBehaviour:
   taste: 0
   texture: 0
   appearance: 5
+  displayName: 
+  modifiers:
+  - stat: {fileID: 0}
+    delta: 0
   recipeArrows: 000000000100000000000000
