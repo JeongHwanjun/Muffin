@@ -7,8 +7,8 @@ public class StatDisplayer : MonoBehaviour
 {
     public StatCounter statCounter;
     public RecipeEventManager recipeEventManager;
-    public TextMeshProUGUI tasteText, flavorText, textureText, appearanceText, costText;
-    public TextMeshProUGUI tasteMText, flavorMText, textureMText, appearanceMText, costMText;
+    public TextMeshProUGUI[] textValue;
+    public TextMeshProUGUI[] textMultipliers;
     private CakeStat values;
     private StatMultipliers multipliers;
 
@@ -38,18 +38,27 @@ public class StatDisplayer : MonoBehaviour
 
     public void SetText()
     {
+        int index = 0;
         // 수치
-        tasteText.text = values.taste.ToString();
-        flavorText.text = values.flavor.ToString();
-        textureText.text = values.texture.ToString();
-        appearanceText.text = values.appearance.ToString();
-        costText.text = values.cost.ToString();
+        foreach (TextMeshProUGUI textUI in textValue)
+        {
+            if (index >= values.modifiers.Count)
+            {
+                Debug.LogWarningFormat("values의 개수가 예상과 다릅니다.");
+                break;
+            }
+            textUI.text = values.modifiers[index++].delta.ToString();
+        }
 
-        // 배율
-        tasteMText.text = multipliers.taste.ToString();
-        flavorMText.text = multipliers.flavor.ToString();
-        textureMText.text = multipliers.texture.ToString();
-        appearanceMText.text = multipliers.appearance.ToString();
-        costMText.text = multipliers.cost.ToString();
+        index = 0;
+        foreach (TextMeshProUGUI textUI in textMultipliers)
+        {
+            if (index >= multipliers.modifiers.Count)
+            {
+                Debug.LogWarningFormat("multipliers의 개수가 예상과 다릅니다.");
+                break;
+            }
+            textUI.text = multipliers.modifiers[index++].delta.ToString();
+        }
     }
 }

@@ -10,13 +10,13 @@ public class CakeBuilder : MonoBehaviour
     public List<Ingredient> ingredients;
     public RecipeEventManager recipeEventManager;
     public TMP_InputField cakeName;
-
     void Start()
     {
         recipeEventManager.OnIngredientAdd += AddIngredient;
     }
 
-    /* cake value 획득 함수들 - 다른 스크립트에서도 사용함. */
+    // cake value 획득 함수들 - 다른 스크립트에서도 사용함.
+    /*
     public int GetTotalTaste()
     {
         return ingredients.Sum(i => i.ingredientData.taste);
@@ -46,6 +46,7 @@ public class CakeBuilder : MonoBehaviour
         if (cakeName.text == null) return "임시이름";
         return cakeName.text;
     }
+    */
 
     public List<recipeArrow> GetFinalRecipe()
     {
@@ -65,14 +66,14 @@ public class CakeBuilder : MonoBehaviour
     {
         ingredients.Add(newIngredient);
         // 재료 추가 이벤트 발생
-        Debug.Log("CakeBuilder : 재료 추가" + newIngredient.ingredientData.ingredientName);
+        //Debug.Log("CakeBuilder : 재료 추가" + newIngredient.ingredientData.ingredientName);
     }
-
+    
     public CakeData BuildCake()
     {
         // 현재는 임시버전. 최종적으론 시너지와 배수를 모두 고려해 빌드해야 함.
-        CakeData newCake = new CakeData
-        {
+        CakeData newCake = new CakeData();
+        /*{
             cakeID = UnityEngine.Random.Range(0, 5000).ToString(),
             cakeName = GetCakeName(),
             finalTaste = GetTotalTaste(),
@@ -81,7 +82,7 @@ public class CakeBuilder : MonoBehaviour
             finalAppearance = GetTotalAppearance(),
             finalCost = GetTotalCost(),
             recipe = GetFinalRecipe()
-        };
+        };*/
         return newCake;
     }
 }

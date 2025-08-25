@@ -1,76 +1,65 @@
 // 스탯 저장용 클래스
-using System;
+using UnityEngine;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 
 public class CakeStat
 {
-    public int taste = 0; // 맛
-    public int flavor = 0; // 풍미
-    public int texture = 0; // 식감
-    public int appearance = 0; // 외관
-    public int cost = 0; // 비용
-    public int[] stats;
+    [SerializeField] public List<StatModifier> modifiers = new();
 
     // init
     public CakeStat() { }
-    public CakeStat(IngredientBase stat)
+    public CakeStat(IngredientBase stat) // IngredientBase를 통해 CakeStat을 초기화함
     {
-        // 각 스탯을 합산해서 보여주는 과정을 편하게 하기 위함
         SetStats(stat);
-        taste = stat.taste;
-        flavor = stat.flavor;
-        texture = stat.texture;
-        appearance = stat.appearance;
-        cost = stat.cost;
     }
 
     void SetStats(IngredientBase ingredientBase)
     {
-        stats = new int[ingredientBase.modifiers.Count];
-
-        foreach (var stat in ingredientBase.modifiers)
-        {
-            int index = stat.stat.Index;
-            if (index < stats.Length) stats[index] += stat.delta;
-        }
+        modifiers = ingredientBase.modifiers;
     }
-    
     // +
     public static CakeStat operator +(CakeStat a, CakeStat b)
     {
+        List<StatModifier> newModifiers = new();
+        for (int i = 0; i < a.modifiers.Count; i++)
+        {
+            StatModifier sm = a.modifiers[i] + b.modifiers[i];
+            newModifiers.Add(sm);
+        }
         return new CakeStat
         {
-            taste = a.taste + b.taste,
-            flavor = a.flavor + b.flavor,
-            texture = a.texture + b.texture,
-            appearance = a.appearance + b.appearance,
-            cost = a.cost + b.cost
+            modifiers = newModifiers
         };
     }
 
     // -
     public static CakeStat operator -(CakeStat a, CakeStat b)
     {
+        List<StatModifier> newModifiers = new();
+        for (int i = 0; i < a.modifiers.Count; i++)
+        {
+            StatModifier sm = a.modifiers[i] - b.modifiers[i];
+            newModifiers.Add(sm);
+        }
         return new CakeStat
         {
-            taste = a.taste - b.taste,
-            flavor = a.flavor - b.flavor,
-            texture = a.texture - b.texture,
-            appearance = a.appearance - b.appearance,
-            cost = a.cost - b.cost
+            modifiers = newModifiers
         };
     }
 
     // * - 배수 적용
     public static CakeStat operator *(CakeStat a, StatMultipliers m)
     {
+        List<StatModifier> newModifiers = new();
+        for (int i = 0; i < a.modifiers.Count; i++)
+        {
+            StatModifier sm = a.modifiers[i] * m.modifiers[i];
+            newModifiers.Add(sm);
+        }
         return new CakeStat
         {
-            taste = (int)MathF.Round(a.taste * m.taste),
-            flavor = (int)MathF.Round(a.flavor * m.flavor),
-            texture = (int)MathF.Round(a.texture * m.texture),
-            appearance = (int)MathF.Round(a.appearance * m.appearance),
-            cost =(int)MathF.Round(a.cost * m.cost),
+            modifiers = newModifiers
         };
     }
 }
@@ -78,31 +67,25 @@ public class CakeStat
 // 배율 저장용 클래스
 public class StatMultipliers
 {
-    public float taste = 1;
-    public float flavor = 1;
-    public float texture = 1;
-    public float appearance = 1;
-    public float cost = 1;
-
+    public List<StatModifier> modifiers;
     public StatMultipliers() { }
-    public StatMultipliers(IngredientBase newFlour) // 재료의 수치로 multiplier를 생성해도 배율로 해석함
+    public StatMultipliers(IngredientBase newIngredient) // 재료의 수치로 multiplier를 생성해도 배율로 해석함
     {
-        taste = (float)newFlour.taste;
-        flavor = (float)newFlour.flavor;
-        texture = (float)newFlour.texture;
-        appearance = (float)newFlour.appearance;
-        cost = (float)newFlour.cost;
+        modifiers = newIngredient.modifiers;
     }
 
     public static StatMultipliers operator +(StatMultipliers a, StatMultipliers b)
     {
+        List<StatModifier> newModifiers = new();
+        for (int i = 0; i < a.modifiers.Count; i++)
+        {
+            StatModifier sm = a.modifiers[i] + b.modifiers[i];
+            newModifiers.Add(sm);
+        }
+
         return new StatMultipliers
         {
-            taste = a.taste + b.taste,
-            flavor = a.flavor + b.flavor,
-            texture = a.texture + b.texture,
-            appearance = a.appearance + b.appearance,
-            cost = a.cost + b.cost,
+            modifiers = newModifiers
         };
     }
 }

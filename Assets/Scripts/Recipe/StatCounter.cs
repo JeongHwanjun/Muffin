@@ -54,17 +54,7 @@ public class StatCounter : MonoBehaviour
 
     public void ApplyCombo()
     {
-        CakeStat comboStat = new CakeStat // 임의의 콤보 스탯
-        {
-            taste = 2,
-            flavor = 12,
-            texture = 0,
-            appearance = 0,
-            cost = 0
-        };
-        // 콤보 적용 => 최종 스탯 반영
-        finalStat = multipliedStat + comboStat;
-        // 아무튼 콤보 반영 됐다고 침 - 추후 구현
+
     }
 
     public CakeStat GetFinalStat()
