@@ -6,9 +6,16 @@ using Unity.VisualScripting;
 public class CakeStat
 {
     [SerializeField] public List<StatModifier> modifiers = new();
+    private static IngredientBase _fallbackIngredient;
 
     // init
-    public CakeStat() { }
+    public CakeStat()
+    {
+        if (_fallbackIngredient != null)
+        {
+            SetStats(_fallbackIngredient);
+        }
+    }
     public CakeStat(IngredientBase stat) // IngredientBase를 통해 CakeStat을 초기화함
     {
         SetStats(stat);
@@ -18,6 +25,12 @@ public class CakeStat
     {
         modifiers = ingredientBase.modifiers;
     }
+
+    public static void SetFallback(IngredientBase ingredient)
+    {
+        _fallbackIngredient = ingredient;
+    }
+
     // +
     public static CakeStat operator +(CakeStat a, CakeStat b)
     {
@@ -58,32 +71,6 @@ public class CakeStat
             newModifiers.Add(sm);
         }
         return new CakeStat
-        {
-            modifiers = newModifiers
-        };
-    }
-}
-
-// 배율 저장용 클래스
-public class StatMultipliers
-{
-    public List<StatModifier> modifiers;
-    public StatMultipliers() { }
-    public StatMultipliers(IngredientBase newIngredient) // 재료의 수치로 multiplier를 생성해도 배율로 해석함
-    {
-        modifiers = newIngredient.modifiers;
-    }
-
-    public static StatMultipliers operator +(StatMultipliers a, StatMultipliers b)
-    {
-        List<StatModifier> newModifiers = new();
-        for (int i = 0; i < a.modifiers.Count; i++)
-        {
-            StatModifier sm = a.modifiers[i] + b.modifiers[i];
-            newModifiers.Add(sm);
-        }
-
-        return new StatMultipliers
         {
             modifiers = newModifiers
         };

@@ -44,7 +44,7 @@ public class StatDisplayer : MonoBehaviour
         {
             if (index >= values.modifiers.Count)
             {
-                Debug.LogWarningFormat("values의 개수가 예상과 다릅니다.");
+                Debug.LogWarningFormat("values의 개수가 예상과 다릅니다. {0}", values.modifiers.Count);
                 break;
             }
             textUI.text = values.modifiers[index++].delta.ToString();
@@ -53,12 +53,20 @@ public class StatDisplayer : MonoBehaviour
         index = 0;
         foreach (TextMeshProUGUI textUI in textMultipliers)
         {
-            if (index >= multipliers.modifiers.Count)
+            if (multipliers.modifiers != null)
             {
-                Debug.LogWarningFormat("multipliers의 개수가 예상과 다릅니다.");
-                break;
+                if (index >= multipliers.modifiers.Count)
+                {
+                    Debug.LogWarningFormat("multipliers의 개수가 예상과 다릅니다. {0}", multipliers.modifiers.Count);
+                    break;
+                }
+                textUI.text = multipliers.modifiers[index++].delta.ToString();
             }
-            textUI.text = multipliers.modifiers[index++].delta.ToString();
+            else
+            {
+                Debug.LogWarningFormat("multipliers.modifiers가 null임");
+                textUI.text = "1"; // 해당 정보가 없으면 그냥 1임
+            }
         }
     }
 }
