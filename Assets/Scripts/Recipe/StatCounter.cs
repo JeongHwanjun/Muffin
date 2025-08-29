@@ -8,7 +8,7 @@ public class StatCounter : MonoBehaviour
     public StatMultipliers multiplier = null;
     public CakeStat finalStat = null;
 
-    void Awake()
+    void Start()
     {
         pureStat = new CakeStat();
         multipliedStat = new CakeStat();

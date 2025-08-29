@@ -6,7 +6,7 @@ using Unity.VisualScripting;
 public class CakeStat
 {
     [SerializeField] public List<StatModifier> modifiers = new();
-    private static IngredientBase _fallbackIngredient;
+    private static IngredientBase _fallbackIngredient = null;
 
     // init
     public CakeStat()
@@ -29,6 +29,7 @@ public class CakeStat
     public static void SetFallback(IngredientBase ingredient)
     {
         _fallbackIngredient = ingredient;
+        Debug.LogFormat("SetFallback Complete : {0}", _fallbackIngredient);
     }
 
     // +
