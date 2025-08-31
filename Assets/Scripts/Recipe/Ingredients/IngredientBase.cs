@@ -6,7 +6,7 @@ using UnityEngine;
 [System.Serializable]
 public class IngredientBase : ScriptableObject
 {
-    public string id;
+    public int id;
 
     [SerializeField] public string displayName;
     [SerializeField] private StatRegistry statRegistry; // 레지스트리 참조(동기화)

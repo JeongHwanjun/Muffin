@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90604a672c277df46a920642bcd78ca8, type: 3}
+  m_Name: Cream-Apple
+  m_EditorClassIdentifier: 
+  orderInsensitive: 1
+  requireAllIngredients:
+  - {fileID: 11400000, guid: 431ce983769ac014aa9c9f8092a66288, type: 2}
+  - {fileID: 11400000, guid: ca4ad8eec835fd446800ee32589a34d9, type: 2}
+  requireAnyIngredients: []
+  delta: {fileID: 11400000, guid: 0f27972a49cfcc64194f7d66845ef9f5, type: 2}

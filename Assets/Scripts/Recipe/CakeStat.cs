@@ -1,7 +1,8 @@
 // 스탯 저장용 클래스
 using UnityEngine;
 using System.Collections.Generic;
-using Unity.VisualScripting;
+using System.Linq;
+using System;
 
 public class CakeStat
 {
@@ -23,7 +24,7 @@ public class CakeStat
 
     void SetStats(IngredientBase ingredientBase)
     {
-        modifiers = ingredientBase.modifiers;
+        modifiers = ingredientBase.modifiers.ToList();
     }
 
     public static void SetFallback(IngredientBase ingredient)
@@ -32,8 +33,29 @@ public class CakeStat
         Debug.LogFormat("SetFallback Complete : {0}", _fallbackIngredient);
     }
 
+    public static CakeStat CloneCakeStat(CakeStat original)
+    {
+        CakeStat newCakeStat = new();
+        newCakeStat.modifiers = original.modifiers.ToList();
+        return newCakeStat;
+    }
+
     // +
     public static CakeStat operator +(CakeStat a, CakeStat b)
+    {
+        List<StatModifier> newModifiers = new();
+        for (int i = 0; i < a.modifiers.Count; i++)
+        {
+            StatModifier sm = a.modifiers[i] + b.modifiers[i];
+            newModifiers.Add(sm);
+        }
+        return new CakeStat
+        {
+            modifiers = newModifiers
+        };
+    }
+
+    public static CakeStat operator +(CakeStat a, IngredientBase b)
     {
         List<StatModifier> newModifiers = new();
         for (int i = 0; i < a.modifiers.Count; i++)

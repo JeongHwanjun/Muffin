@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b1944d6c3ad573948b5d8f93820947c4, type: 3}
-  m_Name: Default
+  m_Name: Butter
   m_EditorClassIdentifier: 
-  id: 0
-  displayName: Default
+  id: 101
+  displayName: Butter
   statRegistry: {fileID: 11400000, guid: 8c708b79448eedb48aedc73e2c1e3459, type: 2}
   modifiers:
   - stat: {fileID: 11400000, guid: 4b5d309076757534c862c041c02ef45b, type: 2}
-    delta: 0
+    delta: 1
   - stat: {fileID: 11400000, guid: 41f71b07c0ee57f4496f542c6d484912, type: 2}
-    delta: 0
+    delta: 3
   - stat: {fileID: 11400000, guid: 3abf840805f30ff42a65baa02f7450c0, type: 2}
-    delta: 0
+    delta: 1
   - stat: {fileID: 11400000, guid: a2bf5f3ee19883a41b80cea6d91c8630, type: 2}
     delta: 0
   - stat: {fileID: 11400000, guid: 6a9b958313b5e514d9175bbce1943dc1, type: 2}
-    delta: 0
-  recipeArrows: 
+    delta: 2
+  recipeArrows: 00000000

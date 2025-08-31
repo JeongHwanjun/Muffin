@@ -55,16 +55,16 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             canvasGroup.ignoreParentGroups = true; // 부모 영향 무시
 
             // 이벤트 발생
-            if (stage == RecipeStage.Flour)
+            if (stage == RecipeStage.Flour) // 반죽 단계
             {
                 StatMultipliers newFlour = new StatMultipliers(ingredientData.ingredientData);
                 recipeEventManager.TriggerFlourAdd(newFlour);
             }
-            else if (stage == RecipeStage.Base)
+            else if (stage == RecipeStage.Base) // 베이스 단계
             {
-                // base
+                recipeEventManager.TriggerIngredientAdd(ingredientData);
             }
-            else if (stage == RecipeStage.Toping)
+            else if (stage == RecipeStage.Toping) // 토핑 단계
             {
                 recipeEventManager.TriggerIngredientAdd(ingredientData);
             }

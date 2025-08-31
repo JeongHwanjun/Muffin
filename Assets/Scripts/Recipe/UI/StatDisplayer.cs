@@ -9,7 +9,7 @@ public class StatDisplayer : MonoBehaviour
     public RecipeEventManager recipeEventManager;
     public TextMeshProUGUI[] textValue;
     public TextMeshProUGUI[] textMultipliers;
-    private CakeStat values;
+    private CakeStat values = null;
     private StatMultipliers multipliers;
 
     void Start()
@@ -24,11 +24,15 @@ public class StatDisplayer : MonoBehaviour
         GetCakeValue();
         GetMultipliers();
         SetText();
+
+        values = null;
+        multipliers = null;
     }
 
     public void GetCakeValue()
     {
-        values = statCounter.GetMultipliedStat();
+        values = statCounter.GetFinalStat();
+        if (values == null) values = new();
     }
 
     public void GetMultipliers()
