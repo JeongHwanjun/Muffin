@@ -2,18 +2,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public enum RecipeStage
-{
-    Flour = 0,
-    Base = 1,
-    Toping = 2
-}
 public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    public Ingredient ingredientData;
+    public Ingredient ingredientData; // 에디터에서 초기화
     public Canvas canvas;
     public RecipeEventManager recipeEventManager;
-    public RecipeStage stage;
     private RectTransform rectTransform;
     private CanvasGroup canvasGroup;
     private GameObject panel;
@@ -23,7 +16,6 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         rectTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
         canvas = GetComponentInParent<Canvas>();
-        ingredientData = GetComponent<Ingredient>();
 
         recipeEventManager = r;
 
@@ -47,31 +39,14 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public void OnEndDrag(PointerEventData eventData)
     {
         Debug.Log("DraggableItem : EndDrag");
-        RecipeEventManager.TriggerIngredientDropped(GetComponent<Ingredient>());
+        RecipeEventManager.TriggerIngredientDropped(ingredientData);
         if (TryFindValidDropTarget(eventData, out GameObject target))
         {
             Debug.Log("DraggableItem : Dropped on Valid item");
             canvasGroup.interactable = false;   // 조작 무효화
             canvasGroup.ignoreParentGroups = true; // 부모 영향 무시
 
-            // 이벤트 발생
-            if (stage == RecipeStage.Flour) // 반죽 단계
-            {
-                StatMultipliers newFlour = new StatMultipliers(ingredientData.ingredientData);
-                recipeEventManager.TriggerFlourAdd(newFlour);
-            }
-            else if (stage == RecipeStage.Base) // 베이스 단계
-            {
-                recipeEventManager.TriggerIngredientAdd(ingredientData);
-            }
-            else if (stage == RecipeStage.Toping) // 토핑 단계
-            {
-                recipeEventManager.TriggerIngredientAdd(ingredientData);
-            }
-            else
-            {
-                Debug.LogWarningFormat("DraggableItem : Invalid Stage - {0}", stage);
-            }
+            recipeEventManager.TriggerIngredientAdd(ingredientData);
         }
         else
         {

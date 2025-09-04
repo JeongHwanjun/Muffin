@@ -7,7 +7,7 @@ using System;
 public class CakeStat
 {
     [SerializeField] public List<StatModifier> modifiers = new();
-    private static IngredientBase _fallbackIngredient = null;
+    private static Ingredient _fallbackIngredient = null;
 
     // init
     public CakeStat()
@@ -17,17 +17,17 @@ public class CakeStat
             SetStats(_fallbackIngredient);
         }
     }
-    public CakeStat(IngredientBase stat) // IngredientBase를 통해 CakeStat을 초기화함
+    public CakeStat(Ingredient stat) // Ingredient를 통해 CakeStat을 초기화함
     {
         SetStats(stat);
     }
 
-    void SetStats(IngredientBase ingredientBase)
+    void SetStats(Ingredient Ingredient)
     {
-        modifiers = ingredientBase.modifiers.ToList();
+        modifiers = Ingredient.modifiers.ToList();
     }
 
-    public static void SetFallback(IngredientBase ingredient)
+    public static void SetFallback(Ingredient ingredient)
     {
         _fallbackIngredient = ingredient;
         Debug.LogFormat("SetFallback Complete : {0}", _fallbackIngredient);
@@ -55,7 +55,7 @@ public class CakeStat
         };
     }
 
-    public static CakeStat operator +(CakeStat a, IngredientBase b)
+    public static CakeStat operator +(CakeStat a, Ingredient b)
     {
         List<StatModifier> newModifiers = new();
         for (int i = 0; i < a.modifiers.Count; i++)

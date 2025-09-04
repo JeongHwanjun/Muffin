@@ -4,7 +4,7 @@ using System.Linq;
 public class StatMultipliers
 {
     public List<StatModifier> modifiers;
-    private static IngredientBase _fallbackIngredient;
+    private static Ingredient _fallbackIngredient;
     public StatMultipliers()
     {
         if (_fallbackIngredient != null && _fallbackIngredient.modifiers != null)
@@ -12,7 +12,7 @@ public class StatMultipliers
         else
             modifiers = new List<StatModifier>();
     }
-    public StatMultipliers(IngredientBase ingredient) // 재료의 수치로 multiplier를 생성해도 배율로 해석함
+    public StatMultipliers(Ingredient ingredient) // 재료의 수치로 multiplier를 생성해도 배율로 해석함
     {
         if (ingredient != null && ingredient.modifiers != null && ingredient.modifiers.Count > 0)
             modifiers = CloneModifiers(ingredient.modifiers);
@@ -22,7 +22,7 @@ public class StatMultipliers
             modifiers = new List<StatModifier>(); // 마지막 방어
     }
 
-    public static void SetFallback(IngredientBase ingredient) // 기본 Ingredient를 세팅함 - Awake 시점에 실행됨.
+    public static void SetFallback(Ingredient ingredient) // 기본 Ingredient를 세팅함 - Awake 시점에 실행됨.
     {
         _fallbackIngredient = ingredient;
     }

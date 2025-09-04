@@ -3,17 +3,10 @@ using UnityEngine;
 
 public class RecipeEventManager : MonoBehaviour
 {
-    public event Action<StatMultipliers> OnFlourAdd;
     public event Action OnRefreshUI;
     public event Action<Ingredient> OnIngredientAdd;
     public event Action OnSaveCake;
     public static event Action<Ingredient> OnIngredientDropped;
-
-    public void TriggerFlourAdd(StatMultipliers newFlour)
-    {
-        Debug.Log("Event : OnFlourAdd");
-        OnFlourAdd?.Invoke(newFlour);
-    }
 
     public void TriggerIngredientAdd(Ingredient newIngredient)
     {

@@ -53,7 +53,7 @@ public class CakeBuilder : MonoBehaviour
         List<recipeArrow> newRecipe = new List<recipeArrow>();
         foreach (Ingredient item in ingredients)
         {
-            foreach (recipeArrow arrow in item.ingredientData.recipeArrows)
+            foreach (recipeArrow arrow in item.recipeArrows)
             {
                 newRecipe.Add(arrow);
             }

@@ -5,14 +5,16 @@ using UnityEngine.EventSystems;
 
 public class DragIcon : MonoBehaviour
 {
-    public GameObject draggablePrefab; // 프리팹화된 아이콘
+    public GameObject draggablePrefab; // 프리팹화된 Ingredient
     public Canvas canvas;
     public RecipeEventManager recipeEventManager;
 
     [SerializeField] private GameObject draggableItem;
+    private Ingredient ingredientData; // Ingredient의 정보를 담고 있는 SO
 
     void Start()
     {
+        ingredientData = draggablePrefab.GetComponent<DraggableItem>().ingredientData;
         RecipeEventManager.OnIngredientDropped += UnlinkDraggableItem;
         //InstantiateNewIngredient(draggablePrefab.GetComponent<Ingredient>());
     }
@@ -20,7 +22,7 @@ public class DragIcon : MonoBehaviour
     // 패널이 펼쳐지면 실제 아이템 생성
     void OnEnable()
     {
-        draggableItem = InstantiateNewIngredient(draggablePrefab.GetComponent<Ingredient>());
+        draggableItem = InstantiateNewIngredient(ingredientData);
     }
     
     // 패널이 닫힐 때 아이템 파괴
@@ -35,7 +37,7 @@ public class DragIcon : MonoBehaviour
     // 아이템이 클릭되면 아이템 할당 해제(파괴하면 안되므로)
     void UnlinkDraggableItem(Ingredient droppedIngredient)
     {
-        if (draggableItem && draggableItem.GetComponent<DraggableItem>().ingredientData == droppedIngredient)
+        if (draggableItem && ingredientData == droppedIngredient)
         {
             draggableItem = null;
         }
@@ -44,7 +46,7 @@ public class DragIcon : MonoBehaviour
 
     public GameObject InstantiateNewIngredient(Ingredient droppedIngredient)
     {
-        if (droppedIngredient.ingredientData.id != draggablePrefab.GetComponent<Ingredient>().ingredientData.id)
+        if (droppedIngredient.id != ingredientData.id)
         {
             return null;
         }

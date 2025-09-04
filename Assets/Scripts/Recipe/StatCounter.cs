@@ -9,7 +9,7 @@ public class StatCounter : MonoBehaviour
     public CakeStat comboStat = null;
     public CakeStat finalStat = null;
     public StatMultipliers multiplier = null;
-    public List<IngredientBase> ingredients = new();
+    public List<Ingredient> ingredients = new();
     public ComboResolver comboResolver = null;
 
     void Start()
@@ -20,18 +20,31 @@ public class StatCounter : MonoBehaviour
         multiplier = new StatMultipliers();
         
 
-        recipeEventManager.OnFlourAdd += AddMultiplier;
         recipeEventManager.OnIngredientAdd += OnIngredientAdd;
     }
 
     public void OnIngredientAdd(Ingredient newIngredient)
     {
-        CakeStat diff = new CakeStat(newIngredient.ingredientData);
-        AddPureStat(diff); // 재료에 의한 순수 스탯 계산
+        IngredientType newIngredientType = newIngredient.GetIngredientType(); // 재료 타입 획득
+
+        if (newIngredientType == IngredientType.Flour) // Flour 단계면 배율 변경
+        {
+            StatMultipliers multipliers = new(newIngredient); // 배율 형태로 재가공
+            AddMultiplier(multipliers);
+        }
+        else if (newIngredientType == IngredientType.Base || newIngredientType == IngredientType.Topping) // Base나 Topping 단계면 스탯 변경
+        {
+            CakeStat stat = new(newIngredient); // 스탯 형태로 재가공
+            AddPureStat(stat);
+        }
+        else
+        {
+            Debug.LogErrorFormat("StatCounter : unknown type {0}", newIngredientType);
+            return;
+        }
+
         GetMultipliedStat(); // 배율을 반영한 배율 스탯 계산
-
-        ingredients.Add(newIngredient.ingredientData); // 재료 목록에 추가(콤보 카운팅)
-
+        ingredients.Add(newIngredient); // 재료 목록에 추가(콤보 카운팅)
         recipeEventManager.TriggerRefreshUI(); // UI 갱신
     }
     public void AddPureStat(CakeStat diff)

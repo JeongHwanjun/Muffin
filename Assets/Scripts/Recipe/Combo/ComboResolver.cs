@@ -13,10 +13,10 @@ public class ComboResolver : MonoBehaviour
         public ComboRule rule;
         public HashSet<int> RequireAll;
         public HashSet<int> RequireAny;
-        public IngredientBase delta;
+        public Ingredient delta;
     }
 
-    private static int GetId(IngredientBase ing) => ing != null ? ing.GetInstanceID() : 0;
+    private static int GetId(Ingredient ing) => ing != null ? ing.GetInstanceID() : 0;
 
     private void Awake()
     {
@@ -44,7 +44,7 @@ public class ComboResolver : MonoBehaviour
     }
 
     // 현재 재료 목록으로 발동 가능한 모든 콤보 룰 반환
-    public IEnumerable<ComboRule> GetMatches(IReadOnlyList<IngredientBase> current)
+    public IEnumerable<ComboRule> GetMatches(IReadOnlyList<Ingredient> current)
     {
         // 현재 세트 -> 집합화
         var currentSet = new HashSet<int>(current.Where(x=>x).Select(GetId));
