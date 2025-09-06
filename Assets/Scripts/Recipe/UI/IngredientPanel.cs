@@ -1,23 +1,21 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class IngredientPanel : MonoBehaviour
 {
     public List<GameObject> ingredients;
     private RectTransform rectTransform;
+    private HorizontalLayoutGroup horizontalLayoutGroup;
 
     void Start()
     {
         rectTransform = GetComponent<RectTransform>();
+        horizontalLayoutGroup = GetComponent<HorizontalLayoutGroup>();
 
-        rectTransform.sizeDelta = new Vector2(ingredients.Count * 100, 100);
+        float paddingLeft = horizontalLayoutGroup.padding.left, paddingRight = horizontalLayoutGroup.padding.right;
+        float paddingTop = horizontalLayoutGroup.padding.top, paddingBot = horizontalLayoutGroup.padding.bottom;
 
-        int index = 0;
-        foreach (GameObject ingredient in ingredients)
-        {
-            RectTransform ingredientTransform = ingredient.GetComponent<RectTransform>();
-            ingredientTransform.anchoredPosition = new Vector2(index * 100, 0);
-            index++;
-        }
+        rectTransform.sizeDelta = new Vector2(ingredients.Count * (100 + paddingLeft + paddingRight), 100 + paddingTop + paddingBot);
     }
 }

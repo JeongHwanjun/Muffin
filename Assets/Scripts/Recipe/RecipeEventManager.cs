@@ -5,6 +5,7 @@ public class RecipeEventManager : MonoBehaviour
 {
     public event Action OnRefreshUI;
     public event Action<Ingredient> OnIngredientAdd;
+    public event Action<Ingredient> OnIngredientClick;
     public event Action OnSaveCake;
     public static event Action<Ingredient> OnIngredientDropped;
 
@@ -30,5 +31,11 @@ public class RecipeEventManager : MonoBehaviour
     {
         Debug.LogFormat("Event : OnIngredientDropped {0}", droppedIngredient);
         OnIngredientDropped?.Invoke(droppedIngredient);
+    }
+
+    public void TriggerIngredientClick(Ingredient clickedIngredient)
+    {
+        Debug.LogFormat("Event : OnIngredientClick");
+        OnIngredientClick?.Invoke(clickedIngredient);
     }
 }

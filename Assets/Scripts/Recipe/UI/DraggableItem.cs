@@ -1,15 +1,18 @@
+using System;
+using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler
 {
     public Ingredient ingredientData; // 에디터에서 초기화
     public Canvas canvas;
     public RecipeEventManager recipeEventManager;
     private RectTransform rectTransform;
     private CanvasGroup canvasGroup;
-    private GameObject panel;
+    [SerializeField] private GameObject panel;
 
     public void Init(RecipeEventManager r)
     {
@@ -24,11 +27,20 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public void OnBeginDrag(PointerEventData eventData)
     {
         Debug.Log("DraggableItem : BeginDrag");
-        panel = transform.parent.gameObject; // 현재 부모(panel)를 다른 곳에 기록해둠 - 나중에 비활성화
+        panel = transform.parent.parent.gameObject; // 현재 부모(panel)를 다른 곳에 기록해둠 - 나중에 비활성화
         transform.SetParent(canvas.transform); // 부모를 최상위 canvas로 변경
         rectTransform.anchorMin = new Vector2(0.5f, 0.5f);
         rectTransform.anchorMax = new Vector2(0.5f, 0.5f);
         canvasGroup.blocksRaycasts = false; // 한번 드래그를 끝내면 다시 드래그하지 못함
+        recipeEventManager.TriggerIngredientClick(ingredientData);
+
+        StartCoroutine(SetPanel());
+    }
+
+    IEnumerator SetPanel()
+    {
+        yield return null;
+        panel.SetActive(false);
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -40,6 +52,7 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     {
         Debug.Log("DraggableItem : EndDrag");
         RecipeEventManager.TriggerIngredientDropped(ingredientData);
+        Debug.Log("쌀!!!!");
         if (TryFindValidDropTarget(eventData, out GameObject target))
         {
             Debug.Log("DraggableItem : Dropped on Valid item");
@@ -54,7 +67,7 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             Destroy(gameObject);
         }
 
-        panel.SetActive(false); // 패널 비활성화
+        //panel.SetActive(false); // 패널 비활성화
     }
 
     private bool TryFindValidDropTarget(PointerEventData eventData, out GameObject target)
@@ -80,5 +93,11 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         Vector2 pos;
         RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas.transform as RectTransform, eventData.position, eventData.pressEventCamera, out pos);
         rectTransform.anchoredPosition = pos;
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        // Ingredient의 Stat을 보여주는 UI에 정보 전송 및 갱신
+        Debug.Log("와!!!!!");
     }
 }
