@@ -4,9 +4,9 @@ using UnityEngine.UI;
 
 public class IngredientPanel : MonoBehaviour
 {
-    public List<GameObject> ingredients;
     private RectTransform rectTransform;
     private HorizontalLayoutGroup horizontalLayoutGroup;
+    [SerializeField] private int iconSize;
 
     void Start()
     {
@@ -16,6 +16,6 @@ public class IngredientPanel : MonoBehaviour
         float paddingLeft = horizontalLayoutGroup.padding.left, paddingRight = horizontalLayoutGroup.padding.right;
         float paddingTop = horizontalLayoutGroup.padding.top, paddingBot = horizontalLayoutGroup.padding.bottom;
 
-        rectTransform.sizeDelta = new Vector2(ingredients.Count * (100 + paddingLeft + paddingRight), 100 + paddingTop + paddingBot);
+        rectTransform.sizeDelta = new Vector2(transform.childCount * (iconSize + paddingLeft + paddingRight), iconSize + paddingTop + paddingBot);
     }
 }

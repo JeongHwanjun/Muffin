@@ -6,6 +6,7 @@ public class RecipeEventManager : MonoBehaviour
     public event Action OnRefreshUI;
     public event Action<Ingredient> OnIngredientAdd;
     public event Action<Ingredient> OnIngredientClick;
+    public event Action<Ingredient> OnIngredientHover;
     public event Action OnSaveCake;
     public static event Action<Ingredient> OnIngredientDropped;
 
@@ -37,5 +38,11 @@ public class RecipeEventManager : MonoBehaviour
     {
         Debug.LogFormat("Event : OnIngredientClick");
         OnIngredientClick?.Invoke(clickedIngredient);
+    }
+
+    public void TriggerIngredientHover(Ingredient hoverIngredient)
+    {
+        Debug.LogFormat("Event : OnIngredientHover");
+        OnIngredientHover?.Invoke(hoverIngredient);
     }
 }

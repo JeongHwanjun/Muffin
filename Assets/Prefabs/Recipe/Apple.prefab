@@ -36,7 +36,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 229, y: 61}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5156157370815777869
@@ -92,7 +92,7 @@ MonoBehaviour:
   ingredientData: {fileID: 11400000, guid: 1dd1d92c19a09e649ab6b2b76a74d796, type: 2}
   canvas: {fileID: 0}
   recipeEventManager: {fileID: 0}
-  stage: 2
+  panel: {fileID: 0}
 --- !u!225 &5810489968934732880
 CanvasGroup:
   m_ObjectHideFlags: 0

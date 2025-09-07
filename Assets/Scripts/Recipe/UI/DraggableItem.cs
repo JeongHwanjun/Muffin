@@ -98,6 +98,6 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public void OnPointerEnter(PointerEventData eventData)
     {
         // Ingredient의 Stat을 보여주는 UI에 정보 전송 및 갱신
-        Debug.Log("와!!!!!");
+        recipeEventManager.TriggerIngredientHover(ingredientData);
     }
 }
