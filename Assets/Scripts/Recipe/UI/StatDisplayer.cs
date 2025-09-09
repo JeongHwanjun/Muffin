@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,6 +8,7 @@ public class StatDisplayer : MonoBehaviour
 {
     public StatCounter statCounter;
     public RecipeEventManager recipeEventManager;
+    public Arrows totalArrows;
     public TextMeshProUGUI[] textValue;
     public TextMeshProUGUI[] textMultipliers;
     private CakeStat values = null;
@@ -14,16 +16,17 @@ public class StatDisplayer : MonoBehaviour
 
     void Start()
     {
-        RefreshText();
+        RefreshUI();
 
-        recipeEventManager.OnRefreshUI += RefreshText;
+        recipeEventManager.OnRefreshUI += RefreshUI;
     }
 
-    public void RefreshText()
+    public void RefreshUI()
     {
         GetCakeValue();
         GetMultipliers();
         SetText();
+        SetArrows();
 
         values = null;
         multipliers = null;
@@ -72,5 +75,10 @@ public class StatDisplayer : MonoBehaviour
                 textUI.text = "1"; // 해당 정보가 없으면 그냥 1임
             }
         }
+    }
+
+    private void SetArrows()
+    {
+        totalArrows.RefreshArrows(statCounter.GetRecipeArrows());
     }
 }

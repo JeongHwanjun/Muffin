@@ -10,6 +10,7 @@ public class StatCounter : MonoBehaviour
     public CakeStat finalStat = null;
     public StatMultipliers multiplier = null;
     public List<Ingredient> ingredients = new();
+    public List<recipeArrow> recipeArrows = new();
     public ComboResolver comboResolver = null;
 
     void Start()
@@ -45,8 +46,15 @@ public class StatCounter : MonoBehaviour
 
         GetMultipliedStat(); // 배율을 반영한 배율 스탯 계산
         ingredients.Add(newIngredient); // 재료 목록에 추가(콤보 카운팅)
+        recipeArrows.AddRange(newIngredient.recipeArrows); // 전체 화살표에 재료 화살표를 추가함.
         recipeEventManager.TriggerRefreshUI(); // UI 갱신
     }
+
+    public List<recipeArrow> GetRecipeArrows()
+    {
+        return recipeArrows;
+    }
+
     public void AddPureStat(CakeStat diff)
     {
         // 순수스탯(재료의 총합)

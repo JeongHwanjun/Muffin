@@ -5,6 +5,7 @@ using UnityEngine;
 public class IngredientStatDisplayer : MonoBehaviour
 {
     public TextMeshProUGUI[] textValues;
+    public Arrows arrows;
     public GameObject UI;
     public RecipeEventManager recipeEventManager;
 
@@ -22,6 +23,7 @@ public class IngredientStatDisplayer : MonoBehaviour
         {
             text.text = ingredient.modifiers[index++].delta.ToString();
         }
+        arrows.RefreshArrows(ingredient.recipeArrows);
     }
 
     void ClearUI(Ingredient ingredient)
