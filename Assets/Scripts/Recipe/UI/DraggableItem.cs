@@ -8,17 +8,18 @@ using UnityEngine.EventSystems;
 public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler
 {
     public Ingredient ingredientData; // 에디터에서 초기화
-    public Canvas canvas;
-    public RecipeEventManager recipeEventManager;
+    private Canvas canvas;
+    private RecipeEventManager recipeEventManager;
     private RectTransform rectTransform;
     private CanvasGroup canvasGroup;
-    [SerializeField] private GameObject panel;
+    private GameObject panel;
 
-    public void Init(RecipeEventManager r)
+    public void Init(Canvas c, RecipeEventManager r)
     {
         rectTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
-        canvas = GetComponentInParent<Canvas>();
+        canvas = c;
+        panel = transform.parent.gameObject;
 
         recipeEventManager = r;
 
@@ -28,9 +29,9 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     {
         Debug.Log("DraggableItem : BeginDrag");
         panel = transform.parent.parent.gameObject; // 현재 부모(panel)를 다른 곳에 기록해둠 - 나중에 비활성화
-        transform.SetParent(canvas.transform); // 부모를 최상위 canvas로 변경
-        rectTransform.anchorMin = new Vector2(0.5f, 0.5f);
-        rectTransform.anchorMax = new Vector2(0.5f, 0.5f);
+        transform.SetParent(canvas.transform, worldPositionStays : true); // 부모를 최상위 canvas로 변경. worldPositionStays=false면 새로운 canvas에 맞게 위치가 조정됨
+        //rectTransform.anchorMin = new Vector2(0.5f, 0.5f); // 굳이 바꾸면 좌표는 유지된채로 기준만 바뀌어서 위치가 이상하게 바뀜;;
+        //rectTransform.anchorMax = new Vector2(0.5f, 0.5f);
         canvasGroup.blocksRaycasts = false; // 한번 드래그를 끝내면 다시 드래그하지 못함
         recipeEventManager.TriggerIngredientClick(ingredientData);
 
@@ -52,7 +53,6 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     {
         Debug.Log("DraggableItem : EndDrag");
         RecipeEventManager.TriggerIngredientDropped(ingredientData);
-        Debug.Log("쌀!!!!");
         if (TryFindValidDropTarget(eventData, out GameObject target))
         {
             Debug.Log("DraggableItem : Dropped on Valid item");
@@ -90,9 +90,12 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     private void UpdatePosition(PointerEventData eventData)
     {
-        Vector2 pos;
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas.transform as RectTransform, eventData.position, eventData.pressEventCamera, out pos);
-        rectTransform.anchoredPosition = pos;
+        //Vector2 pos;
+        //RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas.transform as RectTransform, eventData.position, eventData.pressEventCamera, out pos);
+        //rectTransform.anchoredPosition = pos;
+
+        float scale = canvas != null ? canvas.scaleFactor : 1f;
+        rectTransform.anchoredPosition += eventData.delta / Mathf.Max(0.0001f, scale);
     }
 
     public void OnPointerEnter(PointerEventData eventData)

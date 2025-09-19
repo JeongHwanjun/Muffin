@@ -2526,9 +2526,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 23901217}
     m_Modifications:
+    - target: {fileID: 416007815929995175, guid: b46c0175d33ed3844b770f4a684b2637, type: 3}
+      propertyPath: draggablePrefab
+      value: 
+      objectReference: {fileID: 541452061950584294, guid: 4371e4410dc54a247913c4233dd2e4a9, type: 3}
+    - target: {fileID: 416007815929995175, guid: b46c0175d33ed3844b770f4a684b2637, type: 3}
+      propertyPath: recipeEventManager
+      value: 
+      objectReference: {fileID: 1814829951}
     - target: {fileID: 927496780115672678, guid: b46c0175d33ed3844b770f4a684b2637, type: 3}
       propertyPath: m_Name
-      value: Stage
+      value: Flour
+      objectReference: {fileID: 0}
+    - target: {fileID: 927496780115672678, guid: b46c0175d33ed3844b770f4a684b2637, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1397772121366527345, guid: b46c0175d33ed3844b770f4a684b2637, type: 3}
       propertyPath: m_AnchorMax.x
@@ -2798,6 +2810,22 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -50
       objectReference: {fileID: 0}
+    - target: {fileID: 7806369124027132596, guid: b46c0175d33ed3844b770f4a684b2637, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7806369124027132596, guid: b46c0175d33ed3844b770f4a684b2637, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -4592095305834777055, guid: a5e15db1384d7b54a9485ae4b9c22cef, type: 3}
+    - target: {fileID: 8151182914699100654, guid: b46c0175d33ed3844b770f4a684b2637, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1533909394052034002, guid: fb9b6e0db65038e4686f8bf78ea56b68, type: 3}
+    - target: {fileID: 8377416378617445819, guid: b46c0175d33ed3844b770f4a684b2637, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1533909394052034002, guid: fb9b6e0db65038e4686f8bf78ea56b68, type: 3}
     - target: {fileID: 8689970773176755607, guid: b46c0175d33ed3844b770f4a684b2637, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -4447,7 +4475,7 @@ PrefabInstance:
       objectReference: {fileID: 1814829951}
     - target: {fileID: 927496780115672678, guid: b46c0175d33ed3844b770f4a684b2637, type: 3}
       propertyPath: m_Name
-      value: Flour
+      value: Flour(old)
       objectReference: {fileID: 0}
     - target: {fileID: 927496780115672678, guid: b46c0175d33ed3844b770f4a684b2637, type: 3}
       propertyPath: m_IsActive
@@ -4724,6 +4752,10 @@ PrefabInstance:
     - target: {fileID: 5938232170140901681, guid: b46c0175d33ed3844b770f4a684b2637, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5963214795688246797, guid: b46c0175d33ed3844b770f4a684b2637, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 530
       objectReference: {fileID: 0}
     - target: {fileID: 5963214795688246797, guid: b46c0175d33ed3844b770f4a684b2637, type: 3}
       propertyPath: m_AnchoredPosition.x

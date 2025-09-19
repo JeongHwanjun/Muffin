@@ -9,6 +9,8 @@ public class Ingredient : ScriptableObject
     public int id;
 
     [SerializeField] public string displayName;
+    [SerializeField] public int tier;
+    [SerializeField] public IngredientGroup group;
     [SerializeField] private StatRegistry statRegistry; // 레지스트리 참조(동기화)
     [SerializeField] public List<StatModifier> modifiers = new();
 

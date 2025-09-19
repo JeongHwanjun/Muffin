@@ -12,8 +12,10 @@ public class DragIcon : MonoBehaviour
     [SerializeField] private GameObject draggableItem;
     private Ingredient ingredientData; // Ingredient의 정보를 담고 있는 SO
 
-    void Awake()
+    public void Init(Canvas parentCanvas, RecipeEventManager eventManager)
     {
+        canvas = parentCanvas;
+        recipeEventManager = eventManager;
         ingredientData = draggablePrefab.GetComponent<DraggableItem>().ingredientData;
         recipeEventManager.OnIngredientClick += UnlinkDraggableItem;
     }
@@ -45,10 +47,12 @@ public class DragIcon : MonoBehaviour
 
     public GameObject InstantiateNewIngredient(Ingredient droppedIngredient)
     {
+        Debug.Log("DraggableItem 조건 체크 시도");
         if (droppedIngredient.id != ingredientData.id)
         {
             return null;
         }
+        Debug.Log("DraggableItem 생성 시도");
         GameObject cloneIngredient = Instantiate(draggablePrefab, transform);
         /*
         RectTransform myRect = GetComponent<RectTransform>();
@@ -61,7 +65,7 @@ public class DragIcon : MonoBehaviour
         //cloneIngredient.transform.SetParent(canvas.transform);
         */
         // 이벤트 매니저 연결
-        cloneIngredient.GetComponent<DraggableItem>().Init(recipeEventManager);
+        cloneIngredient.GetComponent<DraggableItem>().Init(canvas, recipeEventManager);
 
         return cloneIngredient;
     }

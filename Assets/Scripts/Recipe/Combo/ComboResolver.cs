@@ -16,7 +16,7 @@ public class ComboResolver : MonoBehaviour
         public Ingredient delta;
     }
 
-    private static int GetId(Ingredient ing) => ing != null ? ing.GetInstanceID() : 0;
+    private static int GetId(IngredientGroup group) => group != null ? group.GetInstanceID() : 0;
 
     private void Awake()
     {
@@ -35,8 +35,8 @@ public class ComboResolver : MonoBehaviour
             var pr = new PreparedRule
             {
                 rule = r,
-                RequireAll = new HashSet<int>(r.requireAllIngredients.Where(x => x).Select(GetId)),
-                RequireAny = new HashSet<int>(r.requireAnyIngredients.Where(x => x).Select(GetId)),
+                RequireAll = new HashSet<int>(r.requireAllGroups.Where(x => x).Select(GetId)),
+                RequireAny = new HashSet<int>(r.requireAnyGroups.Where(x => x).Select(GetId)),
                 delta = r.delta
             };
             _prepared.Add(pr);
@@ -47,7 +47,7 @@ public class ComboResolver : MonoBehaviour
     public IEnumerable<ComboRule> GetMatches(IReadOnlyList<Ingredient> current)
     {
         // 현재 세트 -> 집합화
-        var currentSet = new HashSet<int>(current.Where(x=>x).Select(GetId));
+        var currentSet = new HashSet<int>(current.Where(x=>x && x.group!=null).Select(x=>x.group.GetInstanceID()));
 
         foreach (var pr in _prepared)
         {

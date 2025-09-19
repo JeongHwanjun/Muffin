@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7ea90f462a852f49962fc015472f12b, type: 3}
+  m_Name: Alchol
+  m_EditorClassIdentifier: 
+  GroupName: Alchol
+  tiers:
+  - {fileID: 11400000, guid: 753a0f9482d4fa74fb70760e722dc024, type: 2}
+  - {fileID: 11400000, guid: 92bf562c6af37b54e972970a3ede7012, type: 2}
+  - {fileID: 11400000, guid: 25a16e84d1556464cbb727f14173468e, type: 2}
+  - {fileID: 11400000, guid: 44eecf9460da87f46ab379c5790a75bb, type: 2}
+  - {fileID: 11400000, guid: 7d20b74ae542c3b46b88cc64c76a2ddc, type: 2}
