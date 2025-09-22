@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class IngredientList : MonoBehaviour
 {
-    public Canvas canvas; // 최상위 canvas - draggableItem이 드래그시 참조함
+    private Canvas canvas; // 최상위 canvas - draggableItem이 드래그시 참조함
     public RecipeEventManager recipeEventManager;
     public List<IngredientPanel> ingredientPanels;
     private int _sortingOrder = 1;

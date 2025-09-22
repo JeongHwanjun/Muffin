@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MilkT1
   m_EditorClassIdentifier: 
   id: 1041
-  displayName: Sugar_T1
+  displayName: Milk_T1
   tier: 1
   group: {fileID: 11400000, guid: 428b6074142a2e249a2708092e165b7e, type: 2}
   statRegistry: {fileID: 11400000, guid: 8c708b79448eedb48aedc73e2c1e3459, type: 2}

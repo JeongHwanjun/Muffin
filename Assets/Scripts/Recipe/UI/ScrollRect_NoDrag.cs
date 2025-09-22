@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class ScrollRect_NoDrag : ScrollRect
 {
+    public float wheelScrollSpeed = 0.05f;
     public override void OnInitializePotentialDrag(PointerEventData eventData)
     {
         //if (!ShouldDrag(eventData)) return;
@@ -33,5 +34,14 @@ public class ScrollRect_NoDrag : ScrollRect
     {
         // 드래그 대상이 ScrollView의 자식인지 확인
         return eventData.pointerEnter == null || eventData.pointerEnter.GetComponent<DraggableItem>() == null;
+    }
+
+    void Update()
+    {
+        float scroll = Input.mouseScrollDelta.y;
+        if (Mathf.Abs(scroll) > 0.01f)
+        {
+            verticalNormalizedPosition += scroll * wheelScrollSpeed;
+        }
     }
 }

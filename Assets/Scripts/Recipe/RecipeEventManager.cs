@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class RecipeEventManager : MonoBehaviour
 {
+    public static RecipeEventManager Instance { get; private set; }
     public event Action OnRefreshUI;
     public event Action<Ingredient> OnIngredientAdd;
     public event Action<Ingredient> OnIngredientClick;
@@ -10,6 +11,15 @@ public class RecipeEventManager : MonoBehaviour
     public event Action OnSaveCake;
     public static event Action<Ingredient> OnIngredientDropped;
 
+    void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+            return;
+        }
+        Instance = this;
+    }
     public void TriggerIngredientAdd(Ingredient newIngredient)
     {
         Debug.LogFormat("Event : OnIngredientAdd {0}", newIngredient);
