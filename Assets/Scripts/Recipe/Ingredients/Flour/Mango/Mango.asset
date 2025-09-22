@@ -12,5 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7ea90f462a852f49962fc015472f12b, type: 3}
   m_Name: Mango
   m_EditorClassIdentifier: 
-  GroupName: 
-  tiers: []
+  GroupName: Mango
+  tiers:
+  - {fileID: 11400000, guid: 131181261936ad340b1e1df55bacbc47, type: 2}
+  - {fileID: 11400000, guid: 684993fe4da19eb46a9a9164432f02c4, type: 2}
+  - {fileID: 11400000, guid: 1c37475e0bd43354bbcf6df0ea88b664, type: 2}
+  - {fileID: 11400000, guid: 35193461b1158fc429ee780b0bce2d81, type: 2}
+  - {fileID: 11400000, guid: f4faec86e5355ac42bf2f59b79e88836, type: 2}

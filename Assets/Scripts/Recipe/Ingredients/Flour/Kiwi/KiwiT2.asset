@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 1112
   displayName: Kiwi_T2
-  tier: 0
-  group: {fileID: 0}
+  tier: 2
+  group: {fileID: 11400000, guid: bb3ace8e28ba34b488a503fac7639c05, type: 2}
   statRegistry: {fileID: 11400000, guid: 8c708b79448eedb48aedc73e2c1e3459, type: 2}
   modifiers:
   - stat: {fileID: 11400000, guid: 4b5d309076757534c862c041c02ef45b, type: 2}

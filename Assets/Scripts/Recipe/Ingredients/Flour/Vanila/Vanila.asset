@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7ea90f462a852f49962fc015472f12b, type: 3}
   m_Name: Vanila
   m_EditorClassIdentifier: 
-  GroupName: 
-  tiers: []
+  GroupName: Vanila
+  tiers:
+  - {fileID: 11400000, guid: 87218cd54686b53419257c561355543f, type: 2}
+  - {fileID: 11400000, guid: 6070c428c1ba16749854de47dfad6688, type: 2}
+  - {fileID: 11400000, guid: cface1e3fee5d4f44801f1304ab06579, type: 2}

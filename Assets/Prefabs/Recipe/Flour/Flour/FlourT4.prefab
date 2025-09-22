@@ -89,10 +89,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39b8ed08a7307d440b05a67f43e87011, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ingredientData: {fileID: 11400000, guid: b96de4e1063e0d340a8d47e58c435f5a, type: 2}
-  canvas: {fileID: 0}
-  recipeEventManager: {fileID: 0}
-  panel: {fileID: 0}
+  ingredientData: {fileID: 11400000, guid: d94995bff24e33442bb9aa87a3f549f8, type: 2}
 --- !u!225 &5810489968934732880
 CanvasGroup:
   m_ObjectHideFlags: 0

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Cream-Apple
   m_EditorClassIdentifier: 
   orderInsensitive: 1
-  requireAllIngredients:
-  - {fileID: 11400000, guid: 431ce983769ac014aa9c9f8092a66288, type: 2}
-  - {fileID: 11400000, guid: ca4ad8eec835fd446800ee32589a34d9, type: 2}
-  requireAnyIngredients: []
+  requireAllGroups:
+  - {fileID: 11400000, guid: c17242f809cf918468d408a29f95f14c, type: 2}
+  - {fileID: 0}
+  requireAnyGroups: []
   delta: {fileID: 11400000, guid: 0f27972a49cfcc64194f7d66845ef9f5, type: 2}

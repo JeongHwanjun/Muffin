@@ -11,7 +11,7 @@ public class CakePanel : MonoBehaviour, IDropHandler
         DraggableItem dropped = eventData.pointerDrag?.GetComponent<DraggableItem>();
         if (dropped != null)
         {
-            cakeBuilder.AddIngredient(dropped.ingredientData);
+            cakeBuilder?.AddIngredient(dropped.ingredientData);
             //RecipeEventManager.TriggerIngredientDropped(dropped.GetComponent<Ingredient>());
         }
     }

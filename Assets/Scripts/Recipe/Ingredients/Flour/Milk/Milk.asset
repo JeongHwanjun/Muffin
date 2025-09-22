@@ -12,5 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7ea90f462a852f49962fc015472f12b, type: 3}
   m_Name: Milk
   m_EditorClassIdentifier: 
-  GroupName: 
-  tiers: []
+  GroupName: Milk
+  tiers:
+  - {fileID: 11400000, guid: fc4224582802e194a8b0a5b9d6a669d1, type: 2}
+  - {fileID: 11400000, guid: 5293c17ade1840646afc631710062ec2, type: 2}
+  - {fileID: 11400000, guid: 6b1697a5106d61e4eaf54b20f9616970, type: 2}
+  - {fileID: 11400000, guid: 00d85112d497f40438f72e6ad63363ce, type: 2}
+  - {fileID: 11400000, guid: 98be7b02b879c8d4fa221baf21ade71a, type: 2}

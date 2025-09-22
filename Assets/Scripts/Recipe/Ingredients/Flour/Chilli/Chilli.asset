@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7ea90f462a852f49962fc015472f12b, type: 3}
   m_Name: Chilli
   m_EditorClassIdentifier: 
-  GroupName: 
-  tiers: []
+  GroupName: Chilli
+  tiers:
+  - {fileID: 11400000, guid: 0f6dca197fcda01489f3c865d8eb9bbd, type: 2}
+  - {fileID: 11400000, guid: 604849be8d3f54d4f87de433b78bb702, type: 2}
+  - {fileID: 11400000, guid: 6ee538dbfb1316343a13e1fa6cc5ff30, type: 2}

@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7ea90f462a852f49962fc015472f12b, type: 3}
   m_Name: Oil
   m_EditorClassIdentifier: 
-  GroupName: 
-  tiers: []
+  GroupName: Oil
+  tiers:
+  - {fileID: 11400000, guid: b3e183a939b841f408c6dca886abfe95, type: 2}
+  - {fileID: 11400000, guid: 04c1e7ed0fa302d4998ca67c240d6a60, type: 2}
+  - {fileID: 11400000, guid: bc5d122572c882045ab849ca9e9477b3, type: 2}

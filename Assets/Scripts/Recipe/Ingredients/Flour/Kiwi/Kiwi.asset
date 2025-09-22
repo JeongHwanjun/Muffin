@@ -12,5 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7ea90f462a852f49962fc015472f12b, type: 3}
   m_Name: Kiwi
   m_EditorClassIdentifier: 
-  GroupName: 
-  tiers: []
+  GroupName: Kiwi
+  tiers:
+  - {fileID: 11400000, guid: a8a9402b2f8fd24498be25bf8a2978e1, type: 2}
+  - {fileID: 11400000, guid: 3d14c0ed454543147aa6b174262db615, type: 2}
+  - {fileID: 11400000, guid: 6355b060da824a84db9e6e15d24b63d2, type: 2}
+  - {fileID: 11400000, guid: 9d69c3331a1ab4a4ca9dfeb3b0774700, type: 2}
+  - {fileID: 11400000, guid: ea0ca388cb0b0934d9e75d4ae8492b24, type: 2}

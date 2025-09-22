@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 1121
   displayName: MangoT1
-  tier: 0
-  group: {fileID: 0}
+  tier: 1
+  group: {fileID: 11400000, guid: 8b3b9716b622c1549bd89ef353d6383a, type: 2}
   statRegistry: {fileID: 11400000, guid: 8c708b79448eedb48aedc73e2c1e3459, type: 2}
   modifiers:
   - stat: {fileID: 11400000, guid: 4b5d309076757534c862c041c02ef45b, type: 2}

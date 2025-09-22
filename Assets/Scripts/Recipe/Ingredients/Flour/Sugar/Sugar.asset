@@ -12,5 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7ea90f462a852f49962fc015472f12b, type: 3}
   m_Name: Sugar
   m_EditorClassIdentifier: 
-  GroupName: 
-  tiers: []
+  GroupName: 5
+  tiers:
+  - {fileID: 11400000, guid: 479c9b363c6deed4b9c1d3f353e31c30, type: 2}
+  - {fileID: 11400000, guid: 356db40ef35be534081ff67cb010bc5f, type: 2}
+  - {fileID: 11400000, guid: 20e64871cda755f43b5d1bff198fc37a, type: 2}
+  - {fileID: 11400000, guid: b5dd88eb08123eb40af2fc89654fca4e, type: 2}
+  - {fileID: 11400000, guid: 376d8806281797442a1aaf21617949b8, type: 2}

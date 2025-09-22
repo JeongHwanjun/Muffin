@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 1060
   displayName: Vanila_T0
+  tier: 0
+  group: {fileID: 11400000, guid: 69d4c96f97f85a34eaeb2ee29ec1a9d0, type: 2}
   statRegistry: {fileID: 11400000, guid: 8c708b79448eedb48aedc73e2c1e3459, type: 2}
   modifiers:
   - stat: {fileID: 11400000, guid: 4b5d309076757534c862c041c02ef45b, type: 2}

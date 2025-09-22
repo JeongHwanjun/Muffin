@@ -12,7 +12,7 @@ public class DragIcon : MonoBehaviour
     [SerializeField] private GameObject draggableItem;
     private Ingredient ingredientData; // Ingredient의 정보를 담고 있는 SO
 
-    public void Init(Canvas parentCanvas, RecipeEventManager eventManager)
+    public void Init(Canvas parentCanvas, RecipeEventManager eventManager) // awake 시점 호출
     {
         canvas = parentCanvas;
         recipeEventManager = eventManager;
@@ -47,12 +47,10 @@ public class DragIcon : MonoBehaviour
 
     public GameObject InstantiateNewIngredient(Ingredient droppedIngredient)
     {
-        Debug.Log("DraggableItem 조건 체크 시도");
         if (droppedIngredient.id != ingredientData.id)
         {
             return null;
         }
-        Debug.Log("DraggableItem 생성 시도");
         GameObject cloneIngredient = Instantiate(draggablePrefab, transform);
         /*
         RectTransform myRect = GetComponent<RectTransform>();
