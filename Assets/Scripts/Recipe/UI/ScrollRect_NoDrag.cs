@@ -30,6 +30,11 @@ public class ScrollRect_NoDrag : ScrollRect
         //base.OnEndDrag(eventData);
     }
 
+    public override void OnScroll(PointerEventData data)
+    {
+        //base.OnScroll(data); // 아무것도 안함 : Update에서 스크롤 따로 처리
+    }
+
     private bool ShouldDrag(PointerEventData eventData)
     {
         // 드래그 대상이 ScrollView의 자식인지 확인
