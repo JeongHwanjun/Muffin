@@ -6,23 +6,39 @@ public class ListIcon : MonoBehaviour
     private Button iconButton;         // 클릭용 아이콘 버튼
     public GameObject dropdownPanel;  // 항목을 포함하는 패널
     private IngredientList ingredientList; // 렌더링 순서 조절용으로 참고. ExpandPanel 실행 후 sortingOrder 변경
+    private RecipeEventManager recipeEventManager;
+    private bool shouldActiveSelf = false;
 
     void Start()
     {
         iconButton = GetComponent<Button>();
         ingredientList = GetComponentInParent<IngredientList>();
+        recipeEventManager = RecipeEventManager.Instance;
+        recipeEventManager.OnPanelExpand += OnPanelExpand;
 
         SetPanelActive(false);
 
         iconButton.onClick.AddListener(() =>
         {
-            bool isActive = dropdownPanel.activeSelf;
-            SetPanelActive(!isActive);
-            //transform.parent.transform.SetAsLastSibling(); // 아이콘 전체를 flour의 마지막 자식으로 만듬 - UI가 다른 UI 밑에 묻히는걸 방지함
-            // 렌더링 순서 조정
-            ingredientList.ExpandPanel(dropdownPanel);
+            shouldActiveSelf = true;
+            recipeEventManager.TriggerPanelExpand(); // 패널 확장시 다른 패널을 비활성화
         });
     }
 
-    public void SetPanelActive(bool value){ dropdownPanel.SetActive(value); }
+    public void SetPanelActive(bool value) { dropdownPanel.SetActive(value); }
+
+    private void OnPanelExpand()
+    {
+        // 패널 확장 이벤트임. 이 이벤트를 받으면 자신이 비활성화되어야 하는지 체크하고 비활성화함.
+        if (shouldActiveSelf)
+        {
+            bool isActive = dropdownPanel.activeSelf;
+            SetPanelActive(!isActive);
+            ingredientList.ExpandPanel(dropdownPanel); // 렌더링 순서 조절
+            shouldActiveSelf = false;
+            return;
+        }
+
+        SetPanelActive(false);
+    }
 }

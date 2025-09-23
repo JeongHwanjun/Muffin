@@ -12,8 +12,12 @@ public class IngredientStatDisplayer : MonoBehaviour
 
     void Start()
     {
+        recipeEventManager = RecipeEventManager.Instance;
         recipeEventManager.OnIngredientHover += RefreshUI;
         RecipeEventManager.OnIngredientDropped += ClearUI;
+        recipeEventManager.OnIngredientHoverExit += ClearUI;
+
+        ClearUI();
     }
 
     void RefreshUI(Ingredient ingredient)
@@ -29,6 +33,11 @@ public class IngredientStatDisplayer : MonoBehaviour
     }
 
     void ClearUI(Ingredient ingredient)
+    {
+        UI.SetActive(false);
+    }
+
+    void ClearUI()
     {
         UI.SetActive(false);
     }

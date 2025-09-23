@@ -5,9 +5,11 @@ public class RecipeEventManager : MonoBehaviour
 {
     public static RecipeEventManager Instance { get; private set; }
     public event Action OnRefreshUI;
+    public event Action OnPanelExpand;
     public event Action<Ingredient> OnIngredientAdd;
     public event Action<Ingredient> OnIngredientClick;
     public event Action<Ingredient> OnIngredientHover;
+    public event Action OnIngredientHoverExit;
     public event Action OnSaveCake;
     public static event Action<Ingredient> OnIngredientDropped;
 
@@ -32,6 +34,12 @@ public class RecipeEventManager : MonoBehaviour
         OnRefreshUI?.Invoke();
     }
 
+    public void TriggerPanelExpand()
+    {
+        Debug.LogFormat("Event : OnPanelExpand");
+        OnPanelExpand?.Invoke();
+    }
+
     public void TriggerOnSaveCake()
     {
         Debug.LogFormat("Event : OnSaveCake");
@@ -54,5 +62,11 @@ public class RecipeEventManager : MonoBehaviour
     {
         Debug.LogFormat("Event : OnIngredientHover");
         OnIngredientHover?.Invoke(hoverIngredient);
+    }
+
+    public void TriggerIngredientHoverExit()
+    {
+        Debug.LogFormat("Event : OnIngredientHoverExit");
+        OnIngredientHoverExit?.Invoke();
     }
 }

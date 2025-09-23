@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler
+public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler
 {
     public Ingredient ingredientData; // 에디터에서 초기화
     private Canvas canvas;
@@ -29,7 +29,7 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     {
         Debug.Log("DraggableItem : BeginDrag");
         panel = transform.parent.parent.gameObject; // 현재 부모(panel)를 다른 곳에 기록해둠 - 나중에 비활성화
-        transform.SetParent(canvas.transform, worldPositionStays : true); // 부모를 최상위 canvas로 변경. worldPositionStays=false면 새로운 canvas에 맞게 위치가 조정됨
+        transform.SetParent(canvas.transform, worldPositionStays: true); // 부모를 최상위 canvas로 변경. worldPositionStays=false면 새로운 canvas에 맞게 위치가 조정됨
         //rectTransform.anchorMin = new Vector2(0.5f, 0.5f); // 굳이 바꾸면 좌표는 유지된채로 기준만 바뀌어서 위치가 이상하게 바뀜;;
         //rectTransform.anchorMax = new Vector2(0.5f, 0.5f);
         canvasGroup.blocksRaycasts = false; // 한번 드래그를 끝내면 다시 드래그하지 못함
@@ -102,5 +102,10 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     {
         // Ingredient의 Stat을 보여주는 UI에 정보 전송 및 갱신
         recipeEventManager.TriggerIngredientHover(ingredientData);
+    }
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        // UI 비활성화 목적의 이벤트 발생
+        recipeEventManager.TriggerIngredientHoverExit();
     }
 }

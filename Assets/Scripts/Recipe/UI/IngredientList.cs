@@ -14,7 +14,7 @@ public class IngredientList : MonoBehaviour
         // recipeEventManager는 지정됨
 
 
-        foreach(var ingredientPanel in ingredientPanels) ingredientPanel.Init(canvas, recipeEventManager);
+        foreach (var ingredientPanel in ingredientPanels) ingredientPanel.Init(canvas, recipeEventManager);
     }
 
     public void ExpandPanel(GameObject panel) // 패널을 펼칠 때 수행되어 렌더링 우선순위 지정
