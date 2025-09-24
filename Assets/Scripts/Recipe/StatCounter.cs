@@ -19,9 +19,10 @@ public class StatCounter : MonoBehaviour
         multipliedStat = new CakeStat();
         comboStat = new CakeStat();
         multiplier = new StatMultipliers();
-        
+
 
         recipeEventManager.OnIngredientAdd += OnIngredientAdd;
+        recipeEventManager.OnIngredientSub += OnIngredientSub;
     }
 
     public void OnIngredientAdd(Ingredient newIngredient)
@@ -50,6 +51,43 @@ public class StatCounter : MonoBehaviour
         recipeEventManager.TriggerRefreshUI(); // UI 갱신
     }
 
+    public void OnIngredientSub()
+    {
+        if (ingredients.Count <= 0) return;
+
+        Ingredient lastIngredient = ingredients[ingredients.Count - 1]; // 마지막 재료 - 스탯에서 제외하기 위함
+        IngredientType lastIngredientType = lastIngredient.GetIngredientType();
+        // 재료 타입에 따라 다른 처리
+        if (lastIngredientType == IngredientType.Flour)
+        {
+            // flour 대처
+            StatMultipliers multiplier = new(lastIngredient);
+            SubMultiplier(multiplier);
+        }
+        else if (lastIngredientType == IngredientType.Base)
+        {
+            // base 대처
+            CakeStat stat = new(lastIngredient);
+            SubPureStat(stat);
+        }
+        else if (lastIngredientType == IngredientType.Topping)
+        {
+            // topping 대처
+            CakeStat stat = new(lastIngredient);
+            SubPureStat(stat);
+        }
+        else
+        {
+            Debug.LogErrorFormat("Invalid Ingredient Sub : {0}", lastIngredient);
+        }
+
+        // 화살표 삭제
+        recipeArrows.RemoveRange(ingredients.Count - 1, lastIngredient.recipeArrows.Count); 
+        // 재료 목록에서 재료 삭제
+        ingredients.RemoveAt(ingredients.Count - 1);
+        recipeEventManager.TriggerRefreshUI(); // UI 갱신
+    }
+
     public List<recipeArrow> GetRecipeArrows()
     {
         return recipeArrows;
@@ -62,11 +100,23 @@ public class StatCounter : MonoBehaviour
 
         finalStat = pureStat;
     }
+    public void SubPureStat(CakeStat diff)
+    {
+        pureStat = pureStat - diff;
+
+        finalStat = pureStat;
+    }
 
     public void AddMultiplier(StatMultipliers diff)
     {
         // 배율 변화
         multiplier = multiplier + diff;
+
+        recipeEventManager.TriggerRefreshUI();
+    }
+    public void SubMultiplier(StatMultipliers diff)
+    {
+        multiplier = multiplier - diff;
 
         recipeEventManager.TriggerRefreshUI();
     }

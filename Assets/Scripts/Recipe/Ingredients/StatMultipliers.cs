@@ -44,4 +44,19 @@ public class StatMultipliers
             modifiers = newModifiers
         };
     }
+
+    public static StatMultipliers operator -(StatMultipliers a, StatMultipliers b)
+    {
+        List<StatModifier> newModifiers = new();
+        for (int i = 0; i < a.modifiers.Count; i++)
+        {
+            StatModifier sm = a.modifiers[i] - b.modifiers[i];
+            newModifiers.Add(sm);
+        }
+
+        return new StatMultipliers
+        {
+            modifiers = newModifiers
+        };
+    }
 }

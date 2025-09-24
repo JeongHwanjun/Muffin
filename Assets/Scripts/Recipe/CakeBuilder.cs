@@ -13,40 +13,8 @@ public class CakeBuilder : MonoBehaviour
     void Start()
     {
         recipeEventManager.OnIngredientAdd += AddIngredient;
+        recipeEventManager.OnIngredientSub += PopIngredient;
     }
-
-    // cake value 획득 함수들 - 다른 스크립트에서도 사용함.
-    /*
-    public int GetTotalTaste()
-    {
-        return ingredients.Sum(i => i.ingredientData.taste);
-    }
-    public int GetTotalFlavor()
-    {
-        return ingredients.Sum(i => i.ingredientData.flavor);
-    }
-
-    public int GetTotalTexture()
-    {
-        return ingredients.Sum(i => i.ingredientData.texture);
-    }
-
-    public int GetTotalAppearance()
-    {
-        return ingredients.Sum(i => i.ingredientData.appearance);
-    }
-
-    public int GetTotalCost()
-    {
-        return ingredients.Sum(i => i.ingredientData.cost);
-    }
-
-    public string GetCakeName()
-    {
-        if (cakeName.text == null) return "임시이름";
-        return cakeName.text;
-    }
-    */
 
     public List<recipeArrow> GetFinalRecipe()
     {
@@ -67,6 +35,12 @@ public class CakeBuilder : MonoBehaviour
         ingredients.Add(newIngredient);
         // 재료 추가 이벤트 발생
         //Debug.Log("CakeBuilder : 재료 추가" + newIngredient.ingredientData.ingredientName);
+    }
+
+    public void PopIngredient()
+    {
+        if (ingredients.Count <= 0) return;
+        ingredients.RemoveAt(ingredients.Count - 1);
     }
     
     public CakeData BuildCake()
