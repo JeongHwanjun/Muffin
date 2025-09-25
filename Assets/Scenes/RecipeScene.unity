@@ -3942,6 +3942,14 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -6415649246072548017, guid: 27834320931067c4b9127246cba948d2, type: 3}
+    - target: {fileID: 668518465484197448, guid: b46c0175d33ed3844b770f4a684b2637, type: 3}
+      propertyPath: cakeBuilder
+      value: 
+      objectReference: {fileID: 524475266}
+    - target: {fileID: 668518465484197448, guid: b46c0175d33ed3844b770f4a684b2637, type: 3}
+      propertyPath: recipeEventManager
+      value: 
+      objectReference: {fileID: 1814829951}
     - target: {fileID: 740381002559195028, guid: b46c0175d33ed3844b770f4a684b2637, type: 3}
       propertyPath: m_Sprite
       value: 

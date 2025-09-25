@@ -9,7 +9,7 @@ public class StatCounter : MonoBehaviour
     public CakeStat comboStat = null;
     public CakeStat finalStat = null;
     public StatMultipliers multiplier = null;
-    public List<Ingredient> ingredients = new();
+    public List<Ingredient> ingredients = new(); // 추가된 재료 리스트
     public List<recipeArrow> recipeArrows = new();
     public ComboResolver comboResolver = null;
 
