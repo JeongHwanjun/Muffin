@@ -8,10 +8,11 @@ public class IngredientList : MonoBehaviour
     public List<IngredientPanel> ingredientPanels;
     private int _sortingOrder = 1;
 
-    void Awake()
+    void Start()
     {
         canvas = GetComponentInParent<Canvas>();
         // recipeEventManager는 지정됨
+        recipeEventManager = RecipeEventManager.Instance;
 
 
         foreach (var ingredientPanel in ingredientPanels) ingredientPanel.Init(canvas, recipeEventManager);

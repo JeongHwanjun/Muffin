@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orderInsensitive: 1
   requireAllGroups:
-  - {fileID: 11400000, guid: c17242f809cf918468d408a29f95f14c, type: 2}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 99ea04bf056222844b32175a59286817, type: 2}
+  - {fileID: 11400000, guid: a3da191a598960c48b2c852bfec6d85d, type: 2}
   requireAnyGroups: []
   delta: {fileID: 11400000, guid: 0f27972a49cfcc64194f7d66845ef9f5, type: 2}

@@ -13,6 +13,8 @@ public class StatCounter : MonoBehaviour
     public List<recipeArrow> recipeArrows = new();
     public ComboResolver comboResolver = null;
 
+    private bool isComboCalculated = false;
+
     void Start()
     {
         pureStat = new CakeStat();
@@ -38,6 +40,8 @@ public class StatCounter : MonoBehaviour
         {
             CakeStat stat = new(newIngredient); // 스탯 형태로 재가공
             AddPureStat(stat);
+            SetMultipliedStat();
+            SetFinalStat();
         }
         else
         {
@@ -64,17 +68,13 @@ public class StatCounter : MonoBehaviour
             StatMultipliers multiplier = new(lastIngredient);
             SubMultiplier(multiplier);
         }
-        else if (lastIngredientType == IngredientType.Base)
+        else if (lastIngredientType == IngredientType.Base || lastIngredientType == IngredientType.Topping)
         {
             // base 대처
             CakeStat stat = new(lastIngredient);
             SubPureStat(stat);
-        }
-        else if (lastIngredientType == IngredientType.Topping)
-        {
-            // topping 대처
-            CakeStat stat = new(lastIngredient);
-            SubPureStat(stat);
+            SetMultipliedStat();
+            SetFinalStat();
         }
         else
         {
@@ -88,24 +88,10 @@ public class StatCounter : MonoBehaviour
         recipeEventManager.TriggerRefreshUI(); // UI 갱신
     }
 
-    public List<recipeArrow> GetRecipeArrows()
-    {
-        return recipeArrows;
-    }
+    public List<recipeArrow> GetRecipeArrows(){return recipeArrows;}
 
-    public void AddPureStat(CakeStat diff)
-    {
-        // 순수스탯(재료의 총합)
-        pureStat = pureStat + diff;
-
-        finalStat = pureStat;
-    }
-    public void SubPureStat(CakeStat diff)
-    {
-        pureStat = pureStat - diff;
-
-        finalStat = pureStat;
-    }
+    public void AddPureStat(CakeStat diff){pureStat = pureStat + diff;}
+    public void SubPureStat(CakeStat diff){pureStat = pureStat - diff;}
 
     public void AddMultiplier(StatMultipliers diff)
     {
@@ -121,27 +107,21 @@ public class StatCounter : MonoBehaviour
         recipeEventManager.TriggerRefreshUI();
     }
 
-    public StatMultipliers GetMultipliers()
-    {
-        return multiplier;
-    }
+    public StatMultipliers GetMultipliers(){return multiplier;}
 
-    public CakeStat GetMultipliedStat()
-    {
-        multipliedStat = pureStat * multiplier;
+    private void SetMultipliedStat(){multipliedStat = pureStat * multiplier;}
 
-        finalStat = multipliedStat;
-        // 배율 스탯 반환
-        return multipliedStat;
-    }
+    public CakeStat GetMultipliedStat(){return multipliedStat;}
 
-    public CakeStat GetComboStat() // 콤보 적용
+    private void SetComboStat() // 콤보 적용
     {
         if (!comboResolver)
         {
             Debug.LogWarningFormat("ComboResolver : {0}", comboResolver);
+            return;
         }
 
+        Debug.Log("Applying Combo");
         comboStat = CakeStat.CloneCakeStat(multipliedStat);
         foreach (var comboRule in comboResolver.GetMatches(ingredients))
         {
@@ -149,17 +129,23 @@ public class StatCounter : MonoBehaviour
             Debug.LogFormat("Combo Applied : {0}", comboRule.delta.displayName);
         }
 
-        finalStat = comboStat;
-
-        return comboStat;
+        // 콤보 산출했음을 기록
+        isComboCalculated = true;
     }
+    public CakeStat GetComboStat() {return comboStat;}
 
     public void PressComboButton() // 임시
     {
-        finalStat = GetComboStat();
+        SetComboStat();
+        SetFinalStat();
         recipeEventManager.TriggerRefreshUI();
     }
 
+    public void SetFinalStat()
+    {
+        if (isComboCalculated) finalStat = GetComboStat();
+        else finalStat = GetMultipliedStat();
+    }
     public CakeStat GetFinalStat()
     {
         // 최종 스탯 반환

@@ -13,7 +13,6 @@ public class CakePanel : MonoBehaviour, IDropHandler
         // 이벤트 구독
         recipeEventManager = RecipeEventManager.Instance;
         recipeEventManager.OnIngredientSub += OnIngredientSub;
-        Debug.LogWarning("CakePanel");
     }
     void OnEnable()
     {
@@ -24,7 +23,6 @@ public class CakePanel : MonoBehaviour, IDropHandler
         DraggableItem dropped = eventData.pointerDrag?.GetComponent<DraggableItem>();
         if (dropped != null)
         {
-            cakeBuilder?.AddIngredient(dropped.ingredientData);
             //RecipeEventManager.TriggerIngredientDropped(dropped.GetComponent<Ingredient>());
             draggableItems.Push(dropped.gameObject);
         }
