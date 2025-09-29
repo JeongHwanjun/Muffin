@@ -23,18 +23,16 @@ public class CakeSerializer : MonoBehaviour
             CakeData newCake = cakeBuilder.BuildCake();
             string json = JsonConvert.SerializeObject(newCake.ToSerializable(), Formatting.Indented);
             Debug.Log("CakeData Serialized : " + json.ToString());
-            /*
-            string folderPath = Path.Combine(CakeStorageUtil.SavePath);
-            string filePath = Path.Combine(CakeStorageUtil.SavePath, newCake.displayName + ".json");
+            string folderPath = Path.Combine(CakeStorageUtil.CakeRecipePath);
+            string filePath = Path.Combine(CakeStorageUtil.CakeRecipePath, "Cake" + newCake.ID + ".json");
             if (!Directory.Exists(folderPath))
             {
                 Directory.CreateDirectory(folderPath);
             }
             File.WriteAllText(filePath, json);
-            Debug.Log("케이크 데이터 저장 완료: " + CakeStorageUtil.SavePath);
+            Debug.Log("케이크 데이터 저장 완료: " + CakeStorageUtil.CakeRecipePath);
 
-            StartCoroutine(CaptureCakeUI());
-            */
+            //StartCoroutine(CaptureCakeUI()); // 케이크 UI 캡쳐
         }
         catch (Exception e)
         {

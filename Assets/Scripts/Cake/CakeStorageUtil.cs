@@ -3,6 +3,7 @@ using UnityEngine;
 
 public static class CakeStorageUtil
 {
-    public static string SavePath => Path.Combine(Application.persistentDataPath, "CakeData");
-    public static string MetaDataPath => Path.Combine(Application.persistentDataPath, "CakeData", "MetaData.json");
+    public static string BasePath => Path.Combine(Directory.GetCurrentDirectory(), "CakeData");
+    public static string CakeRecipePath => Path.Combine(BasePath, "Recipes");
+    public static string MetaDataPath => Path.Combine(CakeRecipePath, "MetaData.json");
 }
