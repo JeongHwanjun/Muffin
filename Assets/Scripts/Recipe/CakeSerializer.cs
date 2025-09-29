@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using System.IO;
-using Unity.VisualScripting;
+using Newtonsoft.Json;
 using UnityEngine;
 
 public class CakeSerializer : MonoBehaviour
@@ -21,11 +21,11 @@ public class CakeSerializer : MonoBehaviour
         try
         {
             CakeData newCake = cakeBuilder.BuildCake();
-            string json = JsonUtility.ToJson(cakeBuilder.BuildCake());
+            string json = JsonConvert.SerializeObject(newCake.ToSerializable(), Formatting.Indented);
             Debug.Log("CakeData Serialized : " + json.ToString());
-
+            /*
             string folderPath = Path.Combine(CakeStorageUtil.SavePath);
-            string filePath = Path.Combine(CakeStorageUtil.SavePath, newCake.cakeName + ".json");
+            string filePath = Path.Combine(CakeStorageUtil.SavePath, newCake.displayName + ".json");
             if (!Directory.Exists(folderPath))
             {
                 Directory.CreateDirectory(folderPath);
@@ -34,6 +34,7 @@ public class CakeSerializer : MonoBehaviour
             Debug.Log("케이크 데이터 저장 완료: " + CakeStorageUtil.SavePath);
 
             StartCoroutine(CaptureCakeUI());
+            */
         }
         catch (Exception e)
         {
