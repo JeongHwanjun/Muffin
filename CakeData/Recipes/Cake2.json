@@ -1,0 +1,19 @@
+{
+  "displayName": "Cake2",
+  "ID": "2",
+  "status": {
+    "Taste": 27,
+    "Flavor": 33,
+    "Texture": 24,
+    "Appearance": 30,
+    "Cost": 9
+  },
+  "recipe": [
+    0,
+    2,
+    3,
+    0,
+    0
+  ],
+  "preferences": []
+}

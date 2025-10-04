@@ -11,7 +11,8 @@ public class RecipeEventManager : MonoBehaviour
     public event Action<Ingredient> OnIngredientClick;
     public event Action<Ingredient> OnIngredientHover;
     public event Action OnIngredientHoverExit;
-    public event Action OnSaveCake;
+    public event Action<RectTransform> OnSaveCake;
+    public event Action OnCloneCakePanel;
     public static event Action<Ingredient> OnIngredientDropped;
 
     void Awake()
@@ -46,10 +47,15 @@ public class RecipeEventManager : MonoBehaviour
         OnPanelExpand?.Invoke();
     }
 
-    public void TriggerOnSaveCake()
+    public void TriggerSaveCake(RectTransform clonedUI)
     {
         Debug.LogFormat("Event : OnSaveCake");
-        OnSaveCake?.Invoke();
+        OnSaveCake?.Invoke(clonedUI);
+    }
+    public void TriggerCloneCakePanel()
+    {
+        Debug.LogFormat("Event : OnCloneCakePanel");
+        OnCloneCakePanel?.Invoke();
     }
 
     public static void TriggerIngredientDropped(Ingredient droppedIngredient)

@@ -85,7 +85,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &760309911763967262
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -500,7 +500,7 @@ GameObject:
   - component: {fileID: 9158729900800731738}
   - component: {fileID: 2188494440185856519}
   - component: {fileID: 668518465484197448}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: CakePanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1212,7 +1212,7 @@ GameObject:
   - component: {fileID: 9192099448758185931}
   - component: {fileID: 5991925084584079956}
   - component: {fileID: 5991854150883774402}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: CakeImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
