@@ -9,6 +9,7 @@ public class CakeData
   public List<StatModifier> status;
   public List<recipeArrow> recipe;
   public List<float> preferences;
+  public string imagePath;
 
   // json변환용 직렬화 코드
   public object ToSerializable()
@@ -25,7 +26,8 @@ public class CakeData
       ID = this.ID,
       status = statusDict,
       recipe = this.recipe,
-      preferences = this.preferences
+      preferences = this.preferences,
+      imagePath = this.imagePath
     };
   }
 }

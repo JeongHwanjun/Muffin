@@ -14,6 +14,8 @@ public class CakeSerializer : MonoBehaviour
     private RectTransform targetUI; // 캡처할 UI 루트
     public Camera uiCamera; // 캡처할 화면만 비추는 카메라
 
+    private CakeData newCake;
+
     void Start()
     {
         recipeEventManager.OnSaveCake += SaveCake;
@@ -23,19 +25,10 @@ public class CakeSerializer : MonoBehaviour
     {
         try
         {
-            CakeData newCake = cakeBuilder.BuildCake();
-            string json = JsonConvert.SerializeObject(newCake.ToSerializable(), Formatting.Indented);
-            Debug.Log("CakeData Serialized : " + json.ToString());
-            string folderPath = Path.Combine(CakeStorageUtil.CakeRecipePath);
-            string filePath = Path.Combine(CakeStorageUtil.CakeRecipePath, "Cake" + newCake.ID + ".json");
-            if (!Directory.Exists(folderPath))
-            {
-                Directory.CreateDirectory(folderPath);
-            }
-            File.WriteAllText(filePath, json);
-            Debug.Log("케이크 데이터 저장 완료: " + CakeStorageUtil.CakeRecipePath);
-
-            StartCoroutine(CaptureCakeUI(newCake, clonedUI)); // 케이크 UI 캡쳐
+            // 이미지를 제외한 정보로 케이크 생성
+            newCake = cakeBuilder.BuildCake();
+            // 이미지 캡처 후 저장 시작
+            StartCoroutine(CaptureCakeUIandSave(newCake, clonedUI)); // 케이크 UI 캡쳐
         }
         catch (Exception e)
         {
@@ -43,7 +36,7 @@ public class CakeSerializer : MonoBehaviour
         }
     }
 
-    public IEnumerator CaptureCakeUI(CakeData newCake, RectTransform clonedUI)
+    public IEnumerator CaptureCakeUIandSave(CakeData newCake, RectTransform clonedUI)
     {
         Debug.Log("캡쳐 시작");
         // 렌더링 완료될 때까지 대기
@@ -89,6 +82,20 @@ public class CakeSerializer : MonoBehaviour
         File.WriteAllBytes(imagePath, pngData);
 
         Debug.Log("Capture Complete  : " + imagePath);
+
+        // 6. 저장된 이미지 경로를 전달해 케이크 데이터 저장
+
+        newCake.imagePath = imagePath;
+        string json = JsonConvert.SerializeObject(newCake.ToSerializable(), Formatting.Indented);
+        Debug.Log("CakeData Serialized : " + json.ToString());
+        string folderPath = Path.Combine(CakeStorageUtil.CakeRecipePath);
+        string filePath = Path.Combine(CakeStorageUtil.CakeRecipePath, "Cake" + newCake.ID + ".json");
+        if (!Directory.Exists(folderPath))
+        {
+            Directory.CreateDirectory(folderPath);
+        }
+        File.WriteAllText(filePath, json);
+        Debug.Log("케이크 데이터 저장 완료: " + CakeStorageUtil.CakeRecipePath);
 
         uiCamera.targetTexture = null;
         RenderTexture.active = null;
