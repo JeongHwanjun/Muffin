@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class StatCounter : MonoBehaviour
@@ -12,8 +13,11 @@ public class StatCounter : MonoBehaviour
     public List<Ingredient> ingredients = new(); // 추가된 재료 리스트
     public List<recipeArrow> recipeArrows = new();
     public ComboResolver comboResolver = null;
+    private PlayerData playerData = PlayerData.Instance;
 
     private bool isComboCalculated = false;
+    private int recipeLenFlour = 0, recipeLenBase = 0, recipeLenTopping = 0;
+    private int maxLenFlour, maxLenBase, maxLenTopping;
 
     void Start()
     {
@@ -25,23 +29,57 @@ public class StatCounter : MonoBehaviour
 
         recipeEventManager.OnIngredientAdd += OnIngredientAdd;
         recipeEventManager.OnIngredientSub += OnIngredientSub;
+        maxLenFlour = playerData.recipeLenFlour;
+        maxLenBase = playerData.recipeLenBase;
+        maxLenTopping = playerData.recipeLenTopping;
     }
 
     public void OnIngredientAdd(Ingredient newIngredient)
     {
         IngredientType newIngredientType = newIngredient.GetIngredientType(); // 재료 타입 획득
+        bool isExceeded = false;
 
         if (newIngredientType == IngredientType.Flour) // Flour 단계면 배율 변경
         {
+            recipeLenFlour += newIngredient.recipeArrows.Count; // 화살표 길이 추가
             StatMultipliers multipliers = new(newIngredient); // 배율 형태로 재가공
             AddMultiplier(multipliers);
+
+            if (recipeLenFlour > maxLenFlour)
+            {
+                Debug.LogFormat("Flour Recipe Length exceeded : {0}", recipeLenFlour);
+                isExceeded = true;
+            }
         }
-        else if (newIngredientType == IngredientType.Base || newIngredientType == IngredientType.Topping) // Base나 Topping 단계면 스탯 변경
-        {
+        else if (newIngredientType == IngredientType.Base) // Base 단계면 스탯 변경
+		{
+            recipeLenBase += newIngredient.recipeArrows.Count;
             CakeStat stat = new(newIngredient); // 스탯 형태로 재가공
             AddPureStat(stat);
             SetMultipliedStat();
             SetFinalStat();
+
+            if (recipeLenBase > maxLenBase)
+            {
+                Debug.LogFormat("Base Recipe Length exceeded : {0}", recipeLenBase);
+                isExceeded = true;
+            }
+        }
+        else if(newIngredientType == IngredientType.Topping) // Topping 단계면 스탯 변경
+        {
+        
+            recipeLenTopping += newIngredient.recipeArrows.Count;
+            CakeStat stat = new(newIngredient); // 스탯 형태로 재가공
+            AddPureStat(stat);
+            SetMultipliedStat();
+            SetFinalStat();
+            
+            if (recipeLenTopping > maxLenTopping)
+            {
+                Debug.LogFormat("Topping Recipe Length exceeded : {0}", recipeLenTopping);
+                isExceeded = true;
+            }
+            
         }
         else
         {
@@ -53,6 +91,8 @@ public class StatCounter : MonoBehaviour
         ingredients.Add(newIngredient); // 재료 목록에 추가(콤보 카운팅)
         recipeArrows.AddRange(newIngredient.recipeArrows); // 전체 화살표에 재료 화살표를 추가함.
         recipeEventManager.TriggerRefreshUI(); // UI 갱신
+
+        if (isExceeded) recipeEventManager.TriggerIngredientSub(); // 제한된 레시피 길이 초과시 바로 재료 삭제
     }
 
     public void OnIngredientSub()
@@ -67,14 +107,25 @@ public class StatCounter : MonoBehaviour
             // flour 대처
             StatMultipliers multiplier = new(lastIngredient);
             SubMultiplier(multiplier);
+            recipeLenFlour -= lastIngredient.recipeArrows.Count;
         }
-        else if (lastIngredientType == IngredientType.Base || lastIngredientType == IngredientType.Topping)
+        else if (lastIngredientType == IngredientType.Base)
         {
             // base 대처
             CakeStat stat = new(lastIngredient);
             SubPureStat(stat);
             SetMultipliedStat();
             SetFinalStat();
+            recipeLenBase -= lastIngredient.recipeArrows.Count;
+        }
+        else if (lastIngredientType == IngredientType.Topping)
+        {
+            // topping 제거
+            CakeStat stat = new(lastIngredient);
+            SubPureStat(stat);
+            SetMultipliedStat();
+            SetFinalStat();
+            recipeLenTopping -= lastIngredient.recipeArrows.Count;
         }
         else
         {
