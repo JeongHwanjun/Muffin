@@ -5,14 +5,15 @@ public class ListIcon : MonoBehaviour
 {
     private Button iconButton;         // 클릭용 아이콘 버튼
     public GameObject dropdownPanel;  // 항목을 포함하는 패널
-    private IngredientList ingredientList; // 렌더링 순서 조절용으로 참고. ExpandPanel 실행 후 sortingOrder 변경
+    public IngredientGroup ingredientGroup; // 자신이 표현하는 Ingredient가 어떤 분류에 속하는지
+    private IngredientListHolder ingredientListHolder; // 렌더링 순서 조절용으로 참고. ExpandPanel 실행 후 sortingOrder 변경
     private RecipeEventManager recipeEventManager;
     private bool shouldActiveSelf = false;
 
     void Start()
     {
         iconButton = GetComponent<Button>();
-        ingredientList = GetComponentInParent<IngredientList>();
+        ingredientListHolder = GetComponentInParent<IngredientListHolder>();
         recipeEventManager = RecipeEventManager.Instance;
         recipeEventManager.OnPanelExpand += OnPanelExpand;
 
@@ -34,7 +35,7 @@ public class ListIcon : MonoBehaviour
         {
             bool isActive = dropdownPanel.activeSelf;
             SetPanelActive(!isActive);
-            ingredientList.ExpandPanel(dropdownPanel); // 렌더링 순서 조절
+            ingredientListHolder.OnExpandPanel(dropdownPanel); // 렌더링 순서 조절
             shouldActiveSelf = false;
             return;
         }

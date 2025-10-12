@@ -1,29 +1,42 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class IngredientList : MonoBehaviour
 {
-    private Canvas canvas; // 최상위 canvas - draggableItem이 드래그시 참조함
-    public RecipeEventManager recipeEventManager;
-    public List<IngredientPanel> ingredientPanels;
-    private int _sortingOrder = 1;
+    public IngredientPanel ingredientPanel;
+    public List<GameObject> draggableIcons;
+    public IngredientGroup ingredientGroup;
 
-    void Start()
+    private CanvasGroup canvasGroup;
+    private PlayerData playerData;
+    public void Init(Canvas canvas) // Start 시점 시작
     {
-        canvas = GetComponentInParent<Canvas>();
-        // recipeEventManager는 지정됨
-        recipeEventManager = RecipeEventManager.Instance;
+        Debug.Log("IngredientList Initialize");
+        ingredientPanel.Init(canvas);
 
+        canvasGroup = GetComponent<CanvasGroup>();
+        playerData = PlayerData.Instance;
 
-        foreach (var ingredientPanel in ingredientPanels) ingredientPanel.Init(canvas, recipeEventManager);
-    }
-
-    public void ExpandPanel(GameObject panel) // 패널을 펼칠 때 수행되어 렌더링 우선순위 지정
-    {
-        var priCanvas = panel.GetComponent<Canvas>(); // 패널을 펼칠 때 렌더링 우선순위 변경용 canvas.
-        if (priCanvas == null) priCanvas = panel.AddComponent<Canvas>();
-        priCanvas.overrideSorting = true;
-
-        priCanvas.sortingOrder = _sortingOrder++;
+        if(playerData.ingredientTierDict.TryGetValue(ingredientGroup, out int tier))
+        {
+            Debug.Log("Tier : " + tier);
+            if (tier <= 0) // 사용 불가능한 티어라면 숨기고 상호작용 불가능하게
+            {
+                canvasGroup.alpha = 0;
+                canvasGroup.interactable = false;
+                canvasGroup.blocksRaycasts = false;
+            }
+            else
+            {
+                for(int i = 0; i < tier; i++)
+                {
+                    CanvasGroup iconCanvasGroup = draggableIcons[i].GetComponent<CanvasGroup>();
+                    iconCanvasGroup.alpha = 1;
+                    iconCanvasGroup.interactable = true;
+                    iconCanvasGroup.blocksRaycasts = true;
+                }
+            }
+        }
     }
 }

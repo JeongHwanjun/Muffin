@@ -11,10 +11,10 @@ public class IngredientPanel : MonoBehaviour
     public Canvas canvas;
     public RecipeEventManager recipeEventManager;
 
-    public void Init(Canvas parentCanvas, RecipeEventManager eventManager) // awake 시점 호출
+    public void Init(Canvas parentCanvas) // start 시점 호출
     {
         canvas = parentCanvas;
-        recipeEventManager = eventManager;
+        recipeEventManager = RecipeEventManager.Instance;
 
         rectTransform = GetComponent<RectTransform>();
         horizontalLayoutGroup = GetComponent<HorizontalLayoutGroup>();
