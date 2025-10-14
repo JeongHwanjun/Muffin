@@ -30,6 +30,7 @@ public class CakePanel : MonoBehaviour, IDropHandler
         StatCounter statCounter = GameObject.Find("StatCounter").GetComponent<StatCounter>();
         Ingredient lastIngredient = statCounter.ingredients.Last();
         // 1. Base라면 해당 Base의 IngredientGroup을 key로 하는 image를 적용
+        // 이러면 아무 Base도 넣지 않았을 시 문제 발생. Base를 넣지 않으면 통과되지 않게 변경 필요.
         if(lastIngredient.GetIngredientType() == IngredientType.Base)
         {
             cakeImage.sprite = baseImage.BaseImageDict[lastIngredient.group];

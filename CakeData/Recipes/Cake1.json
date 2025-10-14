@@ -2,20 +2,16 @@
   "displayName": "Cake1",
   "ID": "1",
   "status": {
-    "Taste": 64,
-    "Flavor": 95,
-    "Texture": 44,
-    "Appearance": 80,
-    "Cost": 68
+    "Taste": 27,
+    "Flavor": 33,
+    "Texture": 24,
+    "Appearance": 30,
+    "Cost": 9
   },
   "recipe": [
     0,
-    0,
-    0,
     2,
     3,
-    0,
-    0,
     0,
     0
   ],
