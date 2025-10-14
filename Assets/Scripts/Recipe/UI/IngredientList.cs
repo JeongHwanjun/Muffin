@@ -20,7 +20,6 @@ public class IngredientList : MonoBehaviour
 
         if(playerData.ingredientTierDict.TryGetValue(ingredientGroup, out int tier))
         {
-            Debug.Log("Tier : " + tier);
             if (tier <= 0) // 사용 불가능한 티어라면 숨기고 상호작용 불가능하게
             {
                 canvasGroup.alpha = 0;
