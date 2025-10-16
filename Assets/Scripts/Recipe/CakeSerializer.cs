@@ -1,7 +1,10 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.IO;
+using Microsoft.Unity.VisualStudio.Editor;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using UnityEngine;
 
 public class CakeSerializer : MonoBehaviour
@@ -13,6 +16,9 @@ public class CakeSerializer : MonoBehaviour
     private int width = 1020, height = 1080;
     private RectTransform targetUI; // 캡처할 UI 루트
     public Camera uiCamera; // 캡처할 화면만 비추는 카메라
+    PlayerData playerData = PlayerData.Instance;
+    List<CakeMetaData> cakeMetadatas;
+    string cakeMetadataPath;
 
     private CakeData newCake;
 
@@ -23,6 +29,27 @@ public class CakeSerializer : MonoBehaviour
 
     public void SaveCake(RectTransform clonedUI)
     {
+        cakeMetadataPath = Path.Combine(CakeStorageUtil.MetaDataPath, "Metadata.json");
+        // 케이크 관련 정보 획득
+        if (!File.Exists(cakeMetadataPath))
+        {
+            Directory.CreateDirectory(CakeStorageUtil.MetaDataPath);
+            List<CakeMetaData> data = new();
+            string emptyJson = JsonConvert.SerializeObject(data);
+            File.WriteAllText(cakeMetadataPath, emptyJson);
+        }
+        
+        string text = File.ReadAllText(cakeMetadataPath);
+        cakeMetadatas = JsonConvert.DeserializeObject<List<CakeMetaData>>(text);
+        // 추가 케이크 생성이 가능한지 검사
+        if(cakeMetadatas.Count >= playerData.cakeNumLimit)
+        {
+            Debug.LogWarningFormat("CakeNumLimit exceeded : {0}", cakeMetadatas.Count);
+            // 불가능하다면 종료 - 추가적인 연출 필요함
+            return;
+        }
+
+        
         try
         {
             // 이미지를 제외한 정보로 케이크 생성
@@ -48,13 +75,6 @@ public class CakeSerializer : MonoBehaviour
         // 1. UI 영역을 스크린 좌표로 변환
         Vector3[] corners = new Vector3[4];
         targetUI.GetWorldCorners(corners);
-
-        Debug.LogFormat("UI size : ({0}, {1}, {2}, {3})", corners[0], corners[1], corners[2], corners[3]);
-
-        //int x = Mathf.RoundToInt(corners[0].x);
-        //int y = Mathf.RoundToInt(corners[0].y);
-        //int width = Mathf.RoundToInt(corners[2].x - corners[0].x);
-        //int height = Mathf.RoundToInt(corners[2].y - corners[0].y);
 
         //2. RenderTexture 생성 및 렌더링
         RenderTexture rt = new RenderTexture(width, height, 24, RenderTextureFormat.ARGB32);
@@ -101,5 +121,15 @@ public class CakeSerializer : MonoBehaviour
         RenderTexture.active = null;
         Destroy(rt);
         Destroy(tex);
+
+        // 7. 메타데이터 기록
+        CakeMetaData newMetadata = new();
+        newMetadata.imagePath = imagePath;
+        newMetadata.displayName = newCake.displayName;
+        cakeMetadatas.Add(newMetadata);
+        string cakeMetadataJson = JsonConvert.SerializeObject(cakeMetadatas, Formatting.Indented);
+        File.WriteAllText(cakeMetadataPath, cakeMetadataJson);
+
+        // 8. 메인 화면으로 복귀
     }
 }
