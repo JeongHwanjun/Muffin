@@ -16,22 +16,18 @@ public class CakeBuilder : MonoBehaviour
     void Start()
     {
         recipeEventManager = RecipeEventManager.Instance;
+        SetInitialCakeName();
     }
 
-    void GetCakeStat() // 현재 케이크의 최종 스탯을 가져옴
+    public void SetInitialCakeName()
     {
-        cakeStat = statCounter.GetFinalStat();
-        if (cakeStat == null)
-        {
-            Debug.LogError("Trying GetCakeStat : cakeStat is null");
-            return;
-        }
+        PlayerData playerData = PlayerData.Instance;
+        cakeName.text = "Cake" + playerData.cakeCounter.ToString();
     }
 
     string GetCakeName()
     {
-        PlayerData playerData = PlayerData.Instance;
-        return "Cake" + playerData.cakeCounter.ToString();
+        return cakeName.text;
     }
 
     string GetCakeID()
