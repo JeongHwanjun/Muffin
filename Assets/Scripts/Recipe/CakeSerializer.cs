@@ -6,6 +6,7 @@ using Microsoft.Unity.VisualStudio.Editor;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CakeSerializer : MonoBehaviour
 {
@@ -131,5 +132,6 @@ public class CakeSerializer : MonoBehaviour
         File.WriteAllText(cakeMetadataPath, cakeMetadataJson);
 
         // 8. 메인 화면으로 복귀
+        SceneManager.LoadScene("MainScene");
     }
 }
