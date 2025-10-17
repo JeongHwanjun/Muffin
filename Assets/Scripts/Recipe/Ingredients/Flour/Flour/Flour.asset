@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7ea90f462a852f49962fc015472f12b, type: 3}
   m_Name: Flour
   m_EditorClassIdentifier: 
+  guid: c905650f3cb06334d85fa65fa96a6d87
   GroupName: Flour
   tiers:
   - {fileID: 11400000, guid: b96de4e1063e0d340a8d47e58c435f5a, type: 2}

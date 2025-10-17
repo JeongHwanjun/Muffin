@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7ea90f462a852f49962fc015472f12b, type: 3}
   m_Name: Chocolate_Base
   m_EditorClassIdentifier: 
+  guid: 6a6e89487c561c14481ae957c8f7decc
   GroupName: Chcolate_Base
   tiers:
   - {fileID: 11400000, guid: 1e1a958dbd87af0469aabd89f3611487, type: 2}

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7ea90f462a852f49962fc015472f12b, type: 3}
   m_Name: Alchol
   m_EditorClassIdentifier: 
+  guid: c9ac94a7c8c3f604383cf64359fb3b7b
   GroupName: Alchol
   tiers:
   - {fileID: 11400000, guid: 753a0f9482d4fa74fb70760e722dc024, type: 2}

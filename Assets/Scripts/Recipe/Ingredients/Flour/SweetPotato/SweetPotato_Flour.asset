@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7ea90f462a852f49962fc015472f12b, type: 3}
   m_Name: SweetPotato_Flour
   m_EditorClassIdentifier: 
+  guid: 18d1b864c2b39574884c8187e7e26289
   GroupName: SweetPotato_Flour
   tiers:
   - {fileID: 11400000, guid: a8db4b9cee248bb4bb0c8b38bc7dc768, type: 2}

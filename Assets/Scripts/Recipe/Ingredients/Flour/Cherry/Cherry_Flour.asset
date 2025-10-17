@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7ea90f462a852f49962fc015472f12b, type: 3}
   m_Name: Cherry_Flour
   m_EditorClassIdentifier: 
+  guid: ce00bc2d016ba844387cb2fc8f010c11
   GroupName: Cherry_Flour
   tiers:
   - {fileID: 11400000, guid: 8439580819c8b414bbb4666e0c368d3e, type: 2}

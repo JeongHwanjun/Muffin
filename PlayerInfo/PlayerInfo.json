@@ -1,0 +1,14 @@
+{
+  "cakeCounter": 1,
+  "cakeNumLimit": 10,
+  "recipeLenFlour": 3,
+  "recipeLenBase": 3,
+  "recipeLenTopping": 5,
+  "ingredientTierDict": {
+    "c905650f3cb06334d85fa65fa96a6d87": 4,
+    "d2f20a47a7162794e8203d4498904c7f": 2,
+    "6a6e89487c561c14481ae957c8f7decc": 2,
+    "653a5b90770349c48a170c550aeccf57": 3,
+    "59d36046311a1284a922035cfa89e833": 1
+  }
+}

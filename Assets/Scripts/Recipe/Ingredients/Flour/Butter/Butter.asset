@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7ea90f462a852f49962fc015472f12b, type: 3}
   m_Name: Butter
   m_EditorClassIdentifier: 
+  guid: 829dcb0f5b1c80a40bf210bb206cd842
   GroupName: Butter
   tiers:
   - {fileID: 11400000, guid: 1c8f4f61fe0f91048a48eae2d242618e, type: 2}

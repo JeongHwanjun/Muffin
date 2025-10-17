@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7ea90f462a852f49962fc015472f12b, type: 3}
   m_Name: Raspberry_Flour
   m_EditorClassIdentifier: 
+  guid: 1ca30f616c8ca274ab3be1c11e4f657a
   GroupName: Raspberry_Flour
   tiers:
   - {fileID: 11400000, guid: d1c1a21237c884443807361b13a099b2, type: 2}

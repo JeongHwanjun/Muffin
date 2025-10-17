@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7ea90f462a852f49962fc015472f12b, type: 3}
   m_Name: Kiwi_Flour
   m_EditorClassIdentifier: 
+  guid: 2d80d561048bb494b853667ed8fdd5a2
   GroupName: Kiwi_Flour
   tiers:
   - {fileID: 11400000, guid: a8a9402b2f8fd24498be25bf8a2978e1, type: 2}

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7ea90f462a852f49962fc015472f12b, type: 3}
   m_Name: Herb
   m_EditorClassIdentifier: 
+  guid: 12de491de70649649ad8afb21e4f0158
   GroupName: Herb
   tiers:
   - {fileID: 11400000, guid: fdc50359a9d57904e9d809fe334c8f95, type: 2}

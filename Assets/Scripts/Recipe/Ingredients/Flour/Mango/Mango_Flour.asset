@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7ea90f462a852f49962fc015472f12b, type: 3}
   m_Name: Mango_Flour
   m_EditorClassIdentifier: 
+  guid: 9659f1e9f56dce7419a36d7e53d2ebba
   GroupName: Mango_Flour
   tiers:
   - {fileID: 11400000, guid: 131181261936ad340b1e1df55bacbc47, type: 2}

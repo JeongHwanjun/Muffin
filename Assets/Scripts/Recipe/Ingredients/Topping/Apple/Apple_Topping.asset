@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7ea90f462a852f49962fc015472f12b, type: 3}
   m_Name: Apple_Topping
   m_EditorClassIdentifier: 
+  guid: 653a5b90770349c48a170c550aeccf57
   GroupName: Apple_Topping
   tiers:
   - {fileID: 11400000, guid: 1dd1d92c19a09e649ab6b2b76a74d796, type: 2}

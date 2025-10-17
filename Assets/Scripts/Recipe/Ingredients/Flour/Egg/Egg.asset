@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7ea90f462a852f49962fc015472f12b, type: 3}
   m_Name: Egg
   m_EditorClassIdentifier: 
+  guid: bfd47933d5b98e741b44b21510db8d8b
   GroupName: Egg
   tiers:
   - {fileID: 11400000, guid: 40b480bd7b8958c478952ba1017694e7, type: 2}

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7ea90f462a852f49962fc015472f12b, type: 3}
   m_Name: Blueberry_Flour
   m_EditorClassIdentifier: 
+  guid: fa861b928ea24fc468d5977d5733f546
   GroupName: Blueberry_Flour
   tiers:
   - {fileID: 11400000, guid: 3ce45529ddc8f2e499b7109356e16b56, type: 2}

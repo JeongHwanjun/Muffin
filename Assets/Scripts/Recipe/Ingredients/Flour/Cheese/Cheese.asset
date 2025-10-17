@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7ea90f462a852f49962fc015472f12b, type: 3}
   m_Name: Cheese
   m_EditorClassIdentifier: 
+  guid: 115d397b34be1b948a891b4b666a8046
   GroupName: Cheese
   tiers:
   - {fileID: 11400000, guid: b8b9b1502dffe6b4eb978e174703e005, type: 2}

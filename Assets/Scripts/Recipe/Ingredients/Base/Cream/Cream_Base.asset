@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7ea90f462a852f49962fc015472f12b, type: 3}
   m_Name: Cream_Base
   m_EditorClassIdentifier: 
+  guid: d2f20a47a7162794e8203d4498904c7f
   GroupName: Cream_Base
   tiers:
   - {fileID: 11400000, guid: e92de701dc8637649890def0fbb399f4, type: 2}

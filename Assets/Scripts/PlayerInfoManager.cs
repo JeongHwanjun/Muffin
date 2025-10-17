@@ -1,32 +1,78 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using Newtonsoft.Json;
 using UnityEngine;
 
 // 게임 시작하자마자 playerData를 읽어와서 초기화해야함 ㅇㅇ
 // 또한 저장도 담당함
 public class PlayerInfoManager : MonoBehaviour
 {
-    [SerializeField]
-    private List<TierPair> ingredientTierDict;
+    [SerializeField] [Tooltip("IngredientGroup의 Tier를 등록해야 합니다.")]private List<TierPair> ingredientTierDict;
+    [SerializeField] [Tooltip("모든 IngredientGroup을 등록해야 합니다.")]private List<IngredientGroup> allIngredientGroups;
     private PlayerData playerData;
     void Awake()
     {
+        DontDestroyOnLoad(gameObject);
         playerData = PlayerData.Instance;
         // Initialize;
-        if (File.Exists(PlayerInfoStorageUtils.PlayerInfoPath)) // 플레이어 파일이 존재하면 그걸로 초기화함
+        if (File.Exists(PlayerInfoStorageUtils.PlayerInfoPath)) // 플레이어 파일이 존재하면 그걸 읽어옴
         {
-            // Read Files;
+            ReadPlayerData();
         }
-        else // 없으면 그냥 에디터에서 지정된 데이터로 진행함
+        else // 없으면 그냥 에디터에서 지정된 데이터로 초기화함
         {
-            playerData.ingredientTierDict = new();
-            foreach(var ingredientTier in ingredientTierDict)
-            {
-                playerData.ingredientTierDict.Add(ingredientTier.key, ingredientTier.value);
-            }
+            InitializeFromEditor();
         }
-        
+
+        Debug.Log("CakeNumLimit : " + playerData.cakeNumLimit);
+    }
+
+    void InitializeFromEditor()
+    {
+        playerData.ingredientTierDict = new();
+        foreach (var tierPair in ingredientTierDict)
+        {
+            playerData.ingredientTierDict[tierPair.key] = tierPair.value;
+        }
+        Debug.Log("InitializeFromEditor");
+    }
+
+    void OnApplicationQuit()
+    {
+        SavePlayerData();
+    }
+
+    void SavePlayerData()
+    {
+        try
+        {
+            var serializableData = new PlayerDataSerializable(playerData);
+            string json = JsonConvert.SerializeObject(serializableData, Formatting.Indented);
+
+            if(!Directory.Exists(PlayerInfoStorageUtils.BasePath)) Directory.CreateDirectory(PlayerInfoStorageUtils.BasePath);
+            File.WriteAllText(PlayerInfoStorageUtils.PlayerInfoPath, json);
+            Debug.Log("SavePlayerData");
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"[SavePlayerData] {e}");
+        }
+    }
+    void ReadPlayerData()
+    {
+        try
+        {
+            string json = File.ReadAllText(PlayerInfoStorageUtils.PlayerInfoPath);
+            var serializableData = JsonConvert.DeserializeObject<PlayerDataSerializable>(json);
+            serializableData.ApplyTo(playerData, allIngredientGroups);
+            Debug.Log("ReadPlayerData");
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"[ReadPlayerData] {e}");
+            InitializeFromEditor();
+        }
     }
 }
 

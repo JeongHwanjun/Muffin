@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7ea90f462a852f49962fc015472f12b, type: 3}
   m_Name: Sugar
   m_EditorClassIdentifier: 
+  guid: 78a606fbf43273c4883496a209b2bf85
   GroupName: 5
   tiers:
   - {fileID: 11400000, guid: 479c9b363c6deed4b9c1d3f353e31c30, type: 2}

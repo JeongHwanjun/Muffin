@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7ea90f462a852f49962fc015472f12b, type: 3}
   m_Name: Apple_Flour
   m_EditorClassIdentifier: 
+  guid: 18300d74a9ac2174e913c5a126b9920e
   GroupName: Apple_Flour
   tiers:
   - {fileID: 11400000, guid: 91c947ef75caff24a88814ef60562710, type: 2}

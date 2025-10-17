@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7ea90f462a852f49962fc015472f12b, type: 3}
   m_Name: Cocoa
   m_EditorClassIdentifier: 
+  guid: 32377d1e2294d4044a7266910c4a271b
   GroupName: Cocoa
   tiers:
   - {fileID: 11400000, guid: ca0722417b3899b4b9d36348d58444a4, type: 2}

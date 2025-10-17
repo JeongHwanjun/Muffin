@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7ea90f462a852f49962fc015472f12b, type: 3}
   m_Name: Strawberry_Flour
   m_EditorClassIdentifier: 
+  guid: c36da33907ddee14aa3533679c011311
   GroupName: Strawberry_Flour
   tiers:
   - {fileID: 11400000, guid: a080a0b7d7359ea4798b583bd9092ab0, type: 2}

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7ea90f462a852f49962fc015472f12b, type: 3}
   m_Name: Syrup
   m_EditorClassIdentifier: 
+  guid: 0b6dc4f20a77f524fb9baa1b53a9150f
   GroupName: Syrup
   tiers:
   - {fileID: 11400000, guid: 9c83f4ac2168ced448cc2026d4595a81, type: 2}

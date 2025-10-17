@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7ea90f462a852f49962fc015472f12b, type: 3}
   m_Name: Pepper
   m_EditorClassIdentifier: 
+  guid: 113813ca93967c84db391228efaf19c3
   GroupName: Pepper
   tiers:
   - {fileID: 11400000, guid: bd0072836a478214e82534d0f036f88f, type: 2}

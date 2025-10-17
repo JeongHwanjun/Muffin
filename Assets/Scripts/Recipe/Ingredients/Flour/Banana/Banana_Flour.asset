@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7ea90f462a852f49962fc015472f12b, type: 3}
   m_Name: Banana_Flour
   m_EditorClassIdentifier: 
+  guid: dbdc401ce8db08f4d9b82883bba475b8
   GroupName: Banana_Flour
   tiers:
   - {fileID: 11400000, guid: 59e4162aee75111449a842a1bc90a58a, type: 2}

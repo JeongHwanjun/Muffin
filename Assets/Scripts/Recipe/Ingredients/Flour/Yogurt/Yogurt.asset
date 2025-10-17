@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7ea90f462a852f49962fc015472f12b, type: 3}
   m_Name: Yogurt
   m_EditorClassIdentifier: 
+  guid: 37efcd81a75d2e5408df6eaf0faaa552
   GroupName: Yogurt
   tiers:
   - {fileID: 0}
