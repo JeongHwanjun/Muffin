@@ -1,5 +1,6 @@
 using UnityEngine;
 
+// 원래 다음 스테이지로 이동하는것만 하는 애인데 그냥 단계 이동의 실질 동작을 담당하는 애가 됨.
 public class NextButton : MonoBehaviour
 {
     public GameObject currentStage, NextStage;
@@ -26,9 +27,8 @@ public class NextButton : MonoBehaviour
         currentStage.SetActive(false);
         NextStage.SetActive(true);
     }
-
     public void CloneCakePanel()
     {
-        if(origin != null && targetParent != null) Instantiate(origin, targetParent.transform);
+        if (origin != null && targetParent != null) Instantiate(origin, targetParent.transform);
     }
 }

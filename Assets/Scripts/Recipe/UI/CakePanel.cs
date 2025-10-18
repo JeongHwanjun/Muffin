@@ -15,20 +15,22 @@ public class CakePanel : MonoBehaviour, IDropHandler
 
     void Start()
     {
-        // 이벤트 구독
         recipeEventManager = RecipeEventManager.Instance;
-        recipeEventManager.OnIngredientSub += OnIngredientSub;
-
-
+        draggableItems = new();
     }
+
     void OnEnable()
     {
-        draggableItems = new();
+        recipeEventManager.OnRemoveLastIngredient += RemoveLastIngredient;
+        
+
+        StatCounter statCounter = GameObject.Find("StatCounter").GetComponent<StatCounter>();
+        List<Ingredient> ingredients = statCounter.ingredients;
+        if (ingredients.Count <= 0) return;
 
         // cakeImage 설정
         // StatCounter에서 최근 재료 가져오기
-        StatCounter statCounter = GameObject.Find("StatCounter").GetComponent<StatCounter>();
-        Ingredient lastIngredient = statCounter.ingredients.Last();
+        Ingredient lastIngredient = ingredients.Last();
         // 1. Base라면 해당 Base의 IngredientGroup을 key로 하는 image를 적용
         // 이러면 아무 Base도 넣지 않았을 시 문제 발생. Base를 넣지 않으면 통과되지 않게 변경 필요.
         if(lastIngredient.GetIngredientType() == IngredientType.Base)
@@ -46,11 +48,17 @@ public class CakePanel : MonoBehaviour, IDropHandler
             draggableItems.Push(dropped.gameObject);
         }
     }
+    
+    void OnDisable()
+    {
+        recipeEventManager.OnRemoveLastIngredient -= RemoveLastIngredient;
+    }
 
-    void OnIngredientSub()
+    void RemoveLastIngredient()
     {
         // 가장 최근의 재료를 파괴함
-        GameObject lastItem = draggableItems.Pop();
+        GameObject lastItem;
+        draggableItems.TryPop(out lastItem);
         Destroy(lastItem);
     }
 }

@@ -94,15 +94,26 @@ public class StatCounter : MonoBehaviour
         recipeArrows.AddRange(newIngredient.recipeArrows); // 전체 화살표에 재료 화살표를 추가함.
         recipeEventManager.TriggerRefreshUI(); // UI 갱신
 
-        if (isExceeded) recipeEventManager.TriggerIngredientSub(); // 제한된 레시피 길이 초과시 바로 재료 삭제
+        if (isExceeded) recipeEventManager.TriggerIngredientSub(IngredientType.None); // 제한된 레시피 길이 초과시 바로 재료 삭제
     }
 
-    public void OnIngredientSub()
+    public void OnIngredientSub(IngredientType Stage)
     {
         if (ingredients.Count <= 0) return;
 
-        Ingredient lastIngredient = ingredients[ingredients.Count - 1]; // 마지막 재료 - 스탯에서 제외하기 위함
+        Ingredient lastIngredient = ingredients.Last(); // 마지막 재료 - 스탯에서 제외하기 위함
         IngredientType lastIngredientType = lastIngredient.GetIngredientType();
+
+        // 1. Stage랑 lastIngredientType이 같을 때 = 그냥 삭제하면 됨 = 아무 처리도 하지 않음
+        // 2. Stage랑 lastIngredientType이 다른데 Stage가 None은 아닐 때(=유효한 재료이지만 이전 스테이지일 때) = 이전 스테이지로 넘어가야 함
+        if (Stage != IngredientType.None && Stage != lastIngredientType)
+        {
+            // Return to prev Stage
+            recipeEventManager.TriggerMoveToPrevStage();
+            return; // 이전 Stage로 돌아갈 때 재료는 빼지 않음. 실력부족 + 가시성.
+        }
+        // 3. Stage랑 lastIngredientType이 다른데 Stage가 None일 때(=제한된 길이로 인해 삭제할 때) = 그냥 삭제하면 됨. = 아무 처리도 하지 않음
+
         // 재료 타입에 따라 다른 처리
         if (lastIngredientType == IngredientType.Flour)
         {
@@ -136,6 +147,8 @@ public class StatCounter : MonoBehaviour
 
         // 화살표 삭제
         recipeArrows.RemoveRange(ingredients.Count - 1, lastIngredient.recipeArrows.Count);
+        // 이미지 삭제
+        recipeEventManager.TriggerRemoveLastIngredient();
         // 재료 목록에서 재료 삭제
         ingredients.RemoveAt(ingredients.Count - 1);
         recipeEventManager.TriggerRefreshUI(); // UI 갱신

@@ -329,6 +329,17 @@ MonoBehaviour:
   ingredients: []
   recipeArrows: 
   comboResolver: {fileID: 1513026304}
+--- !u!114 &51981254 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2430011189928266464, guid: b46c0175d33ed3844b770f4a684b2637, type: 3}
+  m_PrefabInstance: {fileID: 468982017}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8092826b6440c8849aa5f9a3de55e3c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &77074465
 GameObject:
   m_ObjectHideFlags: 0
@@ -700,14 +711,14 @@ PrefabInstance:
     - target: {fileID: 2057619257142835203, guid: b46c0175d33ed3844b770f4a684b2637, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1814829951}
+      objectReference: {fileID: 307810430}
     - target: {fileID: 2057619257142835203, guid: b46c0175d33ed3844b770f4a684b2637, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: TriggerIngredientSub
+      value: OnMouseClick
       objectReference: {fileID: 0}
     - target: {fileID: 2057619257142835203, guid: b46c0175d33ed3844b770f4a684b2637, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: RecipeEventManager, Assembly-CSharp
+      value: RevertButton, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 2078605485041754133, guid: b46c0175d33ed3844b770f4a684b2637, type: 3}
       propertyPath: m_Sprite
@@ -805,6 +816,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2430011189928266464, guid: b46c0175d33ed3844b770f4a684b2637, type: 3}
+      propertyPath: StageType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2430011189928266464, guid: b46c0175d33ed3844b770f4a684b2637, type: 3}
+      propertyPath: prevStage
+      value: 
+      objectReference: {fileID: 468982019}
+    - target: {fileID: 2430011189928266464, guid: b46c0175d33ed3844b770f4a684b2637, type: 3}
+      propertyPath: currentStage
+      value: 
+      objectReference: {fileID: 581632142}
     - target: {fileID: 2537536995340230382, guid: b46c0175d33ed3844b770f4a684b2637, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -841,6 +864,10 @@ PrefabInstance:
       propertyPath: StageType
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2676211518218935557, guid: b46c0175d33ed3844b770f4a684b2637, type: 3}
+      propertyPath: prevStage
+      value: 
+      objectReference: {fileID: 468982019}
     - target: {fileID: 2676211518218935557, guid: b46c0175d33ed3844b770f4a684b2637, type: 3}
       propertyPath: targetParent
       value: 
@@ -1517,14 +1544,14 @@ PrefabInstance:
     - target: {fileID: 2057619257142835203, guid: b46c0175d33ed3844b770f4a684b2637, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1814829951}
+      objectReference: {fileID: 1261759687}
     - target: {fileID: 2057619257142835203, guid: b46c0175d33ed3844b770f4a684b2637, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: TriggerCloneCakePanel
+      value: OnMouseClick
       objectReference: {fileID: 0}
     - target: {fileID: 2057619257142835203, guid: b46c0175d33ed3844b770f4a684b2637, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: RecipeEventManager, Assembly-CSharp
+      value: RevertButton, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 2057619257142835203, guid: b46c0175d33ed3844b770f4a684b2637, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -1626,6 +1653,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -65
       objectReference: {fileID: 0}
+    - target: {fileID: 2676211518218935557, guid: b46c0175d33ed3844b770f4a684b2637, type: 3}
+      propertyPath: prevStage
+      value: 
+      objectReference: {fileID: 581632142}
     - target: {fileID: 2896997526278755345, guid: b46c0175d33ed3844b770f4a684b2637, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -2321,6 +2352,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 277976967}
   m_CullTransparentMesh: 1
+--- !u!114 &307810430 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2430011189928266464, guid: b46c0175d33ed3844b770f4a684b2637, type: 3}
+  m_PrefabInstance: {fileID: 166713425}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8092826b6440c8849aa5f9a3de55e3c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &358655854 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 671761730263122548, guid: dab688333e6c3e24bb92b88c7d8ebf60, type: 3}
@@ -2766,14 +2808,14 @@ PrefabInstance:
     - target: {fileID: 2057619257142835203, guid: b46c0175d33ed3844b770f4a684b2637, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1814829951}
+      objectReference: {fileID: 51981254}
     - target: {fileID: 2057619257142835203, guid: b46c0175d33ed3844b770f4a684b2637, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: TriggerIngredientSub
+      value: OnMouseClick
       objectReference: {fileID: 0}
     - target: {fileID: 2057619257142835203, guid: b46c0175d33ed3844b770f4a684b2637, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: RecipeEventManager, Assembly-CSharp
+      value: RevertButton, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 2078605485041754133, guid: b46c0175d33ed3844b770f4a684b2637, type: 3}
       propertyPath: m_Sprite
@@ -2871,6 +2913,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2430011189928266464, guid: b46c0175d33ed3844b770f4a684b2637, type: 3}
+      propertyPath: StageType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2430011189928266464, guid: b46c0175d33ed3844b770f4a684b2637, type: 3}
+      propertyPath: prevStage
+      value: 
+      objectReference: {fileID: 990866538}
+    - target: {fileID: 2430011189928266464, guid: b46c0175d33ed3844b770f4a684b2637, type: 3}
+      propertyPath: currentStage
+      value: 
+      objectReference: {fileID: 468982019}
     - target: {fileID: 2537536995340230382, guid: b46c0175d33ed3844b770f4a684b2637, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -2887,6 +2941,10 @@ PrefabInstance:
       propertyPath: StageType
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2676211518218935557, guid: b46c0175d33ed3844b770f4a684b2637, type: 3}
+      propertyPath: prevStage
+      value: 
+      objectReference: {fileID: 990866538}
     - target: {fileID: 2896997526278755345, guid: b46c0175d33ed3844b770f4a684b2637, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -4780,6 +4838,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dab688333e6c3e24bb92b88c7d8ebf60, type: 3}
+--- !u!114 &852629722 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2430011189928266464, guid: b46c0175d33ed3844b770f4a684b2637, type: 3}
+  m_PrefabInstance: {fileID: 1007176069}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8092826b6440c8849aa5f9a3de55e3c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &862028156 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5551749406919014200, guid: 2b1d0bd98038aa045966265f9037deab, type: 3}
@@ -5555,6 +5624,11 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!1 &990866538 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 927496780115672678, guid: b46c0175d33ed3844b770f4a684b2637, type: 3}
+  m_PrefabInstance: {fileID: 1007176069}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1006193181
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6111,14 +6185,14 @@ PrefabInstance:
     - target: {fileID: 2057619257142835203, guid: b46c0175d33ed3844b770f4a684b2637, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1814829951}
+      objectReference: {fileID: 852629722}
     - target: {fileID: 2057619257142835203, guid: b46c0175d33ed3844b770f4a684b2637, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: TriggerIngredientSub
+      value: OnMouseClick
       objectReference: {fileID: 0}
     - target: {fileID: 2057619257142835203, guid: b46c0175d33ed3844b770f4a684b2637, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: RecipeEventManager, Assembly-CSharp
+      value: RevertButton, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 2093430385659845286, guid: b46c0175d33ed3844b770f4a684b2637, type: 3}
       propertyPath: draggablePrefab
@@ -6208,6 +6282,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2430011189928266464, guid: b46c0175d33ed3844b770f4a684b2637, type: 3}
+      propertyPath: StageType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2430011189928266464, guid: b46c0175d33ed3844b770f4a684b2637, type: 3}
+      propertyPath: currentStage
+      value: 
+      objectReference: {fileID: 990866538}
     - target: {fileID: 2603601834864270007, guid: b46c0175d33ed3844b770f4a684b2637, type: 3}
       propertyPath: m_RaycastTarget
       value: 0
@@ -8264,6 +8346,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1261759687 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2430011189928266464, guid: b46c0175d33ed3844b770f4a684b2637, type: 3}
+  m_PrefabInstance: {fileID: 251252465}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8092826b6440c8849aa5f9a3de55e3c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1329289921

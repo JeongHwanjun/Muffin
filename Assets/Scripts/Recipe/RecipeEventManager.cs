@@ -7,7 +7,8 @@ public class RecipeEventManager : MonoBehaviour
     public event Action OnRefreshUI;
     public event Action OnPanelExpand;
     public event Action<Ingredient> OnIngredientAdd; // 재료 추가 이벤트. 추가에 따라 UI 갱신과 스탯 갱신이 이루어짐
-    public event Action OnIngredientSub; // 재료를 빼는 이벤트. 가장 최근에 추가한 재료 하나가 빠지게 된다.
+    public event Action<IngredientType> OnIngredientSub; // 재료를 빼는 이벤트. 가장 최근에 추가한 재료 하나가 빠지게 된다.
+    public event Action OnRemoveLastIngredient;
     public event Action<Ingredient> OnIngredientClick;
     public event Action<Ingredient> OnIngredientHover;
     public event Action OnIngredientHoverExit;
@@ -15,6 +16,7 @@ public class RecipeEventManager : MonoBehaviour
     public event Action OnCloneCakePanel;
     public event Action<IngredientType> OnClickNextButton;
     public event Action OnMoveToNextStage;
+    public event Action OnMoveToPrevStage;
     public static event Action<Ingredient> OnIngredientDropped;
 
     void Awake()
@@ -31,10 +33,15 @@ public class RecipeEventManager : MonoBehaviour
         Debug.LogFormat("Event : OnIngredientAdd {0}", newIngredient);
         OnIngredientAdd?.Invoke(newIngredient);
     }
-    public void TriggerIngredientSub()
+    public void TriggerIngredientSub(IngredientType Stage)
     {
         Debug.LogFormat("Event : OnIngredientSub");
-        OnIngredientSub?.Invoke();
+        OnIngredientSub?.Invoke(Stage);
+    }
+    public void TriggerRemoveLastIngredient()
+    {
+        Debug.LogFormat("Event : OnRemoveLastIngredient");
+        OnRemoveLastIngredient?.Invoke();
     }
 
     public void TriggerRefreshUI()
@@ -87,6 +94,12 @@ public class RecipeEventManager : MonoBehaviour
     {
         Debug.LogFormat("Event : OnMoveToNextStage");
         OnMoveToNextStage?.Invoke();
+    }
+
+    public void TriggerMoveToPrevStage()
+    {
+        Debug.LogFormat("Event : OnMoveToPrevStage");
+        OnMoveToPrevStage?.Invoke();
     }
 
     public void TriggerIngredientHoverExit()
