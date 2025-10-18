@@ -13,6 +13,8 @@ public class RecipeEventManager : MonoBehaviour
     public event Action OnIngredientHoverExit;
     public event Action<RectTransform> OnSaveCake;
     public event Action OnCloneCakePanel;
+    public event Action<IngredientType> OnClickNextButton;
+    public event Action OnMoveToNextStage;
     public static event Action<Ingredient> OnIngredientDropped;
 
     void Awake()
@@ -74,6 +76,17 @@ public class RecipeEventManager : MonoBehaviour
     {
         Debug.LogFormat("Event : OnIngredientHover");
         OnIngredientHover?.Invoke(hoverIngredient);
+    }
+
+    public void TriggerClickNextButton(IngredientType Stage)
+    {
+        Debug.LogFormat("Event : OnClickNextButton");
+        OnClickNextButton?.Invoke(Stage);
+    }
+    public void TriggerMoveToNextStage()
+    {
+        Debug.LogFormat("Event : OnMoveToNextStage");
+        OnMoveToNextStage?.Invoke();
     }
 
     public void TriggerIngredientHoverExit()

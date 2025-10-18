@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -29,6 +30,7 @@ public class StatCounter : MonoBehaviour
 
         recipeEventManager.OnIngredientAdd += OnIngredientAdd;
         recipeEventManager.OnIngredientSub += OnIngredientSub;
+        recipeEventManager.OnClickNextButton += OnClickNextButton;
         maxLenFlour = playerData.recipeLenFlour;
         maxLenBase = playerData.recipeLenBase;
         maxLenTopping = playerData.recipeLenTopping;
@@ -133,10 +135,24 @@ public class StatCounter : MonoBehaviour
         }
 
         // 화살표 삭제
-        recipeArrows.RemoveRange(ingredients.Count - 1, lastIngredient.recipeArrows.Count); 
+        recipeArrows.RemoveRange(ingredients.Count - 1, lastIngredient.recipeArrows.Count);
         // 재료 목록에서 재료 삭제
         ingredients.RemoveAt(ingredients.Count - 1);
         recipeEventManager.TriggerRefreshUI(); // UI 갱신
+    }
+
+    void OnClickNextButton(IngredientType Stage)
+    {
+        // 현재 스테이지에서 재료가 추가되었는지 확인
+        if (IsSameTypeWithLastIngredient(Stage)) recipeEventManager.TriggerMoveToNextStage(); // 그렇다면 다은 스테이지로 진행
+        else return; // 그렇지 않다면 넘어가지 않음.
+    }
+    
+    bool IsSameTypeWithLastIngredient(IngredientType ingredientType)
+    {
+        if (ingredients.Count <= 0) return false;
+        IngredientType lastType = ingredients.Last().GetIngredientType();
+        return ingredientType == lastType;
     }
 
     public List<recipeArrow> GetRecipeArrows(){return recipeArrows;}

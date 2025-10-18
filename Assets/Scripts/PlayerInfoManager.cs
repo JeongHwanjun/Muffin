@@ -11,9 +11,19 @@ public class PlayerInfoManager : MonoBehaviour
     [SerializeField] [Tooltip("IngredientGroup의 Tier를 등록해야 합니다.")]private List<TierPair> ingredientTierDict;
     [SerializeField] [Tooltip("모든 IngredientGroup을 등록해야 합니다.")]private List<IngredientGroup> allIngredientGroups;
     private PlayerData playerData;
+
+    public static PlayerInfoManager _instance;
     void Awake()
     {
+        // 씬 내에 하나만 존재함을 보장함
+        if (_instance != null && _instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        _instance = this;
         DontDestroyOnLoad(gameObject);
+
         playerData = PlayerData.Instance;
         // Initialize;
         if (File.Exists(PlayerInfoStorageUtils.PlayerInfoPath)) // 플레이어 파일이 존재하면 그걸 읽어옴
