@@ -10,21 +10,20 @@ public class Customer : MonoBehaviour
     public int cakeIndex{get; private set;}
     public Cake cake{get; private set;}
     public string orderCakeName;
-    public int[] like = {1,1,1};
-    public float maximumWaiting = 5.0f;
+    public CustomerInfo customerInfo;
 
     public CustomerManager customerManager;
     public CustomerUIHandler orderBubble;
 
-
+    private float waiting = 1.0f;
 
     private void Update() {
-        if(maximumWaiting < 0) {
+        if(waiting < 0) {
             // CustomerManager의 List<Customer>에서 자신을 제외하기, 그외 기타 자잘한 처리
             customerManager.DeleteCustomer(gameObject);
         } else {
             // 대기시간 카운팅
-            maximumWaiting -= Time.deltaTime;
+            waiting -= Time.deltaTime;
         }
     }
 
@@ -35,19 +34,26 @@ public class Customer : MonoBehaviour
             return;
         }
         customerManager = _customerManager;
-        // 초기화. 이용가능한 케이크의 속성과 선호도를 활용해 케이크 및 주문수량 결정
-        // 현재는 주어진 List<Cake> 중에서 무작위로 선택함
-        System.Random random = new System.Random();
-        cakeIndex = random.Next(0,cakes.Count);
-        orderQuantity = random.Next(minQuantity,maxQuantity + 1);
+        PickCake(cakes);
 
         cake = cakes[cakeIndex];
+        waiting = customerInfo.maximumWaiting;
 
         orderBubble.Initialize(cake, orderQuantity);
     }
 
-    public void OnLineChange(int index){
+    public void OnLineChange(int index)
+    {
         selfIndex = index;
         orderBubble.SetBubbleColor(selfIndex == 0);
+    }
+    
+    private void PickCake(List<Cake> cakes)
+    {
+        // 초기화. 이용가능한 케이크의 속성과 선호도를 활용해 케이크 및 주문수량 결정
+        // 현재는 주어진 List<Cake> 중에서 무작위로 선택함
+        System.Random random = new System.Random();
+        cakeIndex = random.Next(0, cakes.Count);
+        orderQuantity = random.Next(minQuantity,maxQuantity + 1);
     }
 }

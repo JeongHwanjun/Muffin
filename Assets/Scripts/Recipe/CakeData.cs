@@ -8,7 +8,7 @@ public class CakeData
   public string ID;
   public List<StatModifier> status;
   public List<recipeArrow> recipe;
-  public List<float> preferences;
+  public List<int> preferences;
   public string imagePath;
 
   // json변환용 직렬화 코드

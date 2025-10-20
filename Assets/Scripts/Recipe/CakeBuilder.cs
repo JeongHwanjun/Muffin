@@ -10,8 +10,7 @@ public class CakeBuilder : MonoBehaviour
     public StatCounter statCounter;
     private RecipeEventManager recipeEventManager;
     public TMP_InputField cakeName;
-
-    private CakeStat cakeStat;
+    public List<CustomerInfo> customerInfos;
 
     void Start()
     {
@@ -37,16 +36,37 @@ public class CakeBuilder : MonoBehaviour
         return playerData.cakeCounter.ToString();
     }
 
+    List<int> GetPreferences()
+    {
+        // 여기서 customerInfo를 모두 참고해 이 케이크의 선호도를 산출함;
+        List<int> preferences = new();
+        foreach(var customerInfo in customerInfos)
+        {
+            int total = 0;
+            int index = 0;
+            List<StatModifier> modifiers = statCounter.GetFinalStat().modifiers;
+            // customerInfo의 선호도 * cake의 스탯 을 총합한 값을 구해야 함.
+            foreach (int preference in customerInfo.preferences)
+            {
+                total += preference * modifiers[index].delta;
+                index++;
+                // 테스트 및 수정 필요!!
+            }
+            preferences.Add(total);
+            Debug.Log("Customer preference total : " + total);
+        }
+        return preferences;
+    }
+
     public CakeData BuildCake()
     {
-        // 현재는 임시버전. 최종적으론 시너지와 배수를 모두 고려해 빌드해야 함.
         CakeData newCake = new CakeData
         {
             ID = GetCakeID(),
             displayName = GetCakeName(),
             status = statCounter.GetFinalStat().modifiers,
             recipe = statCounter.GetRecipeArrows(),
-            preferences = new List<float>() // 임시로 아무거나 넣음
+            preferences = GetPreferences() // 임시로 아무거나 넣음
         };
         return newCake;
     }
