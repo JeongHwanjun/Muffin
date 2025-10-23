@@ -1,14 +1,7 @@
 [
   {
-    "imagePath": "C:\\Rldidkr\\Unity\\Muffin\\CakeData\\CakeImages\\5.png",
-    "displayName": "Cake4"
-  },
-  {
-    "imagePath": "C:\\Rldidkr\\Unity\\Muffin\\CakeData\\CakeImages\\1.png",
-    "displayName": "ppppppp"
-  },
-  {
-    "imagePath": "C:\\Rldidkr\\Unity\\Muffin\\CakeData\\CakeImages\\2.png",
-    "displayName": "Cake1"
+    "imagePath": "C:\\Rldidkr\\Unity\\Muffin\\CakeData\\CakeImages\\0.png",
+    "cakePath": "C:\\Rldidkr\\Unity\\Muffin\\CakeData\\Recipes\\Cake0.json",
+    "displayName": "Cake0"
   }
 ]

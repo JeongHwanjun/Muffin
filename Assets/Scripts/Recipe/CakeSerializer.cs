@@ -126,6 +126,7 @@ public class CakeSerializer : MonoBehaviour
         // 7. 메타데이터 기록
         CakeMetaData newMetadata = new();
         newMetadata.imagePath = imagePath;
+        newMetadata.cakePath = filePath;
         newMetadata.displayName = newCake.displayName;
         cakeMetadatas.Add(newMetadata);
         string cakeMetadataJson = JsonConvert.SerializeObject(cakeMetadatas, Formatting.Indented);

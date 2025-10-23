@@ -4,7 +4,7 @@ using System.Collections.Generic;
 [CreateAssetMenu(fileName = "StatRegistry", menuName = "Scriptable Objects/StatRegistry")]
 public class StatRegistry : ScriptableObject
 {
-	public List<Stat> stats = new(); // 프로젝트에 존재하는 모든 Trait
+	public List<Stat> stats = new(); // 프로젝트에 존재하는 모든 Stat
 	public int Count => stats.Count;
 
 	// 에디터에서 항목 갱신시 실행됨

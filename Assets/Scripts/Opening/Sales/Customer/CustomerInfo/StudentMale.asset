@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: StudentMale
   m_EditorClassIdentifier: 
   id: 0
-  displayName: 
-  preferences: 
-  maximumWaiting: 0
+  displayName: StudentMale
+  preferences: 03000000020000000200000001000000
+  maximumWaiting: 5

@@ -31,11 +31,15 @@ public class CakeManager : MonoBehaviour
   {
     // Cake 정보 불러오기
     CakeCollection cakes_origin = Instantiate(cakeCollection);
-    string path = Application.persistentDataPath + "/cakeData.json";
+    string path = CakeStorageUtil.CakeRecipePath;
+
+    // 실제로는 foreach()로 읽어오도록 해야 함. 경로가 담긴 List가 주어지므로 
+
     if (File.Exists(path))
     { // 파일이 있다면 불러옵니다
       string json = File.ReadAllText(path);
       CakeList cakeList = JsonUtility.FromJson<CakeList>(json);
+      // 참고 : CakeList, CakeCollection은 json을 읽어오기 위한 도구임. 현재는 NewtonSoft껄 쓰면 되니까 없애도 될듯???
       cakes = cakeList.cakes;
       Debug.Log("파일 읽기 완료 : " + path);
     }

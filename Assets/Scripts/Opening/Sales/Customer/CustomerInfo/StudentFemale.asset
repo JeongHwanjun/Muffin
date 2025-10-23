@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39cf88b49505d2d4290df70290c71022, type: 3}
   m_Name: StudentFemale
   m_EditorClassIdentifier: 
-  id: 0
-  displayName: 
-  preferences: 
-  maximumWaiting: 0
+  id: 1
+  displayName: StudentFemal
+  preferences: 03000000020000000100000002000000
+  maximumWaiting: 5

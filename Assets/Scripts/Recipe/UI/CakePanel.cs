@@ -15,12 +15,13 @@ public class CakePanel : MonoBehaviour, IDropHandler
 
     void Start()
     {
-        recipeEventManager = RecipeEventManager.Instance;
+        //recipeEventManager = RecipeEventManager.Instance;
         draggableItems = new();
     }
 
     void OnEnable()
     {
+        recipeEventManager = RecipeEventManager.Instance;
         recipeEventManager.OnRemoveLastIngredient += RemoveLastIngredient;
         
 
