@@ -8,25 +8,35 @@ using UnityEngine.UI;
 public class CakeCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     public Image image;
-    public TextMeshPro displayName;
+    public TextMeshProUGUI displayName;
+    public string cakePath;
 
     private Canvas canvas;
     private CanvasGroup canvasGroup;
     private RectTransform rectTransform;
-    public void Initialize(CakeMetaData cakeMetaData)
+    private OpeningReadyEventManager openingReadyEventManager;
+    private CakeCardPlaceholder parent;
+    public void Initialize(string displayName, Sprite sprite, string path, CakeCardPlaceholder parent)
     {
         // 이름 지정
-        displayName.text = cakeMetaData.displayName;
-        // 이미지 로드
-        byte[] imageByte = File.ReadAllBytes(cakeMetaData.imagePath);
-        Texture2D texture = new Texture2D(2, 2);
-        texture.LoadImage(imageByte);
-
-        Sprite sprite = Sprite.Create(texture,
-                new Rect(0, 0, texture.width, texture.height),
-                new Vector2(0.5f, 0.5f));
-
+        SetText(displayName);
+        // 이미지 지정
+        SetImage(sprite);
+        // 케이크 경로 지정
+        SetPath(path);
+        this.parent = parent;
+    }
+    public void SetText(string text)
+    {
+        displayName.text = text;
+    }
+    public void SetImage(Sprite sprite)
+    {
         image.sprite = sprite;
+    }
+    public void SetPath(string path)
+    {
+        cakePath = path;
     }
 
     void Start()
@@ -34,11 +44,13 @@ public class CakeCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         canvas = GetComponentInParent<Canvas>();
         rectTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
+        openingReadyEventManager = OpeningReadyEventManager.Instance;
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        throw new System.NotImplementedException();
+        // 드래그 시작 이벤트 발생
+        parent.UnchainCard();
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -49,19 +61,24 @@ public class CakeCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        // 드래그 종료 이벤트 발생
         if (TryFindValidDropTarget(eventData, out GameObject target))
         {
             Debug.Log("DraggableItem : Dropped on Valid item");
-            transform.SetParent(target.transform, worldPositionStays: true); // 부모를 cakePanel로 변경(이미지 캡처를 위해)
+            transform.SetParent(target.transform, worldPositionStays: true); // 부모를 슬롯으로 변경
             canvasGroup.interactable = false;   // 조작 무효화
             canvasGroup.ignoreParentGroups = true; // 부모 영향 무시
+
+            target.GetComponent<CakeSlot>().SetCakeCard(this);
         }
         else
         {
             Debug.Log("DraggableItem : Dropped on Invalid item");
-            Destroy(gameObject);
         }
-        throw new System.NotImplementedException();
+        // 카드 재생성 이벤트 발생
+        openingReadyEventManager.TriggerSetNewCard();
+        // 이 카드는 쓸모없으므로 파괴함
+        Destroy(gameObject);
     }
 
     private bool TryFindValidDropTarget(PointerEventData eventData, out GameObject target)
