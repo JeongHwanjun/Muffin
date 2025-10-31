@@ -10,6 +10,7 @@ public class CakeCardPlaceholder : MonoBehaviour
     private CakeMetaData cakeMetaData;
 
     private Sprite sprite;
+    private string id;
     private string displayName;
     private string path;
     public Image imageUI;
@@ -38,25 +39,27 @@ public class CakeCardPlaceholder : MonoBehaviour
 
         // 케이크 경로 지정
         path = cakeMetaData.cakePath;
+        // id획득
+        id = cakeMetaData.id;
 
         // 이벤트 구독
         openingReadyEventManager = OpeningReadyEventManager.Instance;
-        openingReadyEventManager.OnSetNewCard += CloneNewCard;
+        openingReadyEventManager.OnCloneNewCard += CloneNewCard;
 
         // 자신의 이미지 초기화
         imageUI.sprite = sprite;
         displayNameUI.text = displayName;
 
         // 시작시 카드 생성
-        CloneNewCard();
+        CloneNewCard(id);
     }
 
-    void CloneNewCard()
+    void CloneNewCard(string id)
     {
-        if (cakeCard == null)
+        if (cakeCard == null && string.Equals(this.id, id))
         {
             cakeCard = Instantiate(cakeCardPrefab, transform);
-            cakeCard.GetComponent<CakeCard>().Initialize(displayName, sprite, path, this);
+            cakeCard.GetComponent<CakeCard>().Initialize(id, displayName, sprite, path, this);
         }
     }
 

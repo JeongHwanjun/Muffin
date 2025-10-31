@@ -148,6 +148,7 @@ GameObject:
   - component: {fileID: 4766500969807753283}
   - component: {fileID: 2484720531103644759}
   - component: {fileID: 8953811252906624006}
+  - component: {fileID: 8257692902982656732}
   m_Layer: 5
   m_Name: CakeCard
   m_TagString: Untagged
@@ -229,6 +230,18 @@ MonoBehaviour:
   image: {fileID: 8520757636244484500}
   displayName: {fileID: 7984826904976223176}
   cakePath: 
+--- !u!225 &8257692902982656732
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4943665508660288412}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &6188433530816236205
 GameObject:
   m_ObjectHideFlags: 0

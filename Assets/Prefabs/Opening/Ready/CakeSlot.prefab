@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3566676071889395568}
   - component: {fileID: 5107280835477907666}
   - component: {fileID: 6225918116746378123}
+  - component: {fileID: 917356525370021065}
   m_Layer: 5
   m_Name: CakeSlot
   m_TagString: Untagged
@@ -89,6 +90,19 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &917356525370021065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5255298776600504346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 887dd28f7bc253d4a90e0b6eae5316b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cakeCard: {fileID: 622214283143621448}
 --- !u!1001 &8421977031743778638
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -189,6 +203,17 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 8670092615137433668}
   m_SourcePrefab: {fileID: 100100000, guid: 258780bdc97dd7545999d16e344b4462, type: 3}
+--- !u!114 &622214283143621448 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8953811252906624006, guid: 258780bdc97dd7545999d16e344b4462, type: 3}
+  m_PrefabInstance: {fileID: 8421977031743778638}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3493582659544298706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16eefc7f6975ec84c8e670251aad5294, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &2496852428315958748 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6216732686691480210, guid: 258780bdc97dd7545999d16e344b4462, type: 3}
