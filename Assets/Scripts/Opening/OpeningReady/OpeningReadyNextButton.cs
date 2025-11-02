@@ -1,12 +1,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class OpeningReadyNextButton : MonoBehaviour
 {
     public CakeDataReader cakeDataReader;
     private CakeManager cakeManager;
     private OpeningReadyEventManager openingReadyEventManager;
+    [SerializeField] private string nextSceneName;
     void Start()
     {
         openingReadyEventManager = OpeningReadyEventManager.Instance;
@@ -26,6 +28,33 @@ public class OpeningReadyNextButton : MonoBehaviour
         // 정보를 정제해 다음 cakeDataManager에게 넘겨주며 다음 씬 시작
         Debug.Log("CakeDatas : " + cakeDatas.Last().displayName);
 
+        // 운반자 생성
+        var carrierGO = new GameObject("CakeDataCarrier");
+        var carrier = carrierGO.AddComponent<CakeDataCarrier>();
+        carrier.Datas = cakeDatas;
+
+        // 씬 로드 후 초기화
+        SceneManager.sceneLoaded += OnSceneLoaded;
+        SceneManager.LoadScene(nextSceneName, LoadSceneMode.Single);
+
         cakeManager.InitializeCakes(cakeDatas);
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+
+        var carrier = FindFirstObjectByType<CakeDataCarrier>();
+        var cakeManager = CakeManager.Instance;
+
+        if (carrier != null && cakeManager != null && carrier.Datas != null && carrier.Datas.Count > 0)
+        {
+            cakeManager.InitializeCakes(carrier.Datas);
+            Destroy(carrier.gameObject); // 사용 후 정리
+        }
+        else
+        {
+            Debug.LogWarning("Carrier or CakeManager missing; fallback init.");
+        }
     }
 }

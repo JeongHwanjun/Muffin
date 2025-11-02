@@ -905,6 +905,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cakeDataReader: {fileID: 2006591921}
+  nextSceneName: OpeningScene
 --- !u!114 &1685110295
 MonoBehaviour:
   m_ObjectHideFlags: 0

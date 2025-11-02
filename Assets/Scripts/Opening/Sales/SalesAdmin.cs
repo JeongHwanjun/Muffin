@@ -23,7 +23,7 @@ public class SalesAdmin : MonoBehaviour
         SetUI(startScreen);
     }
 
-    void Awake()
+    void Start()
     {
         Initialize();
     }

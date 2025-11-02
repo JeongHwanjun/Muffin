@@ -19,6 +19,7 @@ public class OpeningTimeData : MonoBehaviour
 
     public List<Cake> GetCakeData()
     {
+        if (cakeManager == null) cakeManager = CakeManager.Instance;
         return cakeManager.cakes;
     }
 
