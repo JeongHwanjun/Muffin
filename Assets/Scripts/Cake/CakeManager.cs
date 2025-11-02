@@ -12,6 +12,7 @@ public enum recipeArrow {
 
 public class CakeManager : MonoBehaviour
 {
+  public static CakeManager Instance { get; private set; }
   public CakeCollection cakeCollection;
   public List<Cake> cakes = new List<Cake>();// cakes는 직접접근 X - OpeningTimeData를 통해 접근할 것
   public int baseCost = 100; // 기본 가격. 커맨드 입력 실패시 소비되는 금액임. 설정상 반죽 가격이나 그런거겠지?
@@ -22,35 +23,46 @@ public class CakeManager : MonoBehaviour
 
   private void Awake()
   {
-    // Edit - ProjectSettings - Script Execution Order에서 순서를 앞으로 당겨서 먼저 실행될 수 있도록 해야 함.
-    InitializeCakes();
+    if (Instance != null && Instance != this)
+    {
+      Destroy(this);
+      return;
+    }
+    Instance = this;
+    DontDestroyOnLoad(gameObject);
   }
 
   // 케이크 초기화
-  private void InitializeCakes() // Cake의 정보는 json파일로 주어짐
+  public void InitializeCakes(List<CakeData> cakeDatas) // Cake의 정보는 json파일로 주어짐
   {
-    // Cake 정보 불러오기
-    CakeCollection cakes_origin = Instantiate(cakeCollection);
-    string path = CakeStorageUtil.CakeRecipePath;
+    // 케이크 리스트에 CakeDatas를 정제해 추가
+    cakes.Clear();
+    foreach(CakeData cakeData in cakeDatas)
+    {
+      if (!File.Exists(cakeData.imagePath))
+      {
+        Debug.LogWarningFormat("File Does not Exist : {0} - Skip to next data", cakeData.imagePath);
+        continue;
+      }
+      // 이미지 로딩
+      byte[] imageByte = File.ReadAllBytes(cakeData.imagePath);
+      Texture2D texture = new Texture2D(2, 2);
+      texture.LoadImage(imageByte);
+      Sprite cakeSprite = Sprite.Create(texture,
+        new Rect(0, 0, texture.width, texture.height),
+        new Vector2(0.5f, 0.5f));
 
-    // 실제로는 foreach()로 읽어오도록 해야 함. 경로가 담긴 List가 주어지므로 
-
-    if (File.Exists(path))
-    { // 파일이 있다면 불러옵니다
-      string json = File.ReadAllText(path);
-      CakeList cakeList = JsonUtility.FromJson<CakeList>(json);
-      // 참고 : CakeList, CakeCollection은 json을 읽어오기 위한 도구임. 현재는 NewtonSoft껄 쓰면 되니까 없애도 될듯???
-      cakes = cakeList.cakes;
-      Debug.Log("파일 읽기 완료 : " + path);
-    }
-    else
-    { // 파일이 없다면 cakes_origin에서 그냥 불러오고, 파일을 생성합니다.
-      cakes.Clear();
-      cakes = new List<Cake>(cakes_origin.cakes);
-      CakeList cakeList = new CakeList { cakes = cakes };
-      string json = JsonUtility.ToJson(cakeList, true);
-      File.WriteAllText(path, json);
-      Debug.Log("파일 저장 완료 : " + path);
+      Cake newCake = new Cake
+      {
+        name = cakeData.displayName,
+        quantity = 3, // 기본 quantity가 필요함
+        sales = 0,
+        price = cakeData.price,
+        cost = cakeData.status[4].delta, // 4번이 cost임
+        recipe = cakeData.recipe,
+        sprite = cakeSprite
+      };
+      cakes.Add(newCake);
     }
 
     // CommandData 초기화

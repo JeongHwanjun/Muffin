@@ -5,10 +5,12 @@ using UnityEngine;
 public class OpeningReadyNextButton : MonoBehaviour
 {
     public CakeDataReader cakeDataReader;
+    private CakeManager cakeManager;
     private OpeningReadyEventManager openingReadyEventManager;
     void Start()
     {
         openingReadyEventManager = OpeningReadyEventManager.Instance;
+        cakeManager = CakeManager.Instance;
     }
     public void OnButtonClick()
     {
@@ -23,5 +25,7 @@ public class OpeningReadyNextButton : MonoBehaviour
 
         // 정보를 정제해 다음 cakeDataManager에게 넘겨주며 다음 씬 시작
         Debug.Log("CakeDatas : " + cakeDatas.Last().displayName);
+
+        cakeManager.InitializeCakes(cakeDatas);
     }
 }

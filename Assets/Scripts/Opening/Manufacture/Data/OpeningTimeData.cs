@@ -3,11 +3,12 @@ using UnityEngine;
 
 public class OpeningTimeData : MonoBehaviour
 {
-    public CakeManager cakeManager;
+    private CakeManager cakeManager;
 
 
     void Start()
     {
+        cakeManager = CakeManager.Instance;
         cakeManager.UpdateCakeData(0, 8, 1);
     }
 

@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 
 public class SalesUIHandler : MonoBehaviour
 {
-    [SerializeField] private CakeManager cakeManager;
+    private CakeManager cakeManager;
     [SerializeField] private SalesAdmin salesAdmin;
     private VisualElement root, cardContainer;
     private List<TemplateContainer> cards;
@@ -18,11 +18,11 @@ public class SalesUIHandler : MonoBehaviour
         Debug.Log("SalesUIHandler : cardContainer : " + cardContainer);
         cards = cardContainer.Query<TemplateContainer>().Where(el => el.name.StartsWith("Card")).ToList();
         Debug.Log("SalesUIHandler : cards : " + cards);
+        cakeManager = CakeManager.Instance;
 
         cakeManager.OnCakeDataChanged += OnDataChanged;
     }
-
-    void Awake()
+    void Start()
     {
         Initialize();
     }
@@ -40,7 +40,7 @@ public class SalesUIHandler : MonoBehaviour
             Label cakeName = card.Q<Label>("Name");
             Label cakeQuantity = card.Q<Label>("Quantity");
 
-            cakeImage.style.backgroundImage = new StyleBackground(Resources.Load<Sprite>(cakes[index].spritePath));
+            cakeImage.style.backgroundImage = new StyleBackground(cakes[index].sprite);
             cakeName.text = cakes[index].name;
             cakeQuantity.text = cakes[index].quantity.ToString();
             index++;

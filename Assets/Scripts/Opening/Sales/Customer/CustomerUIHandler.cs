@@ -10,9 +10,9 @@ public class CustomerUIHandler : MonoBehaviour{
 
     public void Initialize(Cake _cake, int _orderQuantity){
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
-        
+
         // 케이크 이미지, 수량 할당
-        orderImageObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(_cake.spritePath);
+        orderImageObject.GetComponent<SpriteRenderer>().sprite = _cake.sprite;
         orderQuantity.text = _orderQuantity.ToString();
     }
 

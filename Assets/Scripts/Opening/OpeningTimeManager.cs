@@ -18,7 +18,7 @@ public class OpeningTimeManager : MonoBehaviour
 
     public void Initialize()
     {
-        cakeManager = GetComponentInChildren<CakeManager>();
+        cakeManager = CakeManager.Instance;
         openingTimeData = GetComponentInChildren<OpeningTimeData>();
         manufactureEventManager = GetComponentInChildren<ManufactureEventManager>();
 
