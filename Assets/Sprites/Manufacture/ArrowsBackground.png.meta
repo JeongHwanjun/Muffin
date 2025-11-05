@@ -1,17 +1,10 @@
 fileFormatVersion: 2
-guid: c0e73a4e12747dd46b7ca90d2284fb29
-AssetOrigin:
-  serializedVersion: 1
-  productId: 235559
-  packageName: Violet Themed UI
-  packageVersion: 1.2
-  assetPath: Assets/Violet Theme Ui/Panels/Dark Panels Style 2 Blue.png
-  uploadId: 767621
+guid: dc9534bb8c1f62a4396f4d9e68f82a84
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2692101316330617974
-    second: Dark Panels Style 2 Blue_0
+      213: 4272292507327172369
+    second: ArrowsBackground_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -55,7 +48,7 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
@@ -103,40 +96,27 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Dark Panels Style 2 Blue_0
+      name: ArrowsBackground_0
       rect:
         serializedVersion: 2
-        x: 105
+        x: 0
         y: 0
-        width: 1002
-        height: 1115
+        width: 500
+        height: 500
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 40, y: 40, z: 40, w: 186}
+      border: {x: 20, y: 20, z: 20, w: 20}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a8380ccbd1cb3aad0800000000000000
-      internalID: -2692101316330617974
+      spriteID: df7df5537c0cac74b96c61d69f238285
+      internalID: 4272292507327172369
       vertices: []
       indices: 
       edges: []
@@ -145,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 9ed8473901c8ea946932b50437ceff84
+    spriteID: e6876d292ee271c4181eda837d4d995d
     internalID: 0
     vertices: []
     indices: 
@@ -155,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Dark Panels Style 2 Blue_0: -2692101316330617974
+      ArrowsBackground_0: 4272292507327172369
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
