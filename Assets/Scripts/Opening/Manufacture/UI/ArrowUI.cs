@@ -19,10 +19,12 @@ class ArrowUI : MonoBehaviour
   public void Initialize(List<recipeArrow> recipe, int index)
   {
     this.index = index;
+    arrows = new();
+    arrowImages = new();
     foreach (recipeArrow direction in recipe)
     {
       GameObject newArrow = Instantiate(arrowPrefab, transform);
-      newArrow.transform.Rotate(Vector3.forward * ((int)direction * 90));
+      newArrow.transform.Rotate(Vector3.forward * ((int)direction + 1) * -90);
       arrows.Add(newArrow);
       arrowImages.Add(newArrow.GetComponent<Image>());
     }
@@ -54,6 +56,7 @@ class ArrowUI : MonoBehaviour
       {
         arrowImage.sprite = CommonArrow;
       }
+      count++;
     }
   }
   

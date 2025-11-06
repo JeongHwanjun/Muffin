@@ -9,8 +9,7 @@ using UnityEngine.InputSystem;
 public class ManufactureInputManager : MonoBehaviour
 {
   public ManufactureAdmin manufactureAdmin;
-  public ManufactureEventManager manufactureEventManager;
-  [SerializeField] private ManufactureEventManager eventManager;
+  private ManufactureEventManager eventManager;
   /* Input Keys */
   [SerializeField] private InputAction[] commandKeys; // 커맨드 입력 키
   [SerializeField] private InputAction commandEnterKey; // 커맨드 입력 시작 키
@@ -23,11 +22,11 @@ public class ManufactureInputManager : MonoBehaviour
   [SerializeField] private Camera manufactureCamera;
 
   // 시작시 키 바인딩
-  void Awake()
+  void Start()
   {
-    SubscribeInput();
-
+    eventManager = ManufactureEventManager.Instance;
     ScreenSwapper.OnMoveScreenComplete += OnMoveScreenComplete;
+    SubscribeInput();
   }
 
   // 종료시 키 바인딩 해제
@@ -52,8 +51,8 @@ public class ManufactureInputManager : MonoBehaviour
     userClick.canceled += OnUserClick;
 
     // 이벤트 구독
-    manufactureEventManager.OnCommandStart += OnCommandEnterEvent;
-    manufactureEventManager.OnCommandEnd += OnCommandExitEvent;
+    eventManager.OnCommandStart += OnCommandEnterEvent;
+    eventManager.OnCommandEnd += OnCommandExitEvent;
 
     EnableKeys();
   }

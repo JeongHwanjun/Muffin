@@ -4,14 +4,15 @@ using System.Collections.Generic;
 public class ManufactureCommandHandler : MonoBehaviour
 {
     public ManufactureAdmin manufactureAdmin;
-    public ManufactureEventManager manufactureEventManager;
+    private ManufactureEventManager manufactureEventManager;
     public ManufactureLineManager manufactureLineManager;
     public UIHandler uiHandler;
 
     private bool isCommandStart = false;
 
-    void Awake()
+    void Start()
     {
+        manufactureEventManager = ManufactureEventManager.Instance;
         manufactureEventManager.OnCommandStart += OnCommandStart;
         manufactureEventManager.OnCommandInput += OnCommandInput;
         manufactureEventManager.OnCommandEnd += OnCommandEnd;
@@ -31,7 +32,7 @@ public class ManufactureCommandHandler : MonoBehaviour
         isCommandStart = true;
         CommandData.instance.InputCommands.Clear();
         // UI 활성화
-        uiHandler.showRecipes();
+        manufactureEventManager.TriggerShowRecipe();
         // CommandData 갱신 -> UI갱신됨
         ValidateCommandArrows();
         // UI갱신을 명시적으로 할 필요도 있을까요?
@@ -64,7 +65,7 @@ public class ManufactureCommandHandler : MonoBehaviour
             manufactureEventManager.TriggerCommandFailed();
         }
         // UI 비활성화
-        uiHandler.hideRecipes();
+        manufactureEventManager.TriggerHideRecipe();
         // 커맨드 데이터 초기화
         CommandData.instance.InputCommands.Clear();
         // 커맨드 입력 상태 비활성화
