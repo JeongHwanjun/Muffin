@@ -4,15 +4,17 @@ using UnityEngine;
 public class SalesAdmin : MonoBehaviour
 {
     [SerializeField] private SalesInputManager salesInputManager;
-    [SerializeField] private SalesEventManager salesEventManager;
+    private SalesEventManager salesEventManager;
     [SerializeField] private CustomerManager customerManager;
     [SerializeField] private OpeningTimeManager openingTimeManager;
-    [SerializeField] private SalesUIHandler salesUIHandler;
+    private CakeManager cakeManager;
     public ScreenNumber startScreen;
 
     public void Initialize(){
+        cakeManager = CakeManager.Instance;
+        salesEventManager = SalesEventManager.Instance;
         // 정적 케이크 정보(스프라이트, 이름 등)를 customerManager에 넘겨 customer 생성 준비
-        List<Cake> cakes = openingTimeManager.GetCakes();
+        List<Cake> cakes = cakeManager.cakes;
         customerManager.Initialize(cakes);
 
         // 이벤트 구독
@@ -42,7 +44,6 @@ public class SalesAdmin : MonoBehaviour
         // 현재 케이크 개수를 표현하는 UI - 항상 표시하도록 바꿈
         bool isSalesScreen = screenNumber == ScreenNumber.Sales;
         Debug.Log("setUI : " + true);
-        salesUIHandler.SetUI(true);
     }
 
     void OnDestroy()

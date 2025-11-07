@@ -4,12 +4,18 @@ using UnityEngine;
 
 public class SalesEventManager : MonoBehaviour
 {
+    public static SalesEventManager Instance { get; private set; }
     public event Action<int, int> OnConsumeCake;
     public event Action<int> OnServeCake;
     public event Action OnServeFailed, OnServeSuccess;
     public event Action<Customer> OnCustomerCreated;
     public event Action<ScreenNumber> OnMoveScreen;
     public static event Action<SalesEventManager> OnSalesEventManagerReady;
+
+    void Awake()
+    {
+        Instance = this;
+    }
 
     private void Start() {
         OnSalesEventManagerReady?.Invoke(this);

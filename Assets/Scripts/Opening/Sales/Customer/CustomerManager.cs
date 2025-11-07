@@ -9,15 +9,17 @@ public class CustomerManager : MonoBehaviour
     private float customerSpacing = 1.0f;
     private float customerInterval = 5.0f, customerCooltime = 5.0f;
     public List<GameObject> customers = new List<GameObject>();
+    public CustomerDatabase customerDatabase; // 손님별 정보
 
     public GameObject CustomerPrefab;
     public SalesAdmin salesAdmin;
-    public SalesEventManager salesEventManager;
+    private SalesEventManager salesEventManager;
 
     private List<Cake> cakes; // 이 cakes는 고정된 데이터, 스프라이트와 명칭을 받기 위한 변수임.
 
     public void Initialize(List<Cake> _cakes)
     {
+        salesEventManager = SalesEventManager.Instance;
         cakes = _cakes;
         salesEventManager.OnServeCake += TryServeCake;
         salesEventManager.OnServeSuccess += OnServeSuccess;
@@ -57,7 +59,9 @@ public class CustomerManager : MonoBehaviour
             GameObject newCustomer = Instantiate(CustomerPrefab, transform);
             customers.Add(newCustomer);
             newCustomer.transform.SetLocalPositionAndRotation(new Vector3(0, customers.Count * customerSpacing, 0), quaternion.identity);
-            newCustomer.GetComponent<Customer>().Initialize(cakes, this);
+            // 어떤 손님을 생성할지 결정함
+            int customerId = PickCustomerType();
+            newCustomer.GetComponent<Customer>().Initialize(cakes, this, customerDatabase.GetById(customerId));
             // 추가 후, customer가 생성됨을 알림
             salesEventManager.TriggerCustomerCreated(newCustomer.GetComponent<Customer>());
 
@@ -91,12 +95,20 @@ public class CustomerManager : MonoBehaviour
         lineupCustomer();
     }
 
-    private void lineupCustomer(){
+    private void lineupCustomer()
+    {
         int index = 0;
-        foreach(GameObject customer in customers){
+        foreach (GameObject customer in customers)
+        {
             customer.transform.SetLocalPositionAndRotation(new Vector3(0, index * customerSpacing, 0), quaternion.identity);
             customer.GetComponent<Customer>().OnLineChange(index);
             index++;
         }
+    }
+    
+    private int PickCustomerType()
+    {
+        // cakes의 선호도를 기준으로 어떤 손님을 생성할지 확률적으로 결정함
+        return 0;
     }
 }

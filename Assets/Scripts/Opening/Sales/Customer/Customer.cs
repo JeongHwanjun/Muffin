@@ -27,13 +27,15 @@ public class Customer : MonoBehaviour
         }
     }
 
-    public void Initialize(List<Cake> cakes, CustomerManager _customerManager){
+    public void Initialize(List<Cake> cakes, CustomerManager _customerManager, CustomerInfo whoami){
+        customerManager = _customerManager;
+        customerInfo = whoami;
         if (cakes.Count <= 0)
         {
             Debug.LogWarning("cakes.Count <= 0");
             return;
         }
-        customerManager = _customerManager;
+        
         PickCake(cakes);
 
         cake = cakes[cakeIndex];
