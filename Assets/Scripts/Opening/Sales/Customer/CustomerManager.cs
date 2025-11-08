@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -109,6 +110,30 @@ public class CustomerManager : MonoBehaviour
     private int PickCustomerType()
     {
         // cakes의 선호도를 기준으로 어떤 손님을 생성할지 확률적으로 결정함
+        // 룰렛 휠 선택으로 결정
+        // 가중치 총합
+        int[] roulette = new int[customerDatabase.Customers.Count]; // 손님 종류만큼 나눔
+        for (int i = 0; i < cakes.Count; i++)
+        {
+            for (int j = 0; j < customerDatabase.Customers.Count; j++)
+            {
+                roulette[j] += cakes[i].preferences[j];
+            }
+        }
+        // 다트 던지기
+        int bullet = UnityEngine.Random.Range(0, roulette.Sum());
+        // 어디에 맞았는지 확인
+        int cumulative = 0, index = 0;
+        foreach(int choice in roulette)
+        {
+            cumulative += choice;
+            if (bullet < cumulative)
+            {
+                Debug.LogFormat("Picking CustomerType : {0}", customerDatabase.Customers[index].displayName);
+                return index;
+            }
+            index++;
+        }
         return 0;
     }
 }

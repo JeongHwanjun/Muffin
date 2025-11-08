@@ -10,5 +10,6 @@ public class Cake {
   public int price;
   public int cost;
   public List<recipeArrow> recipe = new List<recipeArrow>();
+  public List<int> preferences;
   public Sprite sprite;
 }

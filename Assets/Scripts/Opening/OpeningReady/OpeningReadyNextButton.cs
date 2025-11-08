@@ -36,8 +36,6 @@ public class OpeningReadyNextButton : MonoBehaviour
         // 씬 로드 후 초기화
         SceneManager.sceneLoaded += OnSceneLoaded;
         SceneManager.LoadScene(nextSceneName, LoadSceneMode.Single);
-
-        cakeManager.InitializeCakes(cakeDatas);
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)

@@ -58,6 +58,7 @@ public class CakeManager : MonoBehaviour
         price = cakeData.price,
         cost = cakeData.status[4].delta, // 4번이 cost임
         recipe = cakeData.recipe,
+        preferences = cakeData.preferences,
         sprite = cakeSprite
       };
       cakes.Add(newCake);
