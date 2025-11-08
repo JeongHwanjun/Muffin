@@ -117,7 +117,7 @@ public class CustomerManager : MonoBehaviour
         {
             for (int j = 0; j < customerDatabase.Customers.Count; j++)
             {
-                roulette[j] += cakes[i].preferences[j];
+                roulette[j] = cakes[i].preferences[j];
             }
         }
         // 다트 던지기

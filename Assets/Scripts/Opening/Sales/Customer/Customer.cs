@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 
@@ -6,8 +7,8 @@ public class Customer : MonoBehaviour
 {
     public int minQuantity = 1, maxQuantity = 3;
     private int selfIndex;
+    public int cakeIndex;
     public int orderQuantity{get; private set;}
-    public int cakeIndex{get; private set;}
     public Cake cake{get; private set;}
     public string orderCakeName;
     public CustomerInfo customerInfo;
@@ -35,8 +36,9 @@ public class Customer : MonoBehaviour
             Debug.LogWarning("cakes.Count <= 0");
             return;
         }
-        
-        PickCake(cakes);
+
+        PickCake(cakes); // cakeIndex 설정
+        PickQuantity(); // 주문수량 설정
 
         cake = cakes[cakeIndex];
         waiting = customerInfo.maximumWaiting;
@@ -49,13 +51,32 @@ public class Customer : MonoBehaviour
         selfIndex = index;
         orderBubble.SetBubbleColor(selfIndex == 0);
     }
-    
+
     private void PickCake(List<Cake> cakes)
     {
         // 초기화. 이용가능한 케이크의 속성과 선호도를 활용해 케이크 및 주문수량 결정
-        // 현재는 주어진 List<Cake> 중에서 무작위로 선택함
-        System.Random random = new System.Random();
-        cakeIndex = random.Next(0, cakes.Count);
-        orderQuantity = random.Next(minQuantity,maxQuantity + 1);
+        int[] roulette = new int[cakes.Count];
+        for (int i = 0; i < cakes.Count; i++)
+        {
+            roulette[i] = cakes[i].preferences[selfIndex];
+        }
+        int bullet = Random.Range(0, roulette.Sum());
+        int cumulative = 0, index = 0;
+        foreach(int choice in roulette)
+        {
+            cumulative += choice;
+            if (bullet < cumulative)
+            {
+                cakeIndex = index;
+                Debug.LogFormat("Picking Cake : {0}", cakes[cakeIndex].name);
+                break;
+            }
+            index++;
+        }
+    }
+    
+    private void PickQuantity()
+    {
+        orderQuantity = Random.Range(0, maxQuantity);
     }
 }
