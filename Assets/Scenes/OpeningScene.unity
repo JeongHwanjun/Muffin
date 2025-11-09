@@ -678,6 +678,18 @@ PrefabInstance:
       propertyPath: 'screens.Array.data[1]'
       value: 
       objectReference: {fileID: 1507597648}
+    - target: {fileID: 1813292613416202402, guid: c9f35a59e97c18d4dba2c74f53ea44b8, type: 3}
+      propertyPath: m_ChildAlignment
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1813292613416202402, guid: c9f35a59e97c18d4dba2c74f53ea44b8, type: 3}
+      propertyPath: m_Padding.m_Bottom
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 1813292613416202402, guid: c9f35a59e97c18d4dba2c74f53ea44b8, type: 3}
+      propertyPath: m_ChildForceExpandHeight
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2674817540990638834, guid: c9f35a59e97c18d4dba2c74f53ea44b8, type: 3}
       propertyPath: manufactureCamera
       value: 
@@ -710,10 +722,30 @@ PrefabInstance:
       propertyPath: moveScreenKey.m_SingletonActionBindings.Array.data[1].m_Action
       value: Move Screen Key
       objectReference: {fileID: 0}
+    - target: {fileID: 3705617507488339046, guid: c9f35a59e97c18d4dba2c74f53ea44b8, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3705617507488339046, guid: c9f35a59e97c18d4dba2c74f53ea44b8, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3705617507488339046, guid: c9f35a59e97c18d4dba2c74f53ea44b8, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3705617507488339046, guid: c9f35a59e97c18d4dba2c74f53ea44b8, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4862994563693579231, guid: c9f35a59e97c18d4dba2c74f53ea44b8, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5385685890766920963, guid: c9f35a59e97c18d4dba2c74f53ea44b8, type: 3}
+      propertyPath: CustomerPrefab
+      value: 
+      objectReference: {fileID: 1996110728860339539, guid: 52ea94cac455b8144ae03eb4c0335114, type: 3}
     - target: {fileID: 5385685890766920963, guid: c9f35a59e97c18d4dba2c74f53ea44b8, type: 3}
       propertyPath: customerDatabase
       value: 
@@ -730,6 +762,10 @@ PrefabInstance:
       propertyPath: 'customerInfos.Array.data[1]'
       value: 
       objectReference: {fileID: 11400000, guid: 3efb62674e86dd54492cc7a9de083c2e, type: 2}
+    - target: {fileID: 5708205490106915989, guid: c9f35a59e97c18d4dba2c74f53ea44b8, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1507597651}
     - target: {fileID: 6940025024502710705, guid: c9f35a59e97c18d4dba2c74f53ea44b8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -782,6 +818,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: OpeningTimeManager_V2
       objectReference: {fileID: 0}
+    - target: {fileID: 7010188540596058314, guid: c9f35a59e97c18d4dba2c74f53ea44b8, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7010188540596058314, guid: c9f35a59e97c18d4dba2c74f53ea44b8, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7010188540596058314, guid: c9f35a59e97c18d4dba2c74f53ea44b8, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7010188540596058314, guid: c9f35a59e97c18d4dba2c74f53ea44b8, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 32000
+      objectReference: {fileID: 0}
+    - target: {fileID: 7010188540596058314, guid: c9f35a59e97c18d4dba2c74f53ea44b8, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 215
+      objectReference: {fileID: 0}
     - target: {fileID: 7438622096432264247, guid: c9f35a59e97c18d4dba2c74f53ea44b8, type: 3}
       propertyPath: startScreen
       value: 0
@@ -798,6 +854,7 @@ PrefabInstance:
     m_RemovedGameObjects:
     - {fileID: 2367744774376276164, guid: c9f35a59e97c18d4dba2c74f53ea44b8, type: 3}
     - {fileID: 2526954940975489512, guid: c9f35a59e97c18d4dba2c74f53ea44b8, type: 3}
+    - {fileID: 665489937508525268, guid: c9f35a59e97c18d4dba2c74f53ea44b8, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c9f35a59e97c18d4dba2c74f53ea44b8, type: 3}
