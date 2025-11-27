@@ -6,19 +6,26 @@ using UnityEngine.UI;
 public class CustomerUIHandler : MonoBehaviour{
     public Image orderImage;
     public TextMeshProUGUI orderQuantity;
+    private Image orderBubble;
 
     public void Initialize(Cake _cake, int _orderQuantity){
         // 케이크 이미지, 수량 할당
         orderImage.sprite = _cake.sprite;
         orderQuantity.text = _orderQuantity.ToString();
+
+        orderBubble = GetComponent<Image>();
     }
 
     public void SetBubbleColor(bool isFirst){
         Color bubbleColor;
-        if(isFirst){
+        if (isFirst)
+        {
             bubbleColor = new Color(1f, 1f, 1f, 1f);
-        } else {
+        }
+        else
+        {
             bubbleColor = new Color(0.5f, 0.5f, 0.5f, 1.0f);
         }
+        orderBubble.color = bubbleColor;
     }
 }

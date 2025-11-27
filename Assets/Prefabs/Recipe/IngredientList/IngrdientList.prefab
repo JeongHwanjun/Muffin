@@ -134,7 +134,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dropdownPanel: {fileID: 7925494114050762837}
-  ingredientGroup: {fileID: 0}
 --- !u!1 &6260561322274853558
 GameObject:
   m_ObjectHideFlags: 0
@@ -206,6 +205,7 @@ MonoBehaviour:
   - {fileID: 7970656246430654568}
   - {fileID: 5869001200606797459}
   ingredientGroup: {fileID: 0}
+  panelIcon: {fileID: 3231481967993097013}
 --- !u!1 &7925494114050762837
 GameObject:
   m_ObjectHideFlags: 0

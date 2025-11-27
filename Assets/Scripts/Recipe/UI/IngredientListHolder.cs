@@ -4,15 +4,15 @@ using UnityEngine;
 public class IngredientListHolder : MonoBehaviour
 {
     private Canvas canvas; // 최상위 canvas - draggableItem이 드래그시 참조함
-    public RecipeEventManager recipeEventManager;
-    public List<IngredientList> ingredientLists;
+    private RecipeEventManager recipeEventManager;
+    private IngredientList[] ingredientLists;
     private int _sortingOrder = 1;
 
     void Start()
     {
         canvas = GetComponentInParent<Canvas>();
-        // recipeEventManager는 지정됨
         recipeEventManager = RecipeEventManager.Instance;
+        ingredientLists = GetComponentsInChildren<IngredientList>();
 
 
         foreach (var ingredientList in ingredientLists) ingredientList.Init(canvas);

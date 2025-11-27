@@ -1,22 +1,25 @@
 using System;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class DragIcon : MonoBehaviour
 {
     public GameObject draggablePrefab; // 프리팹화된 Ingredient
-    public Canvas canvas;
-    public RecipeEventManager recipeEventManager;
+    private Canvas canvas;
+    private RecipeEventManager recipeEventManager;
 
     [SerializeField] private GameObject draggableItem;
     private Ingredient ingredientData; // Ingredient의 정보를 담고 있는 SO
+    private Sprite sprite;
 
-    public void Init(Canvas parentCanvas, RecipeEventManager eventManager) // awake 시점 호출
+    public void Init(Canvas parentCanvas, Ingredient ingredientData, Sprite ingredientSprite) // Start 시점 호출
     {
         canvas = parentCanvas;
-        recipeEventManager = eventManager;
-        ingredientData = draggablePrefab.GetComponent<DraggableItem>().ingredientData;
+        recipeEventManager = RecipeEventManager.Instance;
+        this.ingredientData = ingredientData;
+        sprite = ingredientSprite;
+        GetComponent<Image>().sprite = sprite;
         recipeEventManager.OnIngredientClick += UnlinkDraggableItem;
     }
 
@@ -52,18 +55,8 @@ public class DragIcon : MonoBehaviour
             return null;
         }
         GameObject cloneIngredient = Instantiate(draggablePrefab, transform);
-        /*
-        RectTransform myRect = GetComponent<RectTransform>();
-        RectTransform cloneRect = cloneIngredient.GetComponent<RectTransform>();
-        cloneRect.anchoredPosition = myRect.anchoredPosition;
-        //cloneRect.anchorMax = myRect.anchorMax;
-        //cloneRect.anchorMin = myRect.anchorMin;
-        cloneRect.localRotation = myRect.localRotation;
-        cloneRect.localScale = myRect.localScale;
-        //cloneIngredient.transform.SetParent(canvas.transform);
-        */
         // 이벤트 매니저 연결
-        cloneIngredient.GetComponent<DraggableItem>().Init(canvas, recipeEventManager);
+        cloneIngredient.GetComponent<DraggableItem>().Init(canvas, ingredientData, sprite);
 
         return cloneIngredient;
     }

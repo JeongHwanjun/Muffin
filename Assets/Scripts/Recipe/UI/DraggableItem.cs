@@ -1,9 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler
 {
@@ -14,14 +14,16 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     private CanvasGroup canvasGroup;
     private GameObject panel;
 
-    public void Init(Canvas c, RecipeEventManager r)
+    public void Init(Canvas c, Ingredient ingredientData, Sprite ingredientSprite)
     {
         rectTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
+        GetComponent<Image>().sprite = ingredientSprite;
         canvas = c;
+        this.ingredientData = ingredientData;
         panel = transform.parent.gameObject;
 
-        recipeEventManager = r;
+        recipeEventManager = RecipeEventManager.Instance;
 
         Debug.LogFormat("DraggableItem : Initialized! {0}", recipeEventManager);
     }

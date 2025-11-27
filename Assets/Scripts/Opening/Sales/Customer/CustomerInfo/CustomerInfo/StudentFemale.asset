@@ -15,4 +15,4 @@ MonoBehaviour:
   id: 1
   displayName: StudentFemal
   preferences: 03000000020000000100000002000000
-  maximumWaiting: 5
+  maximumWaiting: 10
