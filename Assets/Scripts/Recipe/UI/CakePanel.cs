@@ -17,14 +17,12 @@ public class CakePanel : MonoBehaviour, IDropHandler
     {
         //recipeEventManager = RecipeEventManager.Instance;
         draggableItems = new();
+        recipeEventManager = RecipeEventManager.Instance;
+        recipeEventManager.OnRemoveLastIngredient += RemoveLastIngredient;
     }
 
     void OnEnable()
     {
-        recipeEventManager = RecipeEventManager.Instance;
-        recipeEventManager.OnRemoveLastIngredient += RemoveLastIngredient;
-        
-
         StatCounter statCounter = GameObject.Find("StatCounter").GetComponent<StatCounter>();
         List<Ingredient> ingredients = statCounter.ingredients;
         if (ingredients.Count <= 0) return;

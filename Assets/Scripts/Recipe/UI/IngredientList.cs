@@ -51,7 +51,7 @@ public class IngredientList : MonoBehaviour
         int index = 0;
         foreach(Ingredient tier in ingredientGroup.tiers)
         {
-            DragIcon dragIcon = draggableIcons[index].GetComponent<DragIcon>();
+            DragIcon dragIcon = draggableIcons[index++].GetComponent<DragIcon>();
             dragIcon.Init(parentCanvas, tier, panelSprite);
         }
     }

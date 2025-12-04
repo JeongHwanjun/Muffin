@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,10 +10,13 @@ public class StatDisplayer : MonoBehaviour
     public StatCounter statCounter;
     public RecipeEventManager recipeEventManager;
     public Arrows totalArrows;
-    public TextMeshProUGUI[] textValue;
-    public TextMeshProUGUI[] textMultipliers;
+    public List<AnimatedText> textValue;
+    public List<AnimatedText> textMultipliers;
+    public float duration = 0.5f; // 숫자 애니매이션 지속시간
+
     private CakeStat values = null;
-    private StatMultipliers multipliers;
+    private StatMultipliers multipliers = null;
+    private bool firstRoll = true;
 
     void Start()
     {
@@ -47,18 +51,40 @@ public class StatDisplayer : MonoBehaviour
     {
         int index = 0;
         // 수치
-        foreach (TextMeshProUGUI textUI in textValue)
+        foreach (AnimatedText textUI in textValue)
         {
             if (index >= values.modifiers.Count)
             {
                 Debug.LogWarningFormat("values의 개수가 예상과 다릅니다. {0}", values.modifiers.Count);
                 break;
             }
-            textUI.text = values.modifiers[index++].delta.ToString();
+
+            // 값을 가져옴
+            int newValue = values.modifiers[index++].delta;
+            Debug.LogWarningFormat("newValue : {0}, currentValue : {1}", newValue, textUI.currentValue);
+            // 변경된 값이 기존과 같으면 스킵
+            if(newValue == textUI.currentValue && !firstRoll) continue;
+            //Debug.LogWarningFormat("currentValue : {0}", textUI.currentValue);
+
+            textUI.tween?.Kill(); // 기존 tweener 중단
+            int from = textUI.currentValue;
+            int to = newValue;
+
+            textUI.tween = DOTween.To(
+                () => from,
+                x =>
+                {
+                    from = x;
+                    textUI.currentValue = x;
+                    textUI.text.text = textUI.currentValue.ToString();
+                },
+                to,
+                duration
+            ).SetEase(Ease.OutQuad);
         }
 
         index = 0;
-        foreach (TextMeshProUGUI textUI in textMultipliers)
+        foreach (AnimatedText textUI in textMultipliers)
         {
             if (multipliers.modifiers != null)
             {
@@ -67,14 +93,35 @@ public class StatDisplayer : MonoBehaviour
                     Debug.LogWarningFormat("multipliers의 개수가 예상과 다릅니다. {0}", multipliers.modifiers.Count);
                     break;
                 }
-                textUI.text = multipliers.modifiers[index++].delta.ToString();
+                // 값을 가져옴
+                int newMultiplier = multipliers.modifiers[index++].delta;
+                // 변경된 값이 기존과 같으면 스킵
+                if(newMultiplier == textUI.currentValue && !firstRoll) continue;
+
+                textUI.tween?.Kill(); // 기존 tweener 중단
+                int from = textUI.currentValue;
+                int to = newMultiplier;
+
+                textUI.tween = DOTween.To(
+                    () => from,
+                    x =>
+                    {
+                        from = x;
+                        textUI.currentValue = x;
+                        textUI.text.text = textUI.currentValue.ToString();
+                    },
+                    to,
+                    duration
+                ).SetEase(Ease.OutQuad);
             }
             else
             {
                 Debug.LogWarningFormat("multipliers.modifiers가 null임");
-                textUI.text = "1"; // 해당 정보가 없으면 그냥 1임
+                textUI.text.text = "1"; // 해당 정보가 없으면 그냥 1임
             }
         }
+
+        firstRoll = false;
     }
 
     private void SetArrows()

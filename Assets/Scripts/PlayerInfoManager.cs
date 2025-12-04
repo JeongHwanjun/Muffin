@@ -35,6 +35,11 @@ public class PlayerInfoManager : MonoBehaviour
             InitializeFromEditor();
         }
 
+// 개발할 때는 에디터에서 초기화함
+#if UNITY_EDITOR
+        InitializeFromEditor();
+#endif
+
         Debug.Log("CakeNumLimit : " + playerData.cakeNumLimit);
     }
 

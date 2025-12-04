@@ -10,7 +10,7 @@ public class DragIcon : MonoBehaviour
     private RecipeEventManager recipeEventManager;
 
     [SerializeField] private GameObject draggableItem;
-    private Ingredient ingredientData; // Ingredient의 정보를 담고 있는 SO
+    [SerializeField] private Ingredient ingredientData; // Ingredient의 정보를 담고 있는 SO
     private Sprite sprite;
 
     public void Init(Canvas parentCanvas, Ingredient ingredientData, Sprite ingredientSprite) // Start 시점 호출
@@ -50,10 +50,9 @@ public class DragIcon : MonoBehaviour
 
     public GameObject InstantiateNewIngredient(Ingredient droppedIngredient)
     {
-        if (droppedIngredient.id != ingredientData.id)
-        {
-            return null;
-        }
+        if(droppedIngredient == null || ingredientData == null) return null;
+        if (droppedIngredient?.id != ingredientData?.id) return null;
+
         GameObject cloneIngredient = Instantiate(draggablePrefab, transform);
         // 이벤트 매니저 연결
         cloneIngredient.GetComponent<DraggableItem>().Init(canvas, ingredientData, sprite);
