@@ -16,6 +16,7 @@ public class StatCounter : MonoBehaviour
     public ComboResolver comboResolver = null;
     private PlayerData playerData = PlayerData.Instance;
     [SerializeField] private Ingredient defaultMultiplier;
+    private Stack<ComboRule> comboRules = new();
 
     private bool isComboCalculated = false;
     private int recipeLenFlour = 0, recipeLenBase = 0, recipeLenTopping = 0;
@@ -194,7 +195,7 @@ public class StatCounter : MonoBehaviour
 
     public CakeStat GetMultipliedStat(){return multipliedStat;}
 
-    private void SetComboStat() // 콤보 적용
+    private void GetComboRules() // 콤보 적용
     {
         if (!comboResolver)
         {
@@ -206,10 +207,12 @@ public class StatCounter : MonoBehaviour
         comboStat = CakeStat.CloneCakeStat(multipliedStat);
         foreach (var comboRule in comboResolver.GetMatches(ingredients))
         {
-            comboStat += comboRule.delta; //<- 이것도 콤보 연출시에 해도 될듯?
-            Debug.LogFormat("Combo Applied : {0}", comboRule.delta.displayName);
+            //comboStat += comboRule.delta; //<- 이것도 콤보 연출시에 해도 될듯?
+            Debug.LogFormat("Combo Calculated : {0}", comboRule.delta.displayName);
 
-            // 콤보 연출을 위한 준비
+            // 콤보 룰을 스택에 넣음
+            comboRules.Push(comboRule);
+            // 이후 콤보 적용시 이 스택을 전달해 콤보 연출 출력
         }
 
         // 콤보 산출했음을 기록
@@ -219,7 +222,7 @@ public class StatCounter : MonoBehaviour
 
     public void PressComboButton() // 임시
     {
-        SetComboStat();
+        GetComboRules();
         SetFinalStat();
         recipeEventManager.TriggerRefreshUI();
     }

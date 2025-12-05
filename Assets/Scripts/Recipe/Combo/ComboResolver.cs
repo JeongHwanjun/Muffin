@@ -12,7 +12,6 @@ public class ComboResolver : MonoBehaviour
     {
         public ComboRule rule;
         public HashSet<int> RequireAll;
-        public HashSet<int> RequireAny;
         public Ingredient delta;
     }
 
@@ -36,7 +35,6 @@ public class ComboResolver : MonoBehaviour
             {
                 rule = r,
                 RequireAll = new HashSet<int>(r.requireAllGroups.Where(x => x).Select(GetId)),
-                RequireAny = new HashSet<int>(r.requireAnyGroups.Where(x => x).Select(GetId)),
                 delta = r.delta
             };
             _prepared.Add(pr);
@@ -53,11 +51,9 @@ public class ComboResolver : MonoBehaviour
         {
             // ALL: current ⊇ requireAll
             bool allOk = pr.RequireAll.Count == 0 || pr.RequireAll.IsSubsetOf(currentSet);
+            // 기존에 OR도 있었으나 삭제됨
 
-            // ANY: requireAny ∩ current ≠ ∅  (리스트 비었으면 패스)
-            bool anyOk = pr.RequireAny.Count == 0 || pr.RequireAny.Overlaps(currentSet);
-
-            if (allOk && anyOk)
+            if (allOk)
                 yield return pr.rule;
         }
     }
