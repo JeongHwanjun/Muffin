@@ -16,3 +16,7 @@ MonoBehaviour:
   GroupName: Salt
   tiers:
   - {fileID: 11400000, guid: b93725b284331a545a0bcc59cbf1b385, type: 2}
+  - {fileID: 11400000, guid: 26fc2e27ee9b43c40b09380793f05f1f, type: 2}
+  - {fileID: 11400000, guid: d9d578de6e1aaa741a1b5d4313e7f67b, type: 2}
+  - {fileID: 11400000, guid: 835c9eb02eecbd04994544acabb593e7, type: 2}
+  - {fileID: 11400000, guid: 2c7fad5828095fd4582fd904372647fe, type: 2}

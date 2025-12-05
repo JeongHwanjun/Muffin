@@ -16,3 +16,5 @@ MonoBehaviour:
   GroupName: Apple_Topping
   tiers:
   - {fileID: 11400000, guid: 1dd1d92c19a09e649ab6b2b76a74d796, type: 2}
+  - {fileID: 11400000, guid: 58f609752fe418644b58573e785052f7, type: 2}
+  - {fileID: 11400000, guid: 7a5bff3a7f430474d9129b4c1165752d, type: 2}

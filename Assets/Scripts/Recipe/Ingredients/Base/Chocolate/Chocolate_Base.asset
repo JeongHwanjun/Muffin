@@ -16,3 +16,5 @@ MonoBehaviour:
   GroupName: Chcolate_Base
   tiers:
   - {fileID: 11400000, guid: 1e1a958dbd87af0469aabd89f3611487, type: 2}
+  - {fileID: 11400000, guid: 9edc4390e2e773a4d9b6e56719e5ee8a, type: 2}
+  - {fileID: 11400000, guid: 06b99d4c88c9a1342a65d9cfca9b02e0, type: 2}

@@ -16,3 +16,5 @@ MonoBehaviour:
   GroupName: Cheese_Base
   tiers:
   - {fileID: 11400000, guid: 985b2aebff0105647b0b074bbbf3905e, type: 2}
+  - {fileID: 11400000, guid: 9c020a8c0c34c714e9473aad341c240e, type: 2}
+  - {fileID: 11400000, guid: 895646dea72964047a41d88b845a13be, type: 2}
