@@ -61,7 +61,6 @@ public class StatDisplayer : MonoBehaviour
 
             // 값을 가져옴
             int newValue = values.modifiers[index++].delta;
-            Debug.LogWarningFormat("newValue : {0}, currentValue : {1}", newValue, textUI.currentValue);
             // 변경된 값이 기존과 같으면 스킵
             if(newValue == textUI.currentValue && !firstRoll) continue;
             //Debug.LogWarningFormat("currentValue : {0}", textUI.currentValue);

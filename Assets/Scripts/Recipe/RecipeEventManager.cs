@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class RecipeEventManager : MonoBehaviour
@@ -17,6 +19,7 @@ public class RecipeEventManager : MonoBehaviour
     public event Action<IngredientType> OnClickNextButton;
     public event Action OnMoveToNextStage;
     public event Action OnMoveToPrevStage;
+    public event Action<Stack<ComboRule>> OnPrintComboScript;
     public static event Action<Ingredient> OnIngredientDropped;
 
     void Awake()
@@ -100,6 +103,12 @@ public class RecipeEventManager : MonoBehaviour
     {
         Debug.LogFormat("Event : OnMoveToPrevStage");
         OnMoveToPrevStage?.Invoke();
+    }
+
+    public void TriggerPrintComboScript(Stack<ComboRule> comboRules)
+    {
+        Debug.LogFormat("Event : OnPrintComboScript");
+        OnPrintComboScript?.Invoke(comboRules);
     }
 
     public void TriggerIngredientHoverExit()

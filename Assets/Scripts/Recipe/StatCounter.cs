@@ -195,7 +195,7 @@ public class StatCounter : MonoBehaviour
 
     public CakeStat GetMultipliedStat(){return multipliedStat;}
 
-    private void GetComboRules() // 콤보 적용
+    private void GetComboRules() // 콤보 산출
     {
         if (!comboResolver)
         {
@@ -217,6 +217,9 @@ public class StatCounter : MonoBehaviour
 
         // 콤보 산출했음을 기록
         isComboCalculated = true;
+
+        // 콤보 산출 완료시 연출 출력
+        recipeEventManager.TriggerPrintComboScript(comboRules);
     }
     public CakeStat GetComboStat() {return comboStat;}
 
