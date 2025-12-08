@@ -2,25 +2,34 @@ using TMPro;
 using UnityEngine;
 using DG.Tweening;
 using System.Collections.Generic;
+using System.Collections;
 
 // 콤보 목록을 받아 지정된 템플릿에 맞게 출력하는 스크립트
 public class ComboScriptPrinter : MonoBehaviour
 {
     public TextMeshProUGUI text;
-    [Tooltip("재료 2개 버전 템플릿")]
-    public string comboTemplate_2;
-    [Tooltip("재료 3개 이상 버전 템플릿")]
-    public string comboTemplate_3;
-    private Tweener tween;
+    public StatCounter statCounter;
+    [Tooltip("재료 2개 버전 템플릿")] public string comboTemplate_2;
+    [Tooltip("재료 3개 이상 버전 템플릿")] public string comboTemplate_3;
+    public float characterInterval = 0.05f;
+    public float interScriptDelay = 1.0f;
+
     private RecipeEventManager recipeEventManager;
 
     void Start()
     {
         recipeEventManager = RecipeEventManager.Instance;
-        recipeEventManager.OnPrintComboScript += PrintComboScript;
+        //recipeEventManager.OnPrintComboScript += PrintComboScript;
+
+        PrintComboScript(statCounter.GetComboRuleStack());
     }
 
     public void PrintComboScript(Stack<ComboRule> comboRules)
+    {
+        StartCoroutine(PlayComboScripts(comboRules));
+    }
+
+    private IEnumerator PlayComboScripts(Stack<ComboRule> comboRules)
     {
         // 콤보 룰의 그룹명의 개수를 셈 -> 해당 개수에 맞춰 미리 준비된 템플릿 출력
         while(comboRules.Count > 0)
@@ -33,6 +42,7 @@ public class ComboScriptPrinter : MonoBehaviour
                 string script = string.Format(comboTemplate_2,comboGruops[0].GroupName, comboGruops[1].GroupName);
 
                 text.text = script;
+                
             }
             else if(comboRule.requireAllGroups.Count == 3)
             {
@@ -41,7 +51,22 @@ public class ComboScriptPrinter : MonoBehaviour
 
                 text.text = script;
             }
-            Debug.Log("대사 출력 완료 : ", comboRule.delta);
+            text.maxVisibleCharacters = 0;
+            Tween tween = DOTween.To(() => text.maxVisibleCharacters,
+                        x => text.maxVisibleCharacters = x,
+                        text.text.Length,
+                        characterInterval * text.text.Length);
+            Debug.Log("루프 하나 끝남");
+            yield return tween.WaitForCompletion(); // 완료될 때까지 기다림
+
+            yield return new WaitForSeconds(interScriptDelay); // 지정된 시간만큼 기다린 후 다음 콤보로 넘어감
         }
+
+        OnScriptPlayCompleted();
+    }
+
+    private void OnScriptPlayCompleted()
+    {
+        Debug.Log("Script Play Completed!");
     }
 }

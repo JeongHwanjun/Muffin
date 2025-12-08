@@ -217,15 +217,18 @@ public class StatCounter : MonoBehaviour
 
         // 콤보 산출했음을 기록
         isComboCalculated = true;
-
-        // 콤보 산출 완료시 연출 출력
-        recipeEventManager.TriggerPrintComboScript(comboRules);
+    }
+    public Stack<ComboRule> GetComboRuleStack()
+    {
+        return comboRules;
     }
     public CakeStat GetComboStat() {return comboStat;}
 
     public void PressComboButton() // 임시
     {
         GetComboRules();
+        // 콤보 산출 완료시 연출 출력
+        recipeEventManager.TriggerPrintComboScript(comboRules);
         SetFinalStat();
         recipeEventManager.TriggerRefreshUI();
     }
