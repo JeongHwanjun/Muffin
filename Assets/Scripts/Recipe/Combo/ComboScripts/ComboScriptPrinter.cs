@@ -19,7 +19,6 @@ public class ComboScriptPrinter : MonoBehaviour
     void Start()
     {
         recipeEventManager = RecipeEventManager.Instance;
-        //recipeEventManager.OnPrintComboScript += PrintComboScript;
 
         PrintComboScript(statCounter.GetComboRuleStack());
     }
@@ -35,6 +34,7 @@ public class ComboScriptPrinter : MonoBehaviour
         while(comboRules.Count > 0)
         {
             ComboRule comboRule = comboRules.Pop();
+            // 이 콤보룰을 스탯에 추가해줘야 함.
             // 2개일 경우 2개 템플릿에 맞춰 출력
             if(comboRule.requireAllGroups.Count == 2)
             {
@@ -58,6 +58,11 @@ public class ComboScriptPrinter : MonoBehaviour
                         characterInterval * text.text.Length);
             Debug.Log("루프 하나 끝남");
             yield return tween.WaitForCompletion(); // 완료될 때까지 기다림
+
+            // 스탯 상승
+            Debug.Log("스탯 상승");
+            statCounter.AddComboStat(comboRule);
+
 
             yield return new WaitForSeconds(interScriptDelay); // 지정된 시간만큼 기다린 후 다음 콤보로 넘어감
         }

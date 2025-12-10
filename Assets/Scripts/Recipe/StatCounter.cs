@@ -222,6 +222,12 @@ public class StatCounter : MonoBehaviour
     {
         return comboRules;
     }
+    public void AddComboStat(ComboRule comboRule)
+    {
+        comboStat += comboRule.delta;
+        SetFinalStat();
+        recipeEventManager.TriggerRefreshUI();
+    }
     public CakeStat GetComboStat() {return comboStat;}
 
     public void PressComboButton() // 임시
