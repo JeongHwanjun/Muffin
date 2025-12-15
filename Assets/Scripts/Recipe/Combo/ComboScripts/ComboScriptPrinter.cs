@@ -67,11 +67,13 @@ public class ComboScriptPrinter : MonoBehaviour
             yield return new WaitForSeconds(interScriptDelay); // 지정된 시간만큼 기다린 후 다음 콤보로 넘어감
         }
 
+        // 모든 콤보 출력이 완료됨을 알림.
         OnScriptPlayCompleted();
     }
 
     private void OnScriptPlayCompleted()
     {
+        recipeEventManager.TriggerScriptPlayCompleted();
         Debug.Log("Script Play Completed!");
     }
 }

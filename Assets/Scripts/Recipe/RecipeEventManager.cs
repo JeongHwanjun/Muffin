@@ -20,6 +20,7 @@ public class RecipeEventManager : MonoBehaviour
     public event Action OnMoveToNextStage;
     public event Action OnMoveToPrevStage;
     public event Action<Stack<ComboRule>> OnPrintComboScript;
+    public event Action OnScriptPlayCompleted;
     public static event Action<Ingredient> OnIngredientDropped;
 
     void Awake()
@@ -109,6 +110,12 @@ public class RecipeEventManager : MonoBehaviour
     {
         Debug.LogFormat("Event : OnPrintComboScript");
         OnPrintComboScript?.Invoke(comboRules);
+    }
+
+    public void TriggerScriptPlayCompleted()
+    {
+        Debug.LogFormat("Event : OnScriptPlayCompleted");
+        OnScriptPlayCompleted?.Invoke();
     }
 
     public void TriggerIngredientHoverExit()
