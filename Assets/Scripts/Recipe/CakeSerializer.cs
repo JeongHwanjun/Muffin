@@ -5,6 +5,7 @@ using System.IO;
 using Microsoft.Unity.VisualStudio.Editor;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -12,6 +13,7 @@ public class CakeSerializer : MonoBehaviour
 {
     public RecipeEventManager recipeEventManager;
     public CakeBuilder cakeBuilder;
+    public TMP_InputField cakeNameInputfield;
 
     [SerializeField]
     private int width = 1020, height = 1080;
@@ -19,19 +21,20 @@ public class CakeSerializer : MonoBehaviour
     public Camera uiCamera; // 캡처할 화면만 비추는 카메라
     PlayerData playerData = PlayerData.Instance;
     List<CakeMetaData> cakeMetadatas;
-    string cakeMetadataPath;
+    string cakeMetadataPath, cakeImagePath;
 
     private CakeData newCake;
 
     void Start()
     {
+        recipeEventManager.OnCaptureCake += CaptureCake;
         recipeEventManager.OnSaveCake += SaveCake;
     }
 
-    public void SaveCake(RectTransform clonedUI)
+    public void CaptureCake(RectTransform clonedUI)
     {
         cakeMetadataPath = Path.Combine(CakeStorageUtil.MetaDataPath, "Metadata.json");
-        // 케이크 관련 정보 획득
+        // 케이크 관련 메타데이터 획득
         if (!File.Exists(cakeMetadataPath))
         {
             Directory.CreateDirectory(CakeStorageUtil.MetaDataPath);
@@ -53,18 +56,20 @@ public class CakeSerializer : MonoBehaviour
         
         try
         {
-            // 이미지를 제외한 정보로 케이크 생성
-            newCake = cakeBuilder.BuildCake();
-            // 이미지 캡처 후 저장 시작
-            StartCoroutine(CaptureCakeUIandSave(newCake, clonedUI)); // 케이크 UI 캡쳐
+            // 이미지 캡처
+            int cakeId = PlayerData.Instance.cakeCounter; // 이 숫자를 건드리는건 build 할때 뿐임
+            StartCoroutine(CaptureCakeUI(cakeId, clonedUI));
         }
         catch (Exception e)
         {
             Debug.LogErrorFormat("CakeSerializer : {0}", e);
         }
+
+        // 이미지, 이름을 제외한 정보로 케이크 생성
+        newCake = cakeBuilder.BuildCake();
     }
 
-    public IEnumerator CaptureCakeUIandSave(CakeData newCake, RectTransform clonedUI)
+    public IEnumerator CaptureCakeUI(int newCakeId, RectTransform clonedUI)
     {
         Debug.Log("캡쳐 시작");
         // 렌더링 완료될 때까지 대기
@@ -93,20 +98,31 @@ public class CakeSerializer : MonoBehaviour
 
         // 4. png 변환
         byte[] pngData = tex.EncodeToPNG();
-        string imagePath = Path.Combine(CakeStorageUtil.CakeImagePath, newCake.ID + ".png");
+        cakeImagePath = Path.Combine(CakeStorageUtil.CakeImagePath, newCakeId + ".png");
 
         // 5. 저장
         if (!Directory.Exists(CakeStorageUtil.CakeImagePath))
         {
             Directory.CreateDirectory(CakeStorageUtil.CakeImagePath);
         }
-        File.WriteAllBytes(imagePath, pngData);
+        File.WriteAllBytes(cakeImagePath, pngData);
+        // 캡처 완료, pngData 이벤트 발생(팝업 표시용)
+        recipeEventManager.TriggerCaptureCakeCompleted(pngData);
 
-        Debug.Log("Capture Complete  : " + imagePath);
+        Debug.Log("Capture Complete  : " + cakeImagePath);
 
+        uiCamera.targetTexture = null;
+        RenderTexture.active = null;
+        Destroy(rt);
+        Destroy(tex);
+    }
+
+    void SaveCake()
+    {
         // 6. 저장된 이미지 경로를 전달해 케이크 데이터 저장
-
-        newCake.imagePath = imagePath;
+        // build시 누락된 부분들 보충
+        newCake.imagePath = cakeImagePath;
+        newCake.displayName = cakeNameInputfield.text;
         string json = JsonConvert.SerializeObject(newCake.ToSerializable(), Formatting.Indented);
         Debug.Log("CakeData Serialized : " + json.ToString());
         string folderPath = Path.Combine(CakeStorageUtil.CakeRecipePath);
@@ -118,15 +134,10 @@ public class CakeSerializer : MonoBehaviour
         File.WriteAllText(filePath, json);
         Debug.Log("케이크 데이터 저장 완료: " + CakeStorageUtil.CakeRecipePath);
 
-        uiCamera.targetTexture = null;
-        RenderTexture.active = null;
-        Destroy(rt);
-        Destroy(tex);
-
         // 7. 메타데이터 기록
         CakeMetaData newMetadata = new();
         newMetadata.id = newCake.ID;
-        newMetadata.imagePath = imagePath;
+        newMetadata.imagePath = cakeImagePath;
         newMetadata.cakePath = filePath;
         newMetadata.displayName = newCake.displayName;
         cakeMetadatas.Add(newMetadata);

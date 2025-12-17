@@ -9,25 +9,12 @@ public class CakeBuilder : MonoBehaviour
 {
 	public StatCounter statCounter;
 	private RecipeEventManager recipeEventManager;
-	public TMP_InputField cakeName;
 	public List<CustomerInfo> customerInfos;
 	[SerializeField] private List<int> pricePerStat; // 스탯당 가격. 일반적으로 Taste-Flavor-Texture-Appearance 순으로 주어짐.
 
 	void Start()
 	{
 		recipeEventManager = RecipeEventManager.Instance;
-		SetInitialCakeName();
-	}
-
-	public void SetInitialCakeName()
-	{
-		PlayerData playerData = PlayerData.Instance;
-		cakeName.text = "Cake" + playerData.cakeCounter.ToString();
-	}
-
-	string GetCakeName()
-	{
-		return cakeName.text;
 	}
 
 	string GetCakeID()
@@ -79,7 +66,6 @@ public class CakeBuilder : MonoBehaviour
 		CakeData newCake = new CakeData
 		{
 			ID = GetCakeID(),
-			displayName = GetCakeName(),
 			status = statCounter.GetFinalStat().modifiers,
 			price = GetPrice(),
 			recipe = statCounter.GetRecipeArrows(),

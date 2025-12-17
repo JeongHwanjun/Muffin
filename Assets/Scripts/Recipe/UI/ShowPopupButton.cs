@@ -12,6 +12,8 @@ public class ShowPopupButton : MonoBehaviour
         recipeEventManager = RecipeEventManager.Instance;
 
         recipeEventManager.OnScriptPlayCompleted += MakeInteractable;
+        recipeEventManager.OnCaptureCakeCompleted += SetImage;
+
         popUpButton = GetComponent<Button>();
 
         popUpButton.interactable = false;
@@ -23,8 +25,14 @@ public class ShowPopupButton : MonoBehaviour
         popUpButton.interactable = true;
     }
 
+    void SetImage(byte[] pngData)
+    {
+        popUp.GetComponent<ConfirmPanel>().SetImage(pngData);
+    }
+
     public void OnClick()
     {
+        // 이미지 캡처 후 저장, 해당 이미지 바이트를 가져옴
         popUp.SetActive(true);
     }
 }

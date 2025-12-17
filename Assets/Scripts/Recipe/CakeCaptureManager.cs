@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CakeCaptureManager : MonoBehaviour
 {
@@ -37,7 +38,7 @@ public class CakeCaptureManager : MonoBehaviour
 
         Debug.Log("✅ UI 복제 완료 (캡처 전용 Canvas에 세팅됨)");
 
-        recipeEventManager.TriggerSaveCake(clonedUI);
+        recipeEventManager.TriggerCaptureCake(clonedUI);
     }
 
     private void SetLayerRecursively(GameObject obj, int layer)
@@ -45,5 +46,10 @@ public class CakeCaptureManager : MonoBehaviour
         obj.layer = layer;
         foreach (Transform child in obj.transform)
             SetLayerRecursively(child.gameObject, layer);
+    }
+
+    public GameObject GetClonedUI()
+    {
+        return clonedUI.gameObject;
     }
 }
