@@ -4,5 +4,11 @@
     "imagePath": "C:\\Rldidkr\\Unity\\Muffin\\CakeData\\CakeImages\\46.png",
     "cakePath": "C:\\Rldidkr\\Unity\\Muffin\\CakeData\\Recipes\\Cake46.json",
     "displayName": "123"
+  },
+  {
+    "id": "47",
+    "imagePath": "C:\\Rldidkr\\Unity\\Muffin\\CakeData\\CakeImages\\47.png",
+    "cakePath": "C:\\Rldidkr\\Unity\\Muffin\\CakeData\\Recipes\\Cake47.json",
+    "displayName": "테스트입니다1"
   }
 ]

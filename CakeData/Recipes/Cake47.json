@@ -1,0 +1,24 @@
+{
+  "displayName": "테스트입니다1",
+  "ID": "47",
+  "status": {
+    "Taste": 14,
+    "Flavor": 26,
+    "Texture": 8,
+    "Appearance": 20,
+    "Cost": 18
+  },
+  "price": 188,
+  "recipe": [
+    0,
+    2,
+    3,
+    0,
+    0
+  ],
+  "preferences": [
+    130,
+    142
+  ],
+  "imagePath": "C:\\Rldidkr\\Unity\\Muffin\\CakeData\\CakeImages\\47.png"
+}
