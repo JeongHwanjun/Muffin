@@ -14,6 +14,7 @@ public class StatCounter : MonoBehaviour
     public List<Ingredient> ingredients = new(); // 추가된 재료 리스트
     public List<recipeArrow> recipeArrows = new();
     public ComboResolver comboResolver = null;
+    public ComboRule baseCombo;
     private PlayerData playerData = PlayerData.Instance;
     [SerializeField] private Ingredient defaultMultiplier;
     private Stack<ComboRule> comboRules = new();
@@ -205,6 +206,7 @@ public class StatCounter : MonoBehaviour
 
         Debug.Log("Applying Combo");
         comboStat = CakeStat.CloneCakeStat(multipliedStat);
+        comboRules.Push(baseCombo); // 기본 콤보 추가
         foreach (var comboRule in comboResolver.GetMatches(ingredients))
         {
             //comboStat += comboRule.delta; //<- 이것도 콤보 연출시에 해도 될듯?

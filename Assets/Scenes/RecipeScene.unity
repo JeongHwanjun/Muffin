@@ -467,6 +467,7 @@ MonoBehaviour:
   ingredients: []
   recipeArrows: 
   comboResolver: {fileID: 1513026304}
+  baseCombo: {fileID: 11400000, guid: ffd7693631f49e448a35839b570bf8dd, type: 2}
   defaultMultiplier: {fileID: 11400000, guid: 0a36a4bc321706146a90022b82c0bc94, type: 2}
 --- !u!114 &51981254 stripped
 MonoBehaviour:
@@ -2599,6 +2600,10 @@ PrefabInstance:
     - target: {fileID: 3612096259009221448, guid: b46c0175d33ed3844b770f4a684b2637, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -65
+      objectReference: {fileID: 0}
+    - target: {fileID: 3827549310793643907, guid: b46c0175d33ed3844b770f4a684b2637, type: 3}
+      propertyPath: m_Interactable
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3827549310793643907, guid: b46c0175d33ed3844b770f4a684b2637, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -7592,7 +7597,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 1600, y: 900}
+  m_ReferenceResolution: {x: 900, y: 900}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -14201,7 +14206,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uAC00\uB098\uB2E4\uB77C"
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: cbc1f2f0b38a03247aa3d62700134f5d, type: 2}
   m_sharedMaterial: {fileID: -354757272008144521, guid: cbc1f2f0b38a03247aa3d62700134f5d, type: 2}
@@ -14294,6 +14299,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 1935610006}
   statCounter: {fileID: 37035777}
+  comboTemplate_0: "\uC0C8\uB85C\uC6B4 \uCF00\uC774\uD06C\uAD70\uC694!"
+  comboTemplate_1: "{0} \uC88B\uB124\uC694"
   comboTemplate_2: "{0}\uC774\uB791 {1}\uC774\uB791 \uB9CC\uB0A8"
   comboTemplate_3: "{0}, {1}, {2} \uBB34\uCE5C"
   characterInterval: 0.05

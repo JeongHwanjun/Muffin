@@ -24,7 +24,7 @@ public class CakeCaptureManager : MonoBehaviour
         clonedUI = Instantiate(sourceUI, captureCanvas.transform);
 
         // 2. 위치/스케일 초기화
-        clonedUI.anchoredPosition3D = sourceUI.anchoredPosition3D;
+        clonedUI.anchoredPosition3D = Vector3.zero;
         clonedUI.sizeDelta = sourceUI.sizeDelta;
         clonedUI.localScale = sourceUI.localScale;
 

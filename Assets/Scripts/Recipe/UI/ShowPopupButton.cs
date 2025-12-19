@@ -9,18 +9,17 @@ public class ShowPopupButton : MonoBehaviour
 
     void Start()
     {
+        popUpButton = GetComponent<Button>();
+        //popUpButton.interactable = false;
         recipeEventManager = RecipeEventManager.Instance;
 
         recipeEventManager.OnScriptPlayCompleted += MakeInteractable;
         recipeEventManager.OnCaptureCakeCompleted += SetImage;
-
-        popUpButton = GetComponent<Button>();
-
-        popUpButton.interactable = false;
     }
 
     void MakeInteractable()
     {
+        Debug.LogWarning("MakeInteractable");
         // 콤보 출력 완료시 호출되어, 버튼을 누를 수 있는 상태로 바꾼다.
         popUpButton.interactable = true;
     }
