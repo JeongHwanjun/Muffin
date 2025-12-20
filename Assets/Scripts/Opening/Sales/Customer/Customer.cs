@@ -17,6 +17,7 @@ public class Customer : MonoBehaviour
     public CustomerUIHandler orderBubble;
 
     private float waiting = 1.0f;
+    private float maximumWaitingTime = 0.0f;
 
     private void Update() {
         if(waiting < 0) {
@@ -41,6 +42,7 @@ public class Customer : MonoBehaviour
         PickQuantity(); // 주문수량 설정
 
         cake = cakes[cakeIndex];
+        maximumWaitingTime = customerInfo.maximumWaiting;
         waiting = customerInfo.maximumWaiting;
 
         orderBubble.Initialize(cake, orderQuantity);
@@ -78,5 +80,14 @@ public class Customer : MonoBehaviour
     private void PickQuantity()
     {
         orderQuantity = Random.Range(0, maxQuantity);
+    }
+
+    public float GetWaitingTime()
+    {
+        return waiting;
+    }
+    public float GetMaximumWaitingTime()
+    {
+        return maximumWaitingTime;
     }
 }

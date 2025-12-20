@@ -93,6 +93,8 @@ public class CustomerManager : MonoBehaviour
         customers.Remove(deletedCustomer);
         Destroy(deletedCustomer);
 
+        salesEventManager.TriggerCustomerDeleted();
+
         lineupCustomer();
     }
 

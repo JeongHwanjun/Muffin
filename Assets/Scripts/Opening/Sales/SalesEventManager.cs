@@ -9,6 +9,7 @@ public class SalesEventManager : MonoBehaviour
     public event Action<int> OnServeCake;
     public event Action OnServeFailed, OnServeSuccess;
     public event Action<Customer> OnCustomerCreated;
+    public event Action OnCustomerDeleted;
     public event Action<ScreenNumber> OnMoveScreen;
     public static event Action<SalesEventManager> OnSalesEventManagerReady;
 
@@ -23,6 +24,10 @@ public class SalesEventManager : MonoBehaviour
 
     public void TriggerCustomerCreated(Customer _customer){
         OnCustomerCreated?.Invoke(_customer);
+    }
+    public void TriggerCustomerDeleted()
+    {
+        OnCustomerDeleted?.Invoke();
     }
 
     public void TriggerServeCake(int _cakeNumber){
