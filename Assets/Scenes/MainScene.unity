@@ -219,6 +219,10 @@ PrefabInstance:
       propertyPath: nextScene
       value: 
       objectReference: {fileID: 102900000, guid: 8be3f96bf7d891b42afbe137fcc5b9db, type: 3}
+    - target: {fileID: 8464649135214379357, guid: 4217308c9c8998942b0283cc3db79131, type: 3}
+      propertyPath: nextSceneName
+      value: RecipeScene
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -813,6 +817,10 @@ PrefabInstance:
       propertyPath: nextScene
       value: 
       objectReference: {fileID: 102900000, guid: 83976885ec0431b41bf3012fe46ad5a8, type: 3}
+    - target: {fileID: 8464649135214379357, guid: 4217308c9c8998942b0283cc3db79131, type: 3}
+      propertyPath: nextSceneName
+      value: OpeningReadyScene
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

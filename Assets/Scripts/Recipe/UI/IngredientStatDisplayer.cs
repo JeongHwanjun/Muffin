@@ -41,4 +41,15 @@ public class IngredientStatDisplayer : MonoBehaviour
     {
         UI.SetActive(false);
     }
+
+    void OnDisable()
+    {
+        if (recipeEventManager != null)
+        {
+            recipeEventManager.OnIngredientHover -= RefreshUI;
+            recipeEventManager.OnIngredientHoverExit -= ClearUI;
+        }
+
+        RecipeEventManager.OnIngredientDropped -= ClearUI;
+    }
 }

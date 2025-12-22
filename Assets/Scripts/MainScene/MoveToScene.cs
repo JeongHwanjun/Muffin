@@ -8,7 +8,7 @@ public class MoveToScene : MonoBehaviour
     [SerializeField] private SceneAsset nextScene;
 #endif
 
-    private string nextSceneName;
+    [SerializeField] private string nextSceneName;
 
 #if UNITY_EDITOR
     private void OnValidate()

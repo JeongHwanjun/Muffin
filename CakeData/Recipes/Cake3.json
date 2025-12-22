@@ -1,0 +1,24 @@
+{
+  "displayName": "크림 1호",
+  "ID": "3",
+  "status": {
+    "Taste": 14,
+    "Flavor": 39,
+    "Texture": 8,
+    "Appearance": 10,
+    "Cost": 27
+  },
+  "price": 164,
+  "recipe": [
+    1,
+    2,
+    3,
+    0,
+    0
+  ],
+  "preferences": [
+    146,
+    148
+  ],
+  "imagePath": "C:\\Rldidkr\\Unity\\Muffin\\CakeData\\CakeImages\\3.png"
+}

@@ -1,0 +1,24 @@
+{
+  "displayName": "test2",
+  "ID": "1",
+  "status": {
+    "Taste": 22,
+    "Flavor": 21,
+    "Texture": 8,
+    "Appearance": 10,
+    "Cost": 27
+  },
+  "price": 144,
+  "recipe": [
+    1,
+    2,
+    1,
+    0,
+    1
+  ],
+  "preferences": [
+    134,
+    136
+  ],
+  "imagePath": "C:\\Rldidkr\\Unity\\Muffin\\CakeData\\CakeImages\\1.png"
+}

@@ -1,23 +1,27 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "SOBaseImage", menuName = "Scriptable Objects/SOBaseImage")]
 public class SOBaseImage : ScriptableObject
 {
   public List<IngGroupImagePair> BaseImageList;
-  public Dictionary<IngredientGroup, Sprite> BaseImageDict;
+  private Dictionary<IngredientGroup, Sprite> baseImageDict;
 
-  void OnValidate()
-  {
-    BaseImageDict = new();
-    foreach (var baseImage in BaseImageList){
-      if (baseImage.ingredientGroup == null) continue;
-      BaseImageDict.Add(baseImage.ingredientGroup, baseImage.sprite);
+  public Dictionary<IngredientGroup, Sprite> BaseImageDict
+    {
+        get
+        {
+            if (baseImageDict == null)
+            {
+                baseImageDict = BaseImageList
+                    .Where(p => p.ingredientGroup != null)
+                    .ToDictionary(p => p.ingredientGroup, p => p.sprite);
+            }
+            return baseImageDict;
+        }
     }
-
-    Debug.Log("Base-Image Link Complete");
-  }
 }
 
 [Serializable]
