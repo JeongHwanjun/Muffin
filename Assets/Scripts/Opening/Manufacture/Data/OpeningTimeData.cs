@@ -9,7 +9,6 @@ public class OpeningTimeData : MonoBehaviour
     void Start()
     {
         cakeManager = CakeManager.Instance;
-        cakeManager.UpdateCakeData(0, 8, 1);
     }
 
     public void UpdateCakeData(int cakeIndex, int quantityChange = 0, int salesChange = 0)
