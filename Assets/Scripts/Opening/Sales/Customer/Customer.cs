@@ -79,7 +79,7 @@ public class Customer : MonoBehaviour
     
     private void PickQuantity()
     {
-        orderQuantity = Random.Range(0, maxQuantity);
+        orderQuantity = Random.Range(1, maxQuantity);
     }
 
     public float GetWaitingTime()

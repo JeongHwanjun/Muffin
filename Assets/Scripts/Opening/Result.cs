@@ -45,7 +45,7 @@ public class Result : MonoBehaviour
     {
         try
         {
-            SceneManager.LoadScene("--NEXT SCENE NAME HERE--");
+            SceneManager.LoadScene("MainScene");
         }
         catch (Exception e) {
             Debug.LogWarningFormat("Result : error occurred - {0}", e);
