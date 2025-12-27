@@ -12,7 +12,7 @@ public class Arrows : MonoBehaviour
         foreach (recipeArrow arrow in arrows)
         {
             GameObject child = Instantiate(ArrowImage, transform);
-            child.transform.rotation = Quaternion.Euler(0, 0, (int)arrow * 90);
+            child.transform.rotation = Quaternion.Euler(0, 0, ((int)arrow + 1) * 90 * -1);
         }
     }
 }

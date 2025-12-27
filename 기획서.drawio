@@ -1,0 +1,281 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.0.3 Chrome/140.0.7339.249 Electron/38.7.0 Safari/537.36" version="29.0.3">
+  <diagram id="prtHgNgQTEPvFCAcTncT" name="Page-1">
+    <mxGraphModel dx="1426" dy="849" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="HqP_pu4FXrPfiyVz9tfs-3" value="레시피 제작" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="630" y="50" width="570" height="240" as="geometry">
+            <mxRectangle x="40" y="40" width="90" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HqP_pu4FXrPfiyVz9tfs-21" value="다양한 재료를 조합" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="HqP_pu4FXrPfiyVz9tfs-3">
+          <mxGeometry x="20" y="40" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="HqP_pu4FXrPfiyVz9tfs-22" value="게임 진행에 따라&lt;div&gt;더 많은 재료 해금&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="HqP_pu4FXrPfiyVz9tfs-3">
+          <mxGeometry x="20" y="90" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="HqP_pu4FXrPfiyVz9tfs-23" value="재료의 조합(콤보)에 따른&lt;div&gt;긍정적/부정적 효과&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="HqP_pu4FXrPfiyVz9tfs-3">
+          <mxGeometry x="20" y="140" width="130" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="HqP_pu4FXrPfiyVz9tfs-24" value="많고 좋은 재료&lt;div&gt;= 복잡한 레시피(화살표)&lt;/div&gt;&lt;div&gt;= 게임 진행에 따라 난이도 조절&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="HqP_pu4FXrPfiyVz9tfs-3">
+          <mxGeometry x="190" y="75" width="160" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="HqP_pu4FXrPfiyVz9tfs-25" value="재료 순서/개수 조절해&lt;div&gt;원하는 화살표 유도 가능&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="HqP_pu4FXrPfiyVz9tfs-3">
+          <mxGeometry x="20" y="190" width="130" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="HqP_pu4FXrPfiyVz9tfs-29" value="" style="edgeStyle=elbowEdgeStyle;elbow=vertical;endArrow=classic;html=1;curved=0;rounded=0;endSize=8;startSize=8;exitX=1;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="HqP_pu4FXrPfiyVz9tfs-3" source="HqP_pu4FXrPfiyVz9tfs-25" target="HqP_pu4FXrPfiyVz9tfs-24">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="180" y="140" as="sourcePoint" />
+            <mxPoint x="230" y="90" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="210" y="210" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HqP_pu4FXrPfiyVz9tfs-35" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="HqP_pu4FXrPfiyVz9tfs-3" source="HqP_pu4FXrPfiyVz9tfs-22" target="HqP_pu4FXrPfiyVz9tfs-24">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="160" y="160" as="sourcePoint" />
+            <mxPoint x="210" y="110" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HqP_pu4FXrPfiyVz9tfs-36" value="투입한 재료에 따른 외견 변화&lt;div&gt;= 상상만 하던 케이크 제작&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;가능&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;와사비만 5개 넣은 케이크 등&lt;/span&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="HqP_pu4FXrPfiyVz9tfs-3">
+          <mxGeometry x="370" y="40" width="160" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="HqP_pu4FXrPfiyVz9tfs-38" value="조합을 찾아 고점을 찍거나&lt;div&gt;화살표-효율적인 레시피 제작&lt;/div&gt;&lt;div&gt;(^^^^^ 이런거)&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="HqP_pu4FXrPfiyVz9tfs-3">
+          <mxGeometry x="370" y="150" width="160" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="HqP_pu4FXrPfiyVz9tfs-39" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.143;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="HqP_pu4FXrPfiyVz9tfs-3" source="HqP_pu4FXrPfiyVz9tfs-23" target="HqP_pu4FXrPfiyVz9tfs-38">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="170" y="170" as="sourcePoint" />
+            <mxPoint x="220" y="170" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HqP_pu4FXrPfiyVz9tfs-40" value="" style="endArrow=classic;html=1;rounded=0;entryX=0;entryY=0.714;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="HqP_pu4FXrPfiyVz9tfs-3">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="150" y="210.02" as="sourcePoint" />
+            <mxPoint x="370" y="210.00000000000003" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HqP_pu4FXrPfiyVz9tfs-41" value="" style="endArrow=classic;html=1;rounded=0;entryX=0;entryY=0.714;entryDx=0;entryDy=0;entryPerimeter=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="HqP_pu4FXrPfiyVz9tfs-3" source="HqP_pu4FXrPfiyVz9tfs-21">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="150" y="60.02000000000001" as="sourcePoint" />
+            <mxPoint x="370" y="60.02000000000001" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HqP_pu4FXrPfiyVz9tfs-12" value="영업 화면" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="50" width="510" height="240" as="geometry">
+            <mxRectangle x="40" y="40" width="90" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HqP_pu4FXrPfiyVz9tfs-13" value="케이크 제작" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="HqP_pu4FXrPfiyVz9tfs-12">
+          <mxGeometry x="30" y="30" width="200" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="HqP_pu4FXrPfiyVz9tfs-14" value="화살표로 이루어진&lt;div&gt;레시피&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="HqP_pu4FXrPfiyVz9tfs-13">
+          <mxGeometry x="40" y="40" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="HqP_pu4FXrPfiyVz9tfs-15" value="반죽 - 빵 - 토핑&lt;div&gt;3단계 구성&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="HqP_pu4FXrPfiyVz9tfs-13">
+          <mxGeometry x="40" y="90" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="HqP_pu4FXrPfiyVz9tfs-16" value="생산 비용&lt;div&gt;(실수하면 손해 누적)&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="HqP_pu4FXrPfiyVz9tfs-13">
+          <mxGeometry x="40" y="140" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="HqP_pu4FXrPfiyVz9tfs-17" value="판매" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="HqP_pu4FXrPfiyVz9tfs-12">
+          <mxGeometry x="280" y="30" width="200" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="HqP_pu4FXrPfiyVz9tfs-18" value="주기적으로 찾아오는&lt;div&gt;손님&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="HqP_pu4FXrPfiyVz9tfs-17">
+          <mxGeometry x="40" y="40" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="HqP_pu4FXrPfiyVz9tfs-19" value="손님의 선호도에 따른&lt;div&gt;케이크 및 수량 선택&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="HqP_pu4FXrPfiyVz9tfs-17">
+          <mxGeometry x="40" y="90" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="HqP_pu4FXrPfiyVz9tfs-20" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="HqP_pu4FXrPfiyVz9tfs-12" source="HqP_pu4FXrPfiyVz9tfs-13" target="HqP_pu4FXrPfiyVz9tfs-17">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="320" y="200" as="sourcePoint" />
+            <mxPoint x="370" y="150" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HqP_pu4FXrPfiyVz9tfs-30" value="동시 진행" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" vertex="1" parent="HqP_pu4FXrPfiyVz9tfs-12">
+          <mxGeometry x="225" y="105" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="HqP_pu4FXrPfiyVz9tfs-31" value="" style="endArrow=classic;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="630" y="200" as="sourcePoint" />
+            <mxPoint x="560.0000000000001" y="200" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HqP_pu4FXrPfiyVz9tfs-32" value="레시피 제공" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="HqP_pu4FXrPfiyVz9tfs-31">
+          <mxGeometry x="-0.0587" relative="1" as="geometry">
+            <mxPoint y="10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HqP_pu4FXrPfiyVz9tfs-33" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="560" y="160" as="sourcePoint" />
+            <mxPoint x="630" y="160" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HqP_pu4FXrPfiyVz9tfs-34" value="개발 자금 제공" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="HqP_pu4FXrPfiyVz9tfs-33">
+          <mxGeometry x="-0.0587" relative="1" as="geometry">
+            <mxPoint x="2" y="-12" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HqP_pu4FXrPfiyVz9tfs-42" value="대회" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="630" y="360" width="420" height="260" as="geometry">
+            <mxRectangle x="40" y="40" width="90" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HqP_pu4FXrPfiyVz9tfs-55" value="게임 진행에 따라&lt;div&gt;다양한 주제와 수준의&lt;/div&gt;&lt;div&gt;케이크 대회 등장&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="HqP_pu4FXrPfiyVz9tfs-42">
+          <mxGeometry x="20" y="40" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="HqP_pu4FXrPfiyVz9tfs-56" value="특정 재료 요구&lt;div&gt;특정 스탯이 기준 이상&lt;/div&gt;&lt;div&gt;전체적으로 높은 스탯&lt;/div&gt;&lt;div&gt;등등 다양한 기준&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="HqP_pu4FXrPfiyVz9tfs-42">
+          <mxGeometry x="20" y="110" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="HqP_pu4FXrPfiyVz9tfs-57" value="보상 :&amp;nbsp;&lt;div&gt;재화, 새로운 재료,&lt;/div&gt;&lt;div&gt;새로운 기능, 기능 확장,&lt;/div&gt;&lt;div&gt;새로운 대회 등장 등&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="HqP_pu4FXrPfiyVz9tfs-42">
+          <mxGeometry x="20" y="180" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="HqP_pu4FXrPfiyVz9tfs-58" value="게임 진행 수준에 맞춰&lt;div&gt;동기 부여 및 목표 제시&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="HqP_pu4FXrPfiyVz9tfs-42">
+          <mxGeometry x="190" y="50" width="120" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="HqP_pu4FXrPfiyVz9tfs-59" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.4;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="HqP_pu4FXrPfiyVz9tfs-42" source="HqP_pu4FXrPfiyVz9tfs-55" target="HqP_pu4FXrPfiyVz9tfs-58">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="330" y="140" as="sourcePoint" />
+            <mxPoint x="170" y="70" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HqP_pu4FXrPfiyVz9tfs-60" value="" style="edgeStyle=segmentEdgeStyle;endArrow=classic;html=1;curved=0;rounded=0;endSize=8;startSize=8;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="HqP_pu4FXrPfiyVz9tfs-42" source="HqP_pu4FXrPfiyVz9tfs-57" target="HqP_pu4FXrPfiyVz9tfs-58">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="147" y="210" as="sourcePoint" />
+            <mxPoint x="197" y="160" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HqP_pu4FXrPfiyVz9tfs-61" value="다양한 레시피 제작 유도&lt;div&gt;(게임 경험 다각화)&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="HqP_pu4FXrPfiyVz9tfs-42">
+          <mxGeometry x="270" y="115" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="HqP_pu4FXrPfiyVz9tfs-62" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="HqP_pu4FXrPfiyVz9tfs-42" source="HqP_pu4FXrPfiyVz9tfs-56" target="HqP_pu4FXrPfiyVz9tfs-61">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="147" y="139.82999999999998" as="sourcePoint" />
+            <mxPoint x="197" y="139.82999999999998" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HqP_pu4FXrPfiyVz9tfs-63" value="상점/업그레이드" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="360" width="510" height="260" as="geometry">
+            <mxRectangle x="40" y="40" width="90" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HqP_pu4FXrPfiyVz9tfs-72" value="재화를 소모해 다양한&lt;div&gt;업그레이드 구매 가능&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="HqP_pu4FXrPfiyVz9tfs-63">
+          <mxGeometry x="20" y="40" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="HqP_pu4FXrPfiyVz9tfs-73" value="영구적인 업그레이드&lt;div&gt;(진행도에 따라 해금)&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="HqP_pu4FXrPfiyVz9tfs-63">
+          <mxGeometry x="20" y="90" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="HqP_pu4FXrPfiyVz9tfs-74" value="일회성 부스트" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="HqP_pu4FXrPfiyVz9tfs-63">
+          <mxGeometry x="20" y="140" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="HqP_pu4FXrPfiyVz9tfs-75" value="일부 재료/기능" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="HqP_pu4FXrPfiyVz9tfs-63">
+          <mxGeometry x="20" y="190" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="HqP_pu4FXrPfiyVz9tfs-76" value="재화 소모처 제공" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="HqP_pu4FXrPfiyVz9tfs-63">
+          <mxGeometry x="200" y="40" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="HqP_pu4FXrPfiyVz9tfs-77" value="성장 요소 제공" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="HqP_pu4FXrPfiyVz9tfs-63">
+          <mxGeometry x="200" y="150" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="HqP_pu4FXrPfiyVz9tfs-78" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="HqP_pu4FXrPfiyVz9tfs-63" source="HqP_pu4FXrPfiyVz9tfs-72" target="HqP_pu4FXrPfiyVz9tfs-76">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="260" y="110" as="sourcePoint" />
+            <mxPoint x="310" y="60" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HqP_pu4FXrPfiyVz9tfs-79" value="" style="edgeStyle=elbowEdgeStyle;elbow=horizontal;endArrow=classic;html=1;curved=0;rounded=0;endSize=8;startSize=8;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="HqP_pu4FXrPfiyVz9tfs-63" source="HqP_pu4FXrPfiyVz9tfs-73" target="HqP_pu4FXrPfiyVz9tfs-77">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="230" y="120" as="sourcePoint" />
+            <mxPoint x="280" y="70" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HqP_pu4FXrPfiyVz9tfs-81" value="" style="edgeStyle=segmentEdgeStyle;endArrow=classic;html=1;curved=0;rounded=0;endSize=8;startSize=8;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="HqP_pu4FXrPfiyVz9tfs-63" source="HqP_pu4FXrPfiyVz9tfs-75" target="HqP_pu4FXrPfiyVz9tfs-77">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="210" y="160" as="sourcePoint" />
+            <mxPoint x="260" y="110" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HqP_pu4FXrPfiyVz9tfs-82" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="HqP_pu4FXrPfiyVz9tfs-63" source="HqP_pu4FXrPfiyVz9tfs-74" target="HqP_pu4FXrPfiyVz9tfs-76">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="250" y="110" as="sourcePoint" />
+            <mxPoint x="300" y="60" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HqP_pu4FXrPfiyVz9tfs-83" value="진행도에 따른 성장 가시화&lt;div&gt;재화 획득 동기 제공&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="HqP_pu4FXrPfiyVz9tfs-63">
+          <mxGeometry x="340" y="110" width="160" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="HqP_pu4FXrPfiyVz9tfs-84" value="" style="edgeStyle=segmentEdgeStyle;endArrow=classic;html=1;curved=0;rounded=0;endSize=8;startSize=8;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="HqP_pu4FXrPfiyVz9tfs-63" source="HqP_pu4FXrPfiyVz9tfs-76" target="HqP_pu4FXrPfiyVz9tfs-83">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="310" y="100" as="sourcePoint" />
+            <mxPoint x="360" y="50" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HqP_pu4FXrPfiyVz9tfs-85" value="" style="edgeStyle=segmentEdgeStyle;endArrow=classic;html=1;curved=0;rounded=0;endSize=8;startSize=8;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="HqP_pu4FXrPfiyVz9tfs-63" source="HqP_pu4FXrPfiyVz9tfs-77" target="HqP_pu4FXrPfiyVz9tfs-83">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="340" y="140" as="sourcePoint" />
+            <mxPoint x="390" y="90" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HqP_pu4FXrPfiyVz9tfs-86" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="630" y="460" as="sourcePoint" />
+            <mxPoint x="560" y="460" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HqP_pu4FXrPfiyVz9tfs-87" value="해금" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="HqP_pu4FXrPfiyVz9tfs-86">
+          <mxGeometry x="0.4" relative="1" as="geometry">
+            <mxPoint x="14" y="-10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HqP_pu4FXrPfiyVz9tfs-88" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.678;entryY=-0.001;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="HqP_pu4FXrPfiyVz9tfs-3" target="HqP_pu4FXrPfiyVz9tfs-42">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="720" y="370" as="sourcePoint" />
+            <mxPoint x="915" y="350" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HqP_pu4FXrPfiyVz9tfs-89" value="대회 통과를 위한&lt;div&gt;레시피 제작&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="HqP_pu4FXrPfiyVz9tfs-88">
+          <mxGeometry x="-0.3001" y="-2" relative="1" as="geometry">
+            <mxPoint x="47" y="6" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HqP_pu4FXrPfiyVz9tfs-90" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.476;exitY=0;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="HqP_pu4FXrPfiyVz9tfs-42">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="800" y="320" as="sourcePoint" />
+            <mxPoint x="830" y="290" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HqP_pu4FXrPfiyVz9tfs-91" value="새로운 재료,&lt;div&gt;기능, 제한 해제&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="HqP_pu4FXrPfiyVz9tfs-90">
+          <mxGeometry x="0.2343" y="-2" relative="1" as="geometry">
+            <mxPoint x="-42" y="3" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HqP_pu4FXrPfiyVz9tfs-92" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.643;exitY=-0.007;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="HqP_pu4FXrPfiyVz9tfs-63">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="450" y="350" as="sourcePoint" />
+            <mxPoint x="378" y="290" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HqP_pu4FXrPfiyVz9tfs-93" value="업그레이드 제공" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="HqP_pu4FXrPfiyVz9tfs-92">
+          <mxGeometry x="0.3769" y="1" relative="1" as="geometry">
+            <mxPoint x="43" y="9" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HqP_pu4FXrPfiyVz9tfs-94" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.373;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="HqP_pu4FXrPfiyVz9tfs-63">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="240" y="290" as="sourcePoint" />
+            <mxPoint x="240" y="350" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HqP_pu4FXrPfiyVz9tfs-95" value="재화 수급" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="HqP_pu4FXrPfiyVz9tfs-94">
+          <mxGeometry x="-0.2192" y="-1" relative="1" as="geometry">
+            <mxPoint x="-29" as="offset" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
